@@ -1,11 +1,9 @@
 import React from "react";
+import "./Home.css"; // Replace with the correct path to your CSS file
 
 const Home: React.FC<{}> = () => {
     return (
-        <div>
-            <h1>Welcome</h1>
-        </div>
-    
+        <div className="background"></div>
     );
 };
 
