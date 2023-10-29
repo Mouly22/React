@@ -1,0 +1,13 @@
+.background {
+    background-image: url("Farming-Vector-Illustration.jpg"); /* Replace with the path to your image */
+    background-size: 66% 100%; /* Set the size to cover the left two-thirds of the screen's width */
+    background-position: left top; /* Position the image to the left and top */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    min-height: 100vh; /* Set the minimum height of the background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white; /* Text color for readability */
+    filter: saturate(99%); /* Increase saturation for vibrant colors; you can adjust the '200%' value */
+}
