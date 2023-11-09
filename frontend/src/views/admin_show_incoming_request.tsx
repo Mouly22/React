@@ -35,7 +35,9 @@ const Admin_Page_show_Incoming_request: React.FC = () => {
   };
 
   let Url = '';
+  let all_login_url = '';
   const addMember = (newUserData: any) => {
+    all_login_url = 'http://127.0.0.1:8000/register_all_login';
     if (newUserData.user_type === 'admin') {
       Url = 'http://127.0.0.1:8000/register/';
     } else if (newUserData.user_type === 'field_officer') {
@@ -43,6 +45,7 @@ const Admin_Page_show_Incoming_request: React.FC = () => {
     }
     axios.post(Url, newUserData)
       .then((response) => {
+        axios.post(all_login_url, newUserData)
         console.log('New member added:', response.data);
         deleteMember(newUserData.userid);
         window.alert('New member added successfully.');

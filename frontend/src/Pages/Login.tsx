@@ -23,7 +23,7 @@ const DataFormComponent_login: React.FC = () => {
   const [userData, setUserData] = useState(null);
   const [passwordMatch, setPasswordMatch] = useState(false);
   const navigate = useNavigate();
-
+  
   useEffect(() => {
     if (passwordMatch) {
       localStorage.setItem('userid', userid);
@@ -38,11 +38,7 @@ const DataFormComponent_login: React.FC = () => {
 
   const checkUserExistence = async () => {
     let url;
-    if (userType === "admin") {
-      url = "http://127.0.0.1:8000/login/";
-    } else if (userType === "field_officer") {
-      url = "http://127.0.0.1:8000/login_field_officer/";
-    }
+    url = 'http://127.0.0.1:8000/login_all_login/';
 
     try {
       const response = await axios.post(url, {
@@ -53,6 +49,7 @@ const DataFormComponent_login: React.FC = () => {
       if (response.data.exists) {
         setUserExists(true);
         setUserData(response.data.user_data);
+         setUserType(response.data.user_data.user_type);
         setPasswordMatch(password === response.data.user_data.password);
       } else {
         setUserExists(false);
@@ -71,17 +68,7 @@ const DataFormComponent_login: React.FC = () => {
         </Typography>
         <FormControl fullWidth style={{ margin: "10px 0" }}>
           <InputLabel></InputLabel>
-          <Select
-            value={userType}
-            onChange={(e) => setUserType(e.target.value as string)}
-          >
-            <MenuItem value="admin">Admin</MenuItem>
-            <MenuItem value="field_officer">Field Officer</MenuItem>
-            <MenuItem value="expert">Expert</MenuItem>
-            <MenuItem value="businessman">Businessman</MenuItem>
-            <MenuItem value="farmer">Farmer</MenuItem>
-            <MenuItem value="deliveryman">Deliveryman</MenuItem>
-          </Select>
+
         </FormControl>
         <TextField
           label="User ID"

@@ -23,6 +23,7 @@ from authentication.views import ReactView, CheckEmployeeExistenceView
 from login_stuffs.views import ReactView_Register_admin, CheckUserExistenceView , ReactView_DeleteMember
 from field_officer_login.views import ReactView_Register_Field_Officer, CheckUserExistenceView_Field_Officer,ReactView_DeleteMember_Field_Officer
 from incoming_request.views import ReactView_DeleteMember_Incoming_request,ReactView_Register_Incoming_Request,CheckUserExistenceView_Incoming_request
+from all_login_credentials.views import ReactView_DeleteMember_all_login,ReactView_Register_all_login,CheckUserExistenceView_all_login
 
 urlpatterns = [
     path('', ReactView.as_view(), name="anything"),
@@ -32,6 +33,10 @@ urlpatterns = [
 
     path('register_incoming_request/', ReactView_Register_Incoming_Request.as_view(), name="anything"),#incoming_request register
     path('delete_incoming_request/', ReactView_DeleteMember_Incoming_request.as_view(), name="delete_member"),  #delete incoming request
+
+    path('register_all_login',ReactView_Register_all_login.as_view(), name='anything'), #for all login 
+    path('login_all_login/', CheckUserExistenceView_all_login.as_view(), name="check_user"), # for  all login
+    path('delete_all_login/', ReactView_DeleteMember_all_login.as_view(), name="delete_member"), 
 
 
     

@@ -3,6 +3,10 @@ import axios from 'axios';
 import Admin_Page_show_admins from './admin_show_admins';
 import Admin_Page_show_Field_Officers from './admin_show_fieldofficers_list';
 import Admin_Page_show_Incoming_request from './admin_show_incoming_request';
+import SignupForm from '../Pages/SignUp';
+//import { Link } from 'react-router-dom';
+
+import AddAdminsButton from './admin_show_button_for_adding_admins';
 const Admin_Page: React.FC = () => {
   const [userid, setUserid] = useState('');
   const [userType, setUserType] = useState('');
@@ -21,6 +25,7 @@ const Admin_Page: React.FC = () => {
       <Admin_Page_show_Incoming_request></Admin_Page_show_Incoming_request>
     <Admin_Page_show_admins></Admin_Page_show_admins>
     <Admin_Page_show_Field_Officers></Admin_Page_show_Field_Officers>
+    <AddAdminsButton></AddAdminsButton>
     
     </>
   )

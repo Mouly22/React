@@ -13,6 +13,7 @@ const Admin_Page_show_Field_Officers: React.FC = () => {
     axios.post('http://127.0.0.1:8000/delete_field_officer/', { memberId })
       .then((response) => {
         if (response.data.success) {
+          axios.post('http://127.0.0.1:8000/delete_all_login/', { memberId })
           window.alert('User deleted successfully.');
           // Manually refresh the data by toggling 'refresh'
           setRefresh(!refresh);
