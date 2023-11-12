@@ -3,6 +3,15 @@ import { Link, useNavigate } from "react-router-dom";
 
 const NavBar: React.FC<{}> = () => {
   const navigate = useNavigate();
+  const userId = localStorage.getItem('userid');
+
+  const handleLogout = () => {
+    // Perform logout actions, such as clearing local storage
+    localStorage.removeItem('userid');
+    localStorage.removeItem('user_type');
+    // Redirect to the home page or login page
+    navigate("/");
+  };
 
   const headerStyle = {
     background: "linear-gradient(120deg, #118a7e, #a2c11c)"
@@ -33,12 +42,20 @@ const NavBar: React.FC<{}> = () => {
             </li>
           </ul>
           <div className="text-end">
-            <Link to="/signin" type="button" className="btn btn-outline-light me-2">
-              Login
-            </Link>
-            <Link to="/signup" type="button" className="btn btn-warning">
-              Sign Up
-            </Link>
+            {userId ? (
+              <button onClick={handleLogout} className="btn btn-outline-light me-2">
+                Logout
+              </button>
+            ) : (
+              <>
+                <Link to="/signin" type="button" className="btn btn-outline-light me-2">
+                  Login
+                </Link>
+                <Link to="/signup" type="button" className="btn btn-warning">
+                  Sign Up
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -47,4 +64,3 @@ const NavBar: React.FC<{}> = () => {
 };
 
 export default NavBar;
-
