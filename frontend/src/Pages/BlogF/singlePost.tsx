@@ -1,43 +1,41 @@
-
-import React from "react";
-import "./singlePost.css";
-import plantImage from "./plant.jpg"
+// SinglePost.tsx
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const SinglePost: React.FC<{}> = () => {
-    return (
-        <div className = "SinglePost">
-            <div className = "SinglePostWrapper">
-                <img
-                src = {plantImage}
-                alt = ''
-                className = "singlePostImg"
-                />
-                <h1 className = "singlePostTitle">We have a long way to go!
-                <div className="singlePostEdit">
-                <i className=" singlePostIcon fas fa-trash-alt"></i>
-                    <i className="singlePostIcon far fa-trash-alt"></i>
-                </div>
-                </h1>
-                <div className="singlePostInfo">
-                <span>
-                    Author: Mo
-                </span>
-                <span>1 day ago</span>
-                </div>
+  const { postId } = useParams<{ postId: string }>();
+  const [postData, setPostData] = useState<any>(null);
 
-                <p className="singlePostDesc">
-                Details
-                <br />
-                <br />
-                in addition
-                </p>
-      </div>
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.post("http://127.0.0.1:8000/login_blog_list/", {
+          post_id: postId,
+        });
+        setPostData(response.data.user_data);
+      } catch (error) {
+        console.error("Error fetching post data:", error);
+        // Handle errors (e.g., set a default value for postData)
+      }
+    };
+
+    fetchData();
+  }, [postId]);
+
+  return (
+    <div>
+      {postData && (
+        <>
+          <h1>{postData.post_title}</h1>
+          <p>{postData.post_content}</p>
+          <p> Post was uploaded on: {postData.post_uploaded}</p>
+          <p>{postData.post_image}</p>
+          {/* Add more details as needed */}
+        </>
+      )}
     </div>
   );
-}
-
-
+};
 
 export default SinglePost;
-
-

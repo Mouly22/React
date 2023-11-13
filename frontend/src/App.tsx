@@ -22,7 +22,7 @@ function App() {
             <Route path="/signin" element={<DataFormComponent_login/>}/>
             <Route path="/signup" element={<SignupForm/>}/>
             <Route path="/Blog" element={<Blog/>}/>
-            <Route path = "/singlePost" element= {<SinglePost/>}/>
+            <Route path = "/singlePost/:postId" element= {<SinglePost/>}/>
          
             
             <Route
