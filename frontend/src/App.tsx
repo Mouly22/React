@@ -4,9 +4,9 @@ import DataFormComponent_login from "./Pages/Login"; //login page
 import SignupForm from "./Pages/SignUp";
 import Home from "./Pages/Home";
 import Admin_Page from "./views/admin";
-import AllBlogList from "./Components/allbloglist";
-import BlogListtingCategoryWise from "./Components/blogcategory";
+import Blog from "./Pages/BlogF/Blog"
 import './App.css';
+import SinglePost from "./Pages/BlogF/singlePost"
 //import Field_Officer_Page from "./views/field_officer";
 import Field_officer_Page from "./views_field_officers/Field_officer_view";
 import SignupForm_for_admin from "./views/admin_show_admin_adding_page";
@@ -21,11 +21,11 @@ function App() {
             <Route path="/" element={<Home/>}/>
             <Route path="/signin" element={<DataFormComponent_login/>}/>
             <Route path="/signup" element={<SignupForm/>}/>
+            <Route path="/Blog" element={<Blog/>}/>
+            <Route path = "/singlePost" element= {<SinglePost/>}/>
+         
             
-            <Route path="blog" element={<AllBlogList/>}/>
-            <Route path="javascript" element={<BlogListtingCategoryWise/>}/>
-            
-              <Route
+            <Route
               path="/admin"
               element={<Admin_Page />} // Display the Admin_Page component
             />
