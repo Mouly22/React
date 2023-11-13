@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Oct 24, 2023 at 07:39 PM
+-- Generation Time: Nov 12, 2023 at 06:45 PM
 -- Server version: 8.1.0
 -- PHP Version: 8.2.8
 
@@ -20,6 +20,36 @@ SET time_zone = "+00:00";
 --
 -- Database: `sample2`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `all_login_credentials`
+--
+
+CREATE TABLE `all_login_credentials` (
+  `id` bigint NOT NULL,
+  `userid` varchar(30) NOT NULL,
+  `password` varchar(200) NOT NULL,
+  `email` varchar(200) NOT NULL,
+  `address` varchar(200) NOT NULL,
+  `nid` int NOT NULL,
+  `user_type` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `all_login_credentials`
+--
+
+INSERT INTO `all_login_credentials` (`id`, `userid`, `password`, `email`, `address`, `nid`, `user_type`) VALUES
+(1, 'kamal', '12345', 'kamal@gmail.com', 'Sylhet City, Country', 12325, 'field_officer'),
+(3, 'macorov', '12345', 'mac@gmail.com', 'Bronx', 4342432, 'admin'),
+(4, 'Michael', '12345', 'michael@yahoo.com', 'Jamalpur', 21343234, 'admin'),
+(5, 'Mugdho', '12345', 'mugdho@yahoo.com', 'Bogura', 21243, 'field_officer'),
+(7, 'Mouly', '12345', 'abira@taylorswift.com', 'Rangpur', 12345, 'admin'),
+(8, 'Didar', '12345', 'didar@gmail.com', 'Nowakhali', 21213, 'admin'),
+(9, 'ashik', '12345', 'ashikbanaya@gmail.com', 'Sherpur', 12341, 'field_officer'),
+(10, 'linux12', '12345', 'linux@linux.com', 'Rampura', 13245, 'admin');
 
 -- --------------------------------------------------------
 
@@ -130,7 +160,15 @@ INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALU
 (33, 'Can add react', 9, 'add_react'),
 (34, 'Can change react', 9, 'change_react'),
 (35, 'Can delete react', 9, 'delete_react'),
-(36, 'Can view react', 9, 'view_react');
+(36, 'Can view react', 9, 'view_react'),
+(37, 'Can add react', 10, 'add_react'),
+(38, 'Can change react', 10, 'change_react'),
+(39, 'Can delete react', 10, 'delete_react'),
+(40, 'Can view react', 10, 'view_react'),
+(41, 'Can add react', 11, 'add_react'),
+(42, 'Can change react', 11, 'change_react'),
+(43, 'Can delete react', 11, 'delete_react'),
+(44, 'Can view react', 11, 'view_react');
 
 -- --------------------------------------------------------
 
@@ -218,12 +256,14 @@ CREATE TABLE `django_content_type` (
 
 INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
 (1, 'admin', 'logentry'),
+(11, 'all_login_credentials', 'react'),
 (3, 'auth', 'group'),
 (2, 'auth', 'permission'),
 (4, 'auth', 'user'),
 (7, 'authentication', 'react'),
 (5, 'contenttypes', 'contenttype'),
 (9, 'field_officer_login', 'react'),
+(10, 'incoming_request', 'react'),
 (8, 'login_stuffs', 'react'),
 (6, 'sessions', 'session');
 
@@ -265,7 +305,9 @@ INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
 (18, 'sessions', '0001_initial', '2023-10-23 16:32:34.523160'),
 (19, 'authentication', '0001_initial', '2023-10-23 17:09:46.835254'),
 (20, 'login_stuffs', '0001_initial', '2023-10-24 06:22:41.322974'),
-(21, 'field_officer_login', '0001_initial', '2023-10-24 10:00:40.206191');
+(21, 'field_officer_login', '0001_initial', '2023-10-24 10:00:40.206191'),
+(22, 'incoming_request', '0001_initial', '2023-10-27 13:52:41.652120'),
+(23, 'all_login_credentials', '0001_initial', '2023-11-09 06:23:58.868098');
 
 -- --------------------------------------------------------
 
@@ -300,7 +342,32 @@ CREATE TABLE `field_officer_credentials` (
 --
 
 INSERT INTO `field_officer_credentials` (`id`, `userid`, `password`, `email`, `address`, `nid`, `user_type`) VALUES
-(1, 'kamal', '12345', 'kamal@gmail.com', 'Sylhet City, Country', 12325, 'field_officer');
+(1, 'kamal', '12345', 'kamal@gmail.com', 'Sylhet City, Country', 12325, 'field_officer'),
+(15, 'Mugdho', '12345', 'mugdho@yahoo.com', 'Bogura', 21243, 'field_officer'),
+(17, 'ashik', '12345', 'ashikbanaya@gmail.com', 'Sherpur', 12341, 'field_officer');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `incoming_requests`
+--
+
+CREATE TABLE `incoming_requests` (
+  `id` bigint NOT NULL,
+  `userid` varchar(30) NOT NULL,
+  `password` varchar(200) NOT NULL,
+  `email` varchar(200) NOT NULL,
+  `address` varchar(200) NOT NULL,
+  `nid` int NOT NULL,
+  `user_type` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `incoming_requests`
+--
+
+INSERT INTO `incoming_requests` (`id`, `userid`, `password`, `email`, `address`, `nid`, `user_type`) VALUES
+(24, 'Mukto', '12345', 'muktobb@gmail.com', 'Pabna', 21312, 'admin');
 
 -- --------------------------------------------------------
 
@@ -323,15 +390,21 @@ CREATE TABLE `user_credentials` (
 --
 
 INSERT INTO `user_credentials` (`id`, `userid`, `password`, `email`, `address`, `nid`, `user_type`) VALUES
-(1, 'john_doe', 'securepassword', 'john.doe@example.com', '123 Main Street, City, Country', 1234567890, 'regular'),
-(2, 'macorov', '12345', 'macorov@gmail.com', 'City, Country', 12345, 'admin'),
-(3, 'boss', '12345', 'boss@gmail.com', 'Nyc Bronx', 41154, 'admin'),
-(8, 'boss2', '12345', 'bossmamu@gmail.com', 'afadfafa', 12121, 'admin'),
-(9, 'boss23', '12345', 'fahad@gmail.com', '1234 NYC', 21311, 'admin');
+(11, 'macorov', '12345', 'mac@gmail.com', 'Bronx', 4342432, 'admin'),
+(24, 'Michael', '12345', 'michael@yahoo.com', 'Jamalpur', 21343234, 'admin'),
+(25, 'Mouly', '12345', 'abira@taylorswift.com', 'Rangpur', 12345, 'admin'),
+(26, 'Didar', '12345', 'didar@gmail.com', 'Nowakhali', 21213, 'admin'),
+(27, 'linux12', '12345', 'linux@linux.com', 'Rampura', 13245, 'admin');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `all_login_credentials`
+--
+ALTER TABLE `all_login_credentials`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `authentication_react`
@@ -419,6 +492,12 @@ ALTER TABLE `field_officer_credentials`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `incoming_requests`
+--
+ALTER TABLE `incoming_requests`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `user_credentials`
 --
 ALTER TABLE `user_credentials`
@@ -427,6 +506,12 @@ ALTER TABLE `user_credentials`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `all_login_credentials`
+--
+ALTER TABLE `all_login_credentials`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `authentication_react`
@@ -450,7 +535,7 @@ ALTER TABLE `auth_group_permissions`
 -- AUTO_INCREMENT for table `auth_permission`
 --
 ALTER TABLE `auth_permission`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `auth_user`
@@ -480,25 +565,31 @@ ALTER TABLE `django_admin_log`
 -- AUTO_INCREMENT for table `django_content_type`
 --
 ALTER TABLE `django_content_type`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `field_officer_credentials`
 --
 ALTER TABLE `field_officer_credentials`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `incoming_requests`
+--
+ALTER TABLE `incoming_requests`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `user_credentials`
 --
 ALTER TABLE `user_credentials`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- Constraints for dumped tables

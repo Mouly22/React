@@ -13,7 +13,7 @@ const Field_officer_Page: React.FC = () => {
     return(
       <>
         <div>
-          <h2>Welcome, Admin</h2>
+          <h2>Welcome, Field Officer</h2>
           <p>User ID: {userid}</p>
           <p>User Type: {userType}</p>
         </div>

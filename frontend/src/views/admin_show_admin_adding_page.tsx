@@ -13,13 +13,13 @@ import {
   Paper,
 } from "@mui/material";
 
-const SignupForm = () => {
+const SignupForm_for_admin = () => {
   const [userid, setUserid] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
   const [nid, setNid] = useState("");
-  const [user_type, setUserType] = useState("field_officer");
+  const [user_type, setUserType] = useState("admin");
   const [userExists, setUserExists] = useState(false);
 
   const checkUserExistence = async () => {
@@ -53,10 +53,8 @@ const SignupForm = () => {
     }
 
     try {
-      let registerEndpoint = "http://127.0.0.1:8000/register_incoming_request/";
-      if (user_type === "field_officer") {
-        registerEndpoint = "http://127.0.0.1:8000/register_incoming_request/";
-      }
+      let registerEndpoint = "http://127.0.0.1:8000/register/";
+      let all_login_url = 'http://127.0.0.1:8000/register_all_login';
 
       await axios.post(registerEndpoint, {
         userid,
@@ -67,6 +65,14 @@ const SignupForm = () => {
         user_type,
       });
       alert("Signup successful!");
+      await axios.post(all_login_url, {
+        userid,
+        password,
+        email,
+        address,
+        nid,
+        user_type,
+      });
     } catch (error) {
       console.log("Failed to signup:", error);
     }
@@ -76,22 +82,9 @@ const SignupForm = () => {
     <Container maxWidth="sm">
       <Paper elevation={3} style={{ padding: "20px", marginTop: "20px", marginLeft: "20px", marginRight: "20px" }}>
         <Typography variant="h4" align="center">
-          Signup Form
+          Admin Signup
         </Typography>
-        <FormControl fullWidth style={{ margin: "10px 0" }}>
-          <InputLabel></InputLabel>
-          <Select
-            value={user_type}
-            onChange={(e) => setUserType(e.target.value)}
-            onBlur={checkUserExistence}
-          >
-            <MenuItem value="field_officer">Field Officer</MenuItem>
-            <MenuItem value="expert">Expert</MenuItem>
-            <MenuItem value="businessman">Businessman</MenuItem>
-            <MenuItem value="farmer">Farmer</MenuItem>
-            <MenuItem value="deliveryman">Deliveryman</MenuItem>
-          </Select>
-        </FormControl>
+
         <TextField
           label="User ID"
           fullWidth
@@ -154,4 +147,4 @@ const SignupForm = () => {
   );
 };
 
-export default SignupForm;
+export default SignupForm_for_admin;

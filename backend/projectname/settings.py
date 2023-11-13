@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'login_stuffs',
     'field_officer_login',
-    'incoming_request'
+    'incoming_request',
+    'all_login_credentials',
 ]
 
 MIDDLEWARE = [

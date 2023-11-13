@@ -13,6 +13,7 @@ const Admin_Page_show_admins: React.FC = () => {
     axios.post('http://127.0.0.1:8000/delete_admin/', { memberId })
       .then((response) => {
         if (response.data.success) {
+          axios.post('http://127.0.0.1:8000/delete_all_login/', { memberId })
           window.alert('User deleted successfully.');
           // Manually refresh the data by toggling 'refresh'
           setRefresh(!refresh);
