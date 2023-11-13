@@ -10,8 +10,7 @@ const Single: React.FC<{}> = () => {
            
             <SinglePost/>
         </div>
-
-    
+        
     );
 };
 export default Single;
