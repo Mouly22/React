@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+
 import React from "react";
 import "./singlePost.css";
 import plantImage from "./plant.jpg"
@@ -20,12 +20,7 @@ const SinglePost: React.FC<{}> = () => {
                 </h1>
                 <div className="singlePostInfo">
                 <span>
-                    Author:
-                    <b className="singlePostAuthor">
-                    <Link className="link" to="/posts?username=mo">
-                        Mo
-                    </Link>
-                    </b>
+                    Author: Mo
                 </span>
                 <span>1 day ago</span>
                 </div>
