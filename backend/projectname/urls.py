@@ -24,6 +24,7 @@ from login_stuffs.views import ReactView_Register_admin, CheckUserExistenceView 
 from field_officer_login.views import ReactView_Register_Field_Officer, CheckUserExistenceView_Field_Officer,ReactView_DeleteMember_Field_Officer
 from incoming_request.views import ReactView_DeleteMember_Incoming_request,ReactView_Register_Incoming_Request,CheckUserExistenceView_Incoming_request
 from all_login_credentials.views import ReactView_DeleteMember_all_login,ReactView_Register_all_login,CheckUserExistenceView_all_login
+from bloglist.views import ReactView_DeleteMember_BlogList,ReactView_Register_BlogList_Comments,ReactView_Register_BlogList,CheckUserExistenceView_BlogList,ReactView_AddComment,ReactView_DeleteComment
 
 urlpatterns = [
     path('', ReactView.as_view(), name="anything"),
@@ -48,6 +49,17 @@ urlpatterns = [
     path('register_field_officer/', ReactView_Register_Field_Officer.as_view(), name="anything"),# for field officer register
     path('login_field_officer/', CheckUserExistenceView_Field_Officer.as_view(), name="check_user"), # for  field officer logins
     path('delete_field_officer/', ReactView_DeleteMember_Field_Officer.as_view(), name="delete_field_officer"),
+
+    #BLOG Part
+
+    path('register_blog_list/', ReactView_Register_BlogList.as_view(), name="anything"),# for fetching and adding bloglist
+    path('login_blog_list/', CheckUserExistenceView_BlogList.as_view(), name="check_user"), # for checking a blog exists
+    path('delete_blog_list/', ReactView_DeleteMember_BlogList.as_view(), name="delete_field_officer"), # deleting blog
+
+    #Blog Comment
+    path('register_add_comment/', ReactView_AddComment.as_view(), name="anything"),# for adding comments
+    path('register_delete_comment/', ReactView_DeleteComment.as_view(), name="anything"),# for deleting comments
+
 
 ]
 

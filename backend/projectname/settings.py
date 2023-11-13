@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'field_officer_login',
     'incoming_request',
     'all_login_credentials',
+    'bloglist',
 ]
 
 MIDDLEWARE = [
