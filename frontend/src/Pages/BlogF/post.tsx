@@ -1,57 +1,20 @@
 import React, { useState, useEffect } from "react";
 import "./post.css";
-import { Link } from "react-router-dom";
 import axios from "axios";
-import {
-  Card,
-  CardContent,
-  CardMedia,
-  Divider,
-  Typography,
-  makeStyles,
-} from "@material-ui/core";
-import plantImage from "./plant.jpg";
-
-const useStyles = makeStyles((theme) => ({
-  post: {
-    display: "flex",
-    marginBottom: theme.spacing(2),
-  },
-  postMedia: {
-    width: 260,
-  },
-  postInfo: {
-    flex: 1,
-    padding: theme.spacing(2),
-  },
-  postCats: {
-    display: "flex",
-    marginBottom: theme.spacing(1),
-  },
-  postCat: {
-    marginRight: theme.spacing(1),
-  },
-  postTitle: {
-    fontSize: "1.2rem",
-    fontWeight: "bold",
-    marginBottom: theme.spacing(1),
-  },
-  postDate: {
-    fontSize: "0.8rem",
-    color: theme.palette.text.secondary,
-  },
-}));
-
+import { Link } from "react-router-dom";
+import plantImage from './images/base64_encoded_image_data.jpeg'
 const Post: React.FC<{ post_id: number }> = ({ post_id }) => {
-  const classes = useStyles();
   const [postData, setPostData] = useState<any>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.post(`http://127.0.0.1:8000/login_blog_list/`, {
-          post_id,
-        });
+        const response = await axios.post(
+          `http://127.0.0.1:8000/login_blog_list/`,
+          {
+            post_id,
+          }
+        );
 
         setPostData(response.data.user_data);
       } catch (error) {
@@ -64,38 +27,39 @@ const Post: React.FC<{ post_id: number }> = ({ post_id }) => {
   }, [post_id]);
 
   return (
-    <Card className={classes.post}>
+    <div className="post">
       {postData && (
         <>
-          <CardMedia
-            className={classes.postMedia}
-            component="img"
+          <img
+            className="postMedia"
+            src={plantImage} // Update this to use the actual image from the API
             alt=""
-            image={plantImage}
           />
-          <div className={classes.postInfo}>
-            <div className={classes.postCats}>
-              {postData.categories?.map((category: string, index: number) => (
-                <span key={index} className={classes.postCat}>
-                  {category}
-                </span>
-              ))}
+          <div className="postInfo">
+            <div className="postCats">
+              {postData.categories?.map(
+                (category: string, index: number) => (
+                  <span key={index} className="postCat">
+                    {category}
+                  </span>
+                )
+              )}
             </div>
-            <Typography variant="h5" className={classes.postTitle}>
+            <h5 className="postTitle">
               <Link className="link" to={`/singlePost/${post_id}`}>
                 {postData.post_title}
               </Link>
-            </Typography>
-            <Divider />
-            <Typography variant="caption" className={classes.postDate}>
-            {postData.post_content.length > 20
-            ? `${postData.post_content.substring(0, 40)}...`
-            : postData.post_content}
-            </Typography>
+            </h5>
+            <hr />
+            <p className="postDate">
+              {postData.post_content.length > 20
+                ? `${postData.post_content.substring(0, 40)}...`
+                : postData.post_content}
+            </p>
           </div>
         </>
       )}
-    </Card>
+    </div>
   );
 };
 
