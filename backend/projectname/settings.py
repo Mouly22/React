@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'incoming_request',
     'all_login_credentials',
     'bloglist',
+    'blog_images',
 ]
 
 MIDDLEWARE = [
@@ -96,8 +97,8 @@ DATABASES = {
         'NAME': 'sample2',
         'USER': 'root',
         'PASSWORD': 'root',
-        'HOST': '127.0.0.1',  # or the hostname where your MySQL server is running
-        'PORT': '3307',      # or the port on which your MySQL server is listening
+        'HOST': '172.17.0.2',  # or the hostname where your MySQL server is running
+        'PORT': '',      # or the port on which your MySQL server is listening
     }
 }
 
@@ -142,3 +143,6 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / "media"

@@ -2,23 +2,41 @@ import React, { useState, useEffect } from "react";
 import "./post.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
+
 const Post: React.FC<{ post_id: number }> = ({ post_id }) => {
   const [postData, setPostData] = useState<any>(null);
+  const [imageSrc, setImageSrc] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.post(
-          `http://127.0.0.1:8000/login_blog_list/`,
+        // Fetch post data
+        const response = await axios.post(`http://127.0.0.1:8000/login_blog_list/`, {
+          post_id,
+        });
+        setPostData(response.data.user_data);
+
+        // Fetch image
+        const imageResponse = await axios.post(
+          "http://127.0.0.1:8000/login_blog_images/",
           {
             post_id,
+          },
+          {
+            responseType: 'arraybuffer',  // This is important for binary data
           }
         );
 
-        setPostData(response.data.user_data);
+        const base64 = btoa(
+          new Uint8Array(imageResponse.data).reduce(
+            (data, byte) => data + String.fromCharCode(byte),
+            ''
+          )
+        );
+
+        setImageSrc(`data:${imageResponse.headers['content-type']};base64,${base64}`);
       } catch (error) {
         console.error("Error fetching post data:", error);
-  
       }
     };
 
@@ -29,20 +47,20 @@ const Post: React.FC<{ post_id: number }> = ({ post_id }) => {
     <div className="post">
       {postData && (
         <>
-          <img
-            className="postMedia"
-            src={`/src/Pages/BlogF/images/${postData.post_image}`}
-            alt={`/src/Pages/BlogF/images/${postData.post_image}`}
-          />
+          {imageSrc && (
+            <img
+              className="postMedia"
+              src={imageSrc}
+              alt={`/src/Pages/BlogF/images/${postData.post_image}`}
+            />
+          )}
           <div className="postInfo">
             <div className="postCats">
-              {postData.categories?.map(
-                (category: string, index: number) => (
-                  <span key={index} className="postCat">
-                    {category}
-                  </span>
-                )
-              )}
+              {postData.categories?.map((category: string, index: number) => (
+                <span key={index} className="postCat">
+                  {category}
+                </span>
+              ))}
             </div>
             <h5 className="postTitle">
               <Link className="link" to={`/singlePost/${post_id}`}>

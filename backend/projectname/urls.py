@@ -25,6 +25,9 @@ from field_officer_login.views import ReactView_Register_Field_Officer, CheckUse
 from incoming_request.views import ReactView_DeleteMember_Incoming_request,ReactView_Register_Incoming_Request,CheckUserExistenceView_Incoming_request
 from all_login_credentials.views import ReactView_DeleteMember_all_login,ReactView_Register_all_login,CheckUserExistenceView_all_login
 from bloglist.views import ReactView_DeleteMember_BlogList,ReactView_Register_BlogList_Comments,ReactView_Register_BlogList,CheckUserExistenceView_BlogList,ReactView_AddComment,ReactView_DeleteComment
+from django.conf.urls.static import static
+from django.conf import settings
+from blog_images.views import GetImageView, YourModelNameView
 
 urlpatterns = [
     path('', ReactView.as_view(), name="anything"),
@@ -60,7 +63,9 @@ urlpatterns = [
     path('register_add_comment/', ReactView_AddComment.as_view(), name="anything"),# for adding comments
     path('register_delete_comment/', ReactView_DeleteComment.as_view(), name="anything"),# for deleting comments
 
+    path('register_add_blog_images/', YourModelNameView.as_view(), name="anything"),# for adding comments
+    path('login_blog_images/', GetImageView.as_view(), name="check_user"), # for checking a blog exists
 
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
