@@ -22,9 +22,10 @@ class ReactView_Register_BlogList(APIView):
 class CheckUserExistenceView_BlogList(APIView):
     def post(self, request):
         userid = request.data.get('post_id')
+        print(userid)
 
         # Check if users with the given userid exist
-        users = React.objects.filter(userid=userid)
+        users = React.objects.filter(post_id=userid)
 
         if users.exists():
             # At least one user with the given userid exists

@@ -41,8 +41,8 @@ const NavBar: React.FC<{}> = () => {
               </Link>
             </li>
             <li>
-              <Link to="/singlePost" className="nav-link px-2 text-white">
-                About Us
+              <Link to="/write" className="nav-link px-2 text-white">
+                Write
               </Link>
             </li>
           </ul>

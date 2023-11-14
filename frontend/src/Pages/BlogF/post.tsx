@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./post.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import plantImage from './plant.jpg'
-console.log(plantImage);
 const Post: React.FC<{ post_id: number }> = ({ post_id }) => {
   const [postData, setPostData] = useState<any>(null);
 
@@ -20,7 +18,7 @@ const Post: React.FC<{ post_id: number }> = ({ post_id }) => {
         setPostData(response.data.user_data);
       } catch (error) {
         console.error("Error fetching post data:", error);
-        // Handle errors (e.g., set a default value for postData)
+  
       }
     };
 
@@ -33,8 +31,8 @@ const Post: React.FC<{ post_id: number }> = ({ post_id }) => {
         <>
           <img
             className="postMedia"
-            src={"/src/Pages/BlogF/images/plant.jpg"} // Update this to use the actual image from the API
-            alt=""
+            src={`/src/Pages/BlogF/images/${postData.post_image}`}
+            alt={`/src/Pages/BlogF/images/${postData.post_image}`}
           />
           <div className="postInfo">
             <div className="postCats">
