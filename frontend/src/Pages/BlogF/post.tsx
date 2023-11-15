@@ -49,7 +49,7 @@ const Post: React.FC<{ post_id: number }> = ({ post_id }) => {
         <>
           {imageSrc && (
             <img
-              className="postMedia"
+              className="postImg"
               src={imageSrc}
               alt={`/src/Pages/BlogF/images/${postData.post_image}`}
             />
