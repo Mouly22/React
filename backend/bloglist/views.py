@@ -21,23 +21,32 @@ class ReactView_Register_BlogList(APIView):
 
 class CheckUserExistenceView_BlogList(APIView):
     def post(self, request):
-        userid = request.data.get('post_id')
-        print(userid)
+        post_id = request.data.get('post_id')
 
-        # Check if users with the given userid exist
-        users = React.objects.filter(post_id=userid)
+        # Check if users with the given post_id exist
+        users = React.objects.filter(post_id=post_id)
 
         if users.exists():
-            # At least one user with the given userid exists
-            user_data = users.values('post_id', 'userid', 'user_type', 'post_title', 'post_content', 'post_uploaded', 'post_image', 'comments')
+            # At least one user with the given post_id exists
+            react_instance = users.first()  # Take the first user's data
+            serializer = CommentSerializer(react_instance.comments.all(), many=True)
+            
             response_data = {
-                "post_id": userid,
+                "post_id": post_id,
                 "exists": True,
-                "user_data": user_data[0],  # Take the first user's data
+                "user_data": {
+                    "post_id": react_instance.post_id,
+                    "userid": react_instance.userid,
+                    "user_type": react_instance.user_type,
+                    "post_title": react_instance.post_title,
+                    "post_content": react_instance.post_content,
+                    "post_uploaded": react_instance.post_uploaded,
+                    "post_image": react_instance.post_image,
+                    "comments": serializer.data,
+                }
             }
-            print(user_data[0]['post_id'])
         else:
-            response_data = {"post_id": userid, "exists": False, "user_data": {}}
+            response_data = {"post_id": post_id, "exists": False, "user_data": {}}
 
         return Response(response_data)
 
