@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./Blog.css";
 import Post from "./post";
 import axios from "axios";
-import Sidebar from "./Sidebar";
 
 const Blog: React.FC<{}> = () => {
   const [posts, setPosts] = useState<any[]>([]);
@@ -22,15 +21,10 @@ const Blog: React.FC<{}> = () => {
   }, []); // Empty dependency array ensures useEffect runs only once on component mount
 
   return (
-    <div className="blog-container" style={{ maxHeight: '80vh', overflowY: 'auto' }}>
-      <div className="posts-container">
-        {posts.map((post) => (
-          <Post key={post.post_id} post_id={post.post_id} />
-        ))}
-      </div>
-
-      <Sidebar />
-
+    <div className="blog">
+      {posts.map((post) => (
+        <Post key={post.post_id} post_id={post.post_id} />
+      ))}
     </div>
   );
 };

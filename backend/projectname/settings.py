@@ -93,15 +93,14 @@ WSGI_APPLICATION = 'projectname.wsgi.application'
 
 DATABASES = {
     'default': {
-    'ENGINE': 'django.db.backends.mysql',
-    'NAME': 'sample2', # database name
-    'USER': 'root',
-    'PASSWORD': 'root',
-    'HOST': '172.17.0.2', # or the hostname where your MySQL server is running
-    'PORT': '', # or the port on which your MySQL server is listening
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'sample2',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': '172.17.0.2',  # or the hostname where your MySQL server is running
+        'PORT': '',      # or the port on which your MySQL server is listening
     }
 }
-
 
 
 # Password validation

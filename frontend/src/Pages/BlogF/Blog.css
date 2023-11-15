@@ -4,18 +4,3 @@
     flex-wrap: wrap;
     margin: 20px;
 }
-
-.blog-container {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .posts-container {
-    flex: 1; /* Take up the available space */
-    margin-right: 16px; /* Adjust as needed */
-  }
-  
-  .sidebar {
-    width: 350px; /* Adjust as needed */
-    /* Add any additional styling for your sidebar */
-  }
