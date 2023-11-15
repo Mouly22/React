@@ -7,6 +7,8 @@ import Admin_Page from "./views/admin";
 import Blog from "./Pages/BlogF/Blog"
 import './App.css';
 import SinglePost from "./Pages/BlogF/singlePost"
+import Write from "./Pages/BlogF/write"
+import Sidebar from "./Pages/BlogF/Sidebar";
 import Profile from './Pages/Profile'
 //import Field_Officer_Page from "./views/field_officer";
 import Field_officer_Page from "./views_field_officers/Field_officer_view";
@@ -23,7 +25,12 @@ function App() {
             <Route path="/signin" element={<DataFormComponent_login/>}/>
             <Route path="/signup" element={<SignupForm/>}/>
             <Route path="/Blog" element={<Blog/>}/>
-            <Route path = "/singlePost" element= {<SinglePost/>}/>
+            <Route path = "/singlePost/:postId" element= {<SinglePost/>}/>
+            <Route path = "/write" element= {<Write/>}/>
+           
+            
+            
+
             <Route path = "/profile" element= {<Profile/>}/>
          
             

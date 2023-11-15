@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Nov 12, 2023 at 06:45 PM
+-- Generation Time: Nov 14, 2023 at 07:33 PM
 -- Server version: 8.1.0
 -- PHP Version: 8.2.8
 
@@ -168,7 +168,19 @@ INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALU
 (41, 'Can add react', 11, 'add_react'),
 (42, 'Can change react', 11, 'change_react'),
 (43, 'Can delete react', 11, 'delete_react'),
-(44, 'Can view react', 11, 'view_react');
+(44, 'Can view react', 11, 'view_react'),
+(45, 'Can add comment', 12, 'add_comment'),
+(46, 'Can change comment', 12, 'change_comment'),
+(47, 'Can delete comment', 12, 'delete_comment'),
+(48, 'Can view comment', 12, 'view_comment'),
+(49, 'Can add react', 13, 'add_react'),
+(50, 'Can change react', 13, 'change_react'),
+(51, 'Can delete react', 13, 'delete_react'),
+(52, 'Can view react', 13, 'view_react'),
+(53, 'Can add react', 14, 'add_react'),
+(54, 'Can change react', 14, 'change_react'),
+(55, 'Can delete react', 14, 'delete_react'),
+(56, 'Can view react', 14, 'view_react');
 
 -- --------------------------------------------------------
 
@@ -224,6 +236,103 @@ CREATE TABLE `auth_user_user_permissions` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `bloglist_comments`
+--
+
+CREATE TABLE `bloglist_comments` (
+  `comment_id` int NOT NULL,
+  `userid` varchar(30) NOT NULL,
+  `comment_content` longtext NOT NULL,
+  `post_id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `bloglist_comments`
+--
+
+INSERT INTO `bloglist_comments` (`comment_id`, `userid`, `comment_content`, `post_id`) VALUES
+(2, 'john_doe', 'Are You sure about it?', 1),
+(3, 'Mouly', 'Bhalo hoy nai dhur', 1),
+(4, 'BRACU', 'Where is my campus?', 2),
+(5, 'Mo', 'How you doin?', 2),
+(6, 'Kamal', 'Very bad', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `blog_images_react`
+--
+
+CREATE TABLE `blog_images_react` (
+  `id` bigint NOT NULL,
+  `post_id` int NOT NULL,
+  `image` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `blog_images_react`
+--
+
+INSERT INTO `blog_images_react` (`id`, `post_id`, `image`) VALUES
+(1, 1, 'images/2-fertilization-using-drones-scaled.jpeg'),
+(2, 2, 'images/960d33c6-026e-4c6b-bf7c-00549286c366.png'),
+(4, 3, 'images/cutecat.jpg'),
+(5, 4, 'images/fungal-smut-crop-disese.jpg'),
+(6, 5, 'images/Rust_leaves_MAIN-996x567.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `blog_list`
+--
+
+CREATE TABLE `blog_list` (
+  `post_id` int NOT NULL,
+  `userid` varchar(30) NOT NULL,
+  `user_type` varchar(20) NOT NULL,
+  `post_title` varchar(255) NOT NULL,
+  `post_content` longtext NOT NULL,
+  `post_uploaded` datetime(6) NOT NULL,
+  `post_image` longtext
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `blog_list`
+--
+
+INSERT INTO `blog_list` (`post_id`, `userid`, `user_type`, `post_title`, `post_content`, `post_uploaded`, `post_image`) VALUES
+(1, 'john_doe', 'admin', 'Exciting News', 'This is a fascinating post about...', '2023-11-13 11:17:01.661279', 'base64_encoded_image_data'),
+(2, 'macorov', 'admin', 'Whats up Danger', 'This is one of the fascinating article about how spiderman got into agriculture..', '2023-11-13 11:18:27.425414', 'base64_encoded_image_data'),
+(3, 'macorov', 'admin', 'What is this?', 'Do you know where I can find this?', '2023-11-14 19:21:42.377413', 'kaka'),
+(4, 'macorov', 'admin', 'What is this?', 'What should I do?', '2023-11-14 19:24:44.156833', 'kaka'),
+(5, 'macorov', 'admin', 'Can anyone help me with this?', 'This is happening and I have no idea what to do', '2023-11-14 19:25:59.682730', 'kaka');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `blog_list_comments`
+--
+
+CREATE TABLE `blog_list_comments` (
+  `id` bigint NOT NULL,
+  `react_id` int NOT NULL,
+  `comment_id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `blog_list_comments`
+--
+
+INSERT INTO `blog_list_comments` (`id`, `react_id`, `comment_id`) VALUES
+(2, 1, 2),
+(3, 1, 3),
+(4, 2, 4),
+(5, 2, 5),
+(6, 2, 6);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `django_admin_log`
 --
 
@@ -261,6 +370,9 @@ INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
 (2, 'auth', 'permission'),
 (4, 'auth', 'user'),
 (7, 'authentication', 'react'),
+(14, 'blog_images', 'react'),
+(12, 'bloglist', 'comment'),
+(13, 'bloglist', 'react'),
 (5, 'contenttypes', 'contenttype'),
 (9, 'field_officer_login', 'react'),
 (10, 'incoming_request', 'react'),
@@ -307,7 +419,9 @@ INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
 (20, 'login_stuffs', '0001_initial', '2023-10-24 06:22:41.322974'),
 (21, 'field_officer_login', '0001_initial', '2023-10-24 10:00:40.206191'),
 (22, 'incoming_request', '0001_initial', '2023-10-27 13:52:41.652120'),
-(23, 'all_login_credentials', '0001_initial', '2023-11-09 06:23:58.868098');
+(23, 'all_login_credentials', '0001_initial', '2023-11-09 06:23:58.868098'),
+(24, 'bloglist', '0001_initial', '2023-11-13 11:12:22.446765'),
+(25, 'blog_images', '0001_initial', '2023-11-14 16:37:36.786632');
 
 -- --------------------------------------------------------
 
@@ -458,6 +572,32 @@ ALTER TABLE `auth_user_user_permissions`
   ADD KEY `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` (`permission_id`);
 
 --
+-- Indexes for table `bloglist_comments`
+--
+ALTER TABLE `bloglist_comments`
+  ADD PRIMARY KEY (`comment_id`);
+
+--
+-- Indexes for table `blog_images_react`
+--
+ALTER TABLE `blog_images_react`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `blog_list`
+--
+ALTER TABLE `blog_list`
+  ADD PRIMARY KEY (`post_id`);
+
+--
+-- Indexes for table `blog_list_comments`
+--
+ALTER TABLE `blog_list_comments`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `blog_list_comments_react_id_comment_id_1ca9c11a_uniq` (`react_id`,`comment_id`),
+  ADD KEY `blog_list_comments_comment_id_a4bf910f_fk_bloglist_` (`comment_id`);
+
+--
 -- Indexes for table `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
@@ -535,7 +675,7 @@ ALTER TABLE `auth_group_permissions`
 -- AUTO_INCREMENT for table `auth_permission`
 --
 ALTER TABLE `auth_permission`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `auth_user`
@@ -556,6 +696,30 @@ ALTER TABLE `auth_user_user_permissions`
   MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `bloglist_comments`
+--
+ALTER TABLE `bloglist_comments`
+  MODIFY `comment_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `blog_images_react`
+--
+ALTER TABLE `blog_images_react`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `blog_list`
+--
+ALTER TABLE `blog_list`
+  MODIFY `post_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `blog_list_comments`
+--
+ALTER TABLE `blog_list_comments`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
@@ -565,13 +729,13 @@ ALTER TABLE `django_admin_log`
 -- AUTO_INCREMENT for table `django_content_type`
 --
 ALTER TABLE `django_content_type`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `field_officer_credentials`
@@ -621,6 +785,13 @@ ALTER TABLE `auth_user_groups`
 ALTER TABLE `auth_user_user_permissions`
   ADD CONSTRAINT `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
   ADD CONSTRAINT `auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);
+
+--
+-- Constraints for table `blog_list_comments`
+--
+ALTER TABLE `blog_list_comments`
+  ADD CONSTRAINT `blog_list_comments_comment_id_a4bf910f_fk_bloglist_` FOREIGN KEY (`comment_id`) REFERENCES `bloglist_comments` (`comment_id`),
+  ADD CONSTRAINT `blog_list_comments_react_id_b7ee339b_fk_blog_list_post_id` FOREIGN KEY (`react_id`) REFERENCES `blog_list` (`post_id`);
 
 --
 -- Constraints for table `django_admin_log`
