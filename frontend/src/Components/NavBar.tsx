@@ -45,6 +45,11 @@ const NavBar: React.FC<{}> = () => {
                 About Us
               </Link>
             </li>
+            <li>
+              <Link to="/profile" className="nav-link px-2 text-white">
+                Profile
+              </Link>
+            </li>
           </ul>
           <div className="text-end">
             {userId ? (
