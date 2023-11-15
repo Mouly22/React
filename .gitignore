@@ -3,4 +3,6 @@
 
 .env
 .log
+launch.json
 .vscode
+.idea
