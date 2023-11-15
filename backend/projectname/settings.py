@@ -15,6 +15,9 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -45,6 +48,7 @@ INSTALLED_APPS = [
     'incoming_request',
     'all_login_credentials',
     'bloglist',
+    'blog_images',
 ]
 
 MIDDLEWARE = [
@@ -93,13 +97,14 @@ WSGI_APPLICATION = 'projectname.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'sample2',
-        'USER': 'root',
-        'PASSWORD': 'root',
-        'HOST': '127.0.0.1',  # or the hostname where your MySQL server is running
-        'PORT': '3307',      # or the port on which your MySQL server is listening
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASS'),
+        'HOST': os.environ.get('DB_HOST'),  # or the hostname where your MySQL server is running
+        'PORT': os.environ.get('DB_PORT'),      # or the port on which your MySQL server is listening
     }
 }
+
 
 
 # Password validation
@@ -142,3 +147,6 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / "media"

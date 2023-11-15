@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import "./NavBar.css"
 
 const NavBar: React.FC<{}> = () => {
   const navigate = useNavigate();
@@ -40,9 +41,11 @@ const NavBar: React.FC<{}> = () => {
                 Blog
               </Link>
             </li>
+           
+           
             <li>
-              <Link to="/singlePost" className="nav-link px-2 text-white">
-                About Us
+              <Link to="/profile" className="nav-link px-2 text-white">
+                Profile
               </Link>
             </li>
           </ul>
@@ -69,3 +72,5 @@ const NavBar: React.FC<{}> = () => {
 };
 
 export default NavBar;
+
+
