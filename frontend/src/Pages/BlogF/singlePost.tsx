@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useId, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import "./singlePost.css"; // Import your CSS file
@@ -7,6 +7,9 @@ const SinglePost: React.FC<{}> = () => {
   const { postId } = useParams<{ postId: string }>();
   const [postData, setPostData] = useState<any>(null);
   const [imageSrc, setImageSrc] = useState<string | null>(null);
+  const [newComment, setNewComment] = useState<string>("");
+  const userId = localStorage.getItem('userid');
+  console.log(useId)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,6 +46,22 @@ const SinglePost: React.FC<{}> = () => {
     fetchData();
   }, [postId]);
 
+  const handleCommentSubmit = async () => {
+    try {
+      await axios.post("http://127.0.0.1:8000/register_add_comment/", {
+        post_id: postId,
+        userid: userId,
+        comment_content: newComment,
+      });
+      // Refresh comments after posting
+      fetchData();
+      // Clear the comment input
+      setNewComment("");
+    } catch (error) {
+      console.error("Error posting comment:", error);
+    }
+  };
+
   return (
     <div className="singlePost singlePostWrapper" style={{ maxHeight: '90vh', overflowY: 'auto' }}>
       {postData && (
@@ -56,9 +75,8 @@ const SinglePost: React.FC<{}> = () => {
             </p>
           </div>
           <p className="singlePostDesc">{postData.post_content}</p>
-         
 
-         
+          {/* Comment Form */}
           <div>
             <h2>Comments</h2>
             <ul className="commentsList">
@@ -70,6 +88,14 @@ const SinglePost: React.FC<{}> = () => {
                 </li>
               ))}
             </ul>
+          </div>
+          <div className="postCommentSection">
+            <textarea
+              placeholder="Add a comment..."
+              value={newComment}
+              onChange={(e) => setNewComment(e.target.value)}
+            ></textarea>
+            <button onClick={handleCommentSubmit}>Post Comment</button>
           </div>
         </div>
       )}

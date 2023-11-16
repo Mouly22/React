@@ -70,7 +70,7 @@ urlpatterns = [
 
     #For Blog Images
     path('register_add_blog_images/', YourModelNameView.as_view(), name="anything"),# for adding comments
-    path('login_blog_images/', GetImageView.as_view(), name="check_user"), # for checking a blog exists
+    path('login_blog_images/', GetImageView.as_view(), name="check_user"), # for checking a blog image exists if exists it returns the image
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useId, useState } from "react";
 import axios from "axios";
 
 const BlogForm: React.FC = () => {
   // Retrieve user data from local storage
   const userId = localStorage.getItem("userid");
+  console.log(useId)
   const userType = localStorage.getItem("user_type");
   console.log(userId);
   // State to manage form data
