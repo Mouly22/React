@@ -1,8 +1,13 @@
+import React from "react";
+import "./Sidebar.css"
 import { Link } from "react-router-dom";
-import "./Sidebar.css";
+
+
+
 
 const Sidebar: React.FC<{}> = () => {
     return (
+
         <div className="sidebar" style={{ width: '10px' }}>
             <div className="sidebarItem">
                 <span className="sidebarTitle">Updates</span>

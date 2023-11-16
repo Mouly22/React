@@ -21,7 +21,7 @@ const Blog: React.FC<{}> = () => {
   }, []); // Empty dependency array ensures useEffect runs only once on component mount
 
   return (
-    <div className="blog">
+    <div className="blog" >
       {posts.map((post) => (
         <Post key={post.post_id} post_id={post.post_id} />
       ))}

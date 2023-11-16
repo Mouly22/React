@@ -37,7 +37,7 @@ const NavBar: React.FC<{}> = () => {
               </Link>
             </li>
             <li>
-              <Link to="/blog" className="nav-link px-2 text-white">
+              <Link to="/blogview" className="nav-link px-2 text-white">
                 Blog
               </Link>
             </li>

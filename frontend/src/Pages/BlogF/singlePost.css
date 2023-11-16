@@ -18,10 +18,17 @@
 
 .singlePostTitle {
   text-align: center;
+  color: #080808;
+  
   margin: 10px;
   font-size: 28px;
-  font-family: "Lora", sans-serif;
+  font-family: "Varela Round", Arial, Helvetica, sans-serif;
+  transition: color 0.3s ease; 
+  &:hover {
+    color: #666;
+  }
 }
+
 
 .singlePostInfo {
   margin-bottom: 20px;
@@ -44,9 +51,11 @@
 
 .singlePostDesc::first-letter {
   margin-left: 20px;
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 600;
+  display: block;
 }
+
 
 .commentsList {
   list-style-type: none;
