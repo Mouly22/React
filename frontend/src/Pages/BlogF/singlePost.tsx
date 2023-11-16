@@ -8,6 +8,8 @@ const SinglePost: React.FC<{}> = () => {
   const [postData, setPostData] = useState<any>(null);
   const [imageSrc, setImageSrc] = useState<string | null>(null);
   const [newComment, setNewComment] = useState<string>("");
+  const [editMode, setEditMode] = useState<boolean>(false);
+  const [editedContent, setEditedContent] = useState<string>("");
   const userId = localStorage.getItem('userid');
 
   useEffect(() => {
@@ -66,22 +68,91 @@ const SinglePost: React.FC<{}> = () => {
       console.error("Error posting comment:", error);
     }
   };
-  
+
+  const handleEditClick = () => {
+    setEditMode(true);
+    setEditedContent(postData.post_content);
+  };
+
+  const handleUpdateClick = async () => {
+    try {
+      await axios.post("http://127.0.0.1:8000/update_post_content/", {
+        post_id: postId,
+        updated_content: editedContent,
+      });
+
+      // Fetch updated post data
+      const updatedPostData = await axios.post("http://127.0.0.1:8000/login_blog_list/", {
+        post_id: postId,
+      });
+
+      // Update the post data state
+      setPostData(updatedPostData.data.user_data);
+
+      // Exit edit mode
+      setEditMode(false);
+    } catch (error) {
+      console.error("Error updating post content:", error);
+    }
+  };
+
+  const handleDeleteClick = async () => {
+    try {
+      await axios.post("http://127.0.0.1:8000/delete_post/", {
+        post_id: postId,
+      });
+
+      // After deletion, you might want to navigate the user to another page or handle it accordingly
+    } catch (error) {
+      console.error("Error deleting post:", error);
+    }
+  };
 
   return (
     <div className="singlePost singlePostWrapper" style={{ maxHeight: '90vh', overflowY: 'auto' }}>
       {postData && (
         <div>
-          <h1 className="singlePostTitle">{postData.post_title}</h1>
           {imageSrc && <img src={imageSrc} alt="Post Image" className="singlePostImg" />}
+          <h1 className="singlePostTitle">{postData.post_title}</h1>
           <div className="singlePostInfo">
             <p>
               Uploaded on: {new Date(postData.post_uploaded).toLocaleString()} by{" "}
               <span className="singlePostAuthor">{postData.userid}</span>
             </p>
+            <div className="buttonContainer">
+              {!editMode && (
+                <>
+                  <button onClick={handleEditClick} className="editButton">
+                    Edit
+                  </button>
+                  <button onClick={handleDeleteClick} className="deleteButton">
+                    Delete
+                  </button>
+                </>
+              )}
+            </div>
           </div>
-          <p className="singlePostDesc">{postData.post_content}</p>
-
+          {editMode ? (
+            <textarea
+              value={editedContent}
+              onChange={(e) => setEditedContent(e.target.value)}
+              className="singlePostDescEdit"
+            ></textarea>
+          ) : (
+            <p className="singlePostDesc">{postData.post_content}</p>
+          )}
+          <div className="update">
+            {editMode && (
+              <>
+                <button onClick={handleUpdateClick} className="updateButton">
+                  Update
+                </button>
+                <button onClick={() => setEditMode(false)} className="cancelButton">
+                  Cancel
+                </button>
+              </>
+            )}
+          </div>
           {/* Comment Form */}
           <div>
             <h2>Comments</h2>
@@ -96,12 +167,17 @@ const SinglePost: React.FC<{}> = () => {
             </ul>
           </div>
           <div className="postCommentSection">
-            <textarea
-              placeholder="Add a comment..."
-              value={newComment}
-              onChange={(e) => setNewComment(e.target.value)}
-            ></textarea>
-            <button onClick={handleCommentSubmit}>Post Comment</button>
+            {!editMode && (
+              <>
+                <textarea
+                  placeholder="Add a comment..."
+                  value={newComment}
+                  onChange={(e) => setNewComment(e.target.value)}
+                ></textarea>
+                <button onClick={handleCommentSubmit}>Post Comment</button>
+              </>
+            )}
+           
           </div>
         </div>
       )}
@@ -110,3 +186,4 @@ const SinglePost: React.FC<{}> = () => {
 };
 
 export default SinglePost;
+

@@ -1,6 +1,7 @@
 import React from "react";
 import "./Sidebar.css"
 import { Link } from "react-router-dom";
+import LogoImg from "./images/sidebarPic.jpg"
 
 
 
@@ -10,6 +11,10 @@ const Sidebar: React.FC<{}> = () => {
 
         <div className="sidebar" style={{ width: '10px' }}>
             <div className="sidebarItem">
+            <img
+                src={LogoImg}
+                alt=""
+                 />
                 <span className="sidebarTitle">Updates</span>
                 <Link to="/write" type="button" className="btn btn-outline-dark me-2"> Create a post </Link>
             </div>

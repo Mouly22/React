@@ -1,12 +1,13 @@
-import React, { useId, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
+import "./write.css";
+import BlogImg from "./images/b1.jpg";
 
 const BlogForm: React.FC = () => {
   // Retrieve user data from local storage
   const userId = localStorage.getItem("userid");
-  console.log(useId)
   const userType = localStorage.getItem("user_type");
-  console.log(userId);
+
   // State to manage form data
   const [postTitle, setPostTitle] = useState<string>("");
   const [postContent, setPostContent] = useState<string>("");
@@ -25,9 +26,9 @@ const BlogForm: React.FC = () => {
       user_type: userType,
       post_title: postTitle,
       post_content: postContent,
-      post_uploaded:null,
-      post_image:"kaka",
-      comments:null,
+      post_uploaded: null,
+      post_image: "kaka",
+      comments: null,
     };
 
     // Make the main API request to create the blog post
@@ -56,6 +57,9 @@ const BlogForm: React.FC = () => {
       }
 
       // Optionally reset form fields or perform other actions after successful submission
+      setPostTitle("");
+      setPostContent("");
+      setPostImage(null);
     } catch (error) {
       console.error("Error creating post:", error);
       // Handle errors (e.g., show an error message to the user)
@@ -69,37 +73,50 @@ const BlogForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Post Title:
-        <input
-          type="text"
-          value={postTitle}
-          onChange={(e) => setPostTitle(e.target.value)}
-        />
-      </label>
-
-      <br />
-
-      <label>
-        Post Content:
-        <textarea
-          value={postContent}
-          onChange={(e) => setPostContent(e.target.value)}
-        />
-      </label>
-
-      <br />
-
-      <label>
-        Post Image:
-        <input type="file" accept="image/*" onChange={handleImageChange} />
-      </label>
-
-      <br />
-
-      <button type="submit">Submit Post</button>
-    </form>
+    <div className="write">
+      <img className="writeImg" src={BlogImg} alt="" />
+      <form className="writeForm" onSubmit={handleSubmit}>
+        <div className="writeFormGroup">
+          <button
+            className="writeImageAttachButton"
+            type="button"
+            onClick={() => document.getElementById("fileInput")?.click()}
+          >
+            Add Image
+          </button>
+          <label htmlFor="fileInput">
+            <i className="writeIcon fas fa-plus"></i>
+          </label>
+          <input
+            id="fileInput"
+            type="file"
+            accept="image/*"
+            style={{ display: "none" }}
+            onChange={handleImageChange}
+          />
+          <input
+            className="writeInput"
+            placeholder="Title"
+            type="text"
+            value={postTitle}
+            onChange={(e) => setPostTitle(e.target.value)}
+            autoFocus={true}
+          />
+        </div>
+        <div className="writeFormGroup">
+          <textarea
+            className="writeInput writeText"
+            placeholder="Write a status.."
+            value={postContent}
+            onChange={(e) => setPostContent(e.target.value)}
+            autoFocus={true}
+          />
+        </div>
+        <button className="writeSubmit" type="submit">
+          Publish
+        </button>
+      </form>
+    </div>
   );
 };
 
