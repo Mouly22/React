@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import "./singlePost.css"; // Import your CSS file
 
 const SinglePost: React.FC<{}> = () => {
   const { postId } = useParams<{ postId: string }>();
@@ -43,24 +44,33 @@ const SinglePost: React.FC<{}> = () => {
   }, [postId]);
 
   return (
-    <div>
+    <div className="singlePost singlePostWrapper" style={{ maxHeight: '90vh', overflowY: 'auto' }}>
       {postData && (
         <div>
-          <h1>{postData.post_title}</h1>
-          <p>{postData.post_content}</p>
-          <p>Uploaded on: {new Date(postData.post_uploaded).toLocaleString()}</p>
-          {imageSrc && <img src={imageSrc} alt="Post Image" style={{ maxWidth: "100%" }} />}
+          <h1 className="singlePostTitle">{postData.post_title}</h1>
+          {imageSrc && <img src={imageSrc} alt="Post Image" className="singlePostImg" />}
+          <div className="singlePostInfo">
+            <p>
+              Uploaded on: {new Date(postData.post_uploaded).toLocaleString()} by{" "}
+              <span className="singlePostAuthor">{postData.userid}</span>
+            </p>
+          </div>
+          <p className="singlePostDesc">{postData.post_content}</p>
+         
+
+         
           <div>
             <h2>Comments</h2>
-            <ul>
+            <ul className="commentsList">
               {postData.comments.map((comment: any) => (
-                <li key={comment.comment_id}>
-                  <strong>{comment.userid}:</strong> {comment.comment_content}
+                <li key={comment.comment_id} className="commentItem">
+                  <div className="commentContent">
+                    <strong>{comment.userid}:</strong> {comment.comment_content}
+                  </div>
                 </li>
               ))}
             </ul>
           </div>
-          {/* Add more details as needed */}
         </div>
       )}
     </div>
