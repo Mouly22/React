@@ -9,26 +9,23 @@
 
 .singlePostImg {
   width: 100%;
-  height: 300px; /* Adjusted height */
+  height: 300px;
   border-radius: 5px;
   object-fit: contain;
   margin-bottom: 15px;
-  
 }
 
 .singlePostTitle {
   text-align: center;
   color: #080808;
-  
   margin: 10px;
   font-size: 28px;
   font-family: "Varela Round", Arial, Helvetica, sans-serif;
-  transition: color 0.3s ease; 
+  transition: color 0.3s ease;
   &:hover {
     color: #666;
   }
 }
-
 
 .singlePostInfo {
   margin-bottom: 20px;
@@ -56,14 +53,13 @@
   display: block;
 }
 
-
 .commentsList {
   list-style-type: none;
   padding: 0;
 }
 
 .commentItem {
-  border: 1px solid #ddd; /* Border for each comment */
+  border: 1px solid #ddd;
   margin: 10px 0;
   padding: 10px;
 }
@@ -73,4 +69,31 @@
   line-height: 1.6;
 }
 
-/* Add more styles as needed */
+.postCommentSection {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.postCommentSection textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  resize: vertical;
+}
+
+.postCommentSection button {
+  background-color: #8db596; /* Light green color */
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.postCommentSection button:hover {
+  background-color: #6c9d80; /* Darker green on hover */
+}

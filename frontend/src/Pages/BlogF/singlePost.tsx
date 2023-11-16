@@ -1,4 +1,4 @@
-import React, { useEffect, useId, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import "./singlePost.css"; // Import your CSS file
@@ -9,7 +9,6 @@ const SinglePost: React.FC<{}> = () => {
   const [imageSrc, setImageSrc] = useState<string | null>(null);
   const [newComment, setNewComment] = useState<string>("");
   const userId = localStorage.getItem('userid');
-  console.log(useId)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -53,14 +52,21 @@ const SinglePost: React.FC<{}> = () => {
         userid: userId,
         comment_content: newComment,
       });
-      // Refresh comments after posting
-      fetchData();
       // Clear the comment input
       setNewComment("");
+  
+      // Fetch comments immediately after posting
+      const updatedPostData = await axios.post("http://127.0.0.1:8000/login_blog_list/", {
+        post_id: postId,
+      });
+  
+      // Update the comments state
+      setPostData(updatedPostData.data.user_data);
     } catch (error) {
       console.error("Error posting comment:", error);
     }
   };
+  
 
   return (
     <div className="singlePost singlePostWrapper" style={{ maxHeight: '90vh', overflowY: 'auto' }}>
