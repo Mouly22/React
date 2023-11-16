@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import "./singlePost.css"; // Import your CSS file
-import { Refresh } from "@mui/icons-material";
+//import { Refresh } from "@mui/icons-material";
+import { useNavigate } from 'react-router-dom';
 
 const SinglePost: React.FC<{}> = () => {
   const { postId } = useParams<{ postId: string }>();
@@ -12,6 +13,7 @@ const SinglePost: React.FC<{}> = () => {
   const [editMode, setEditMode] = useState<boolean>(false);
   const [editedContent, setEditedContent] = useState<string>("");
   const userId = localStorage.getItem('userid');
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -107,11 +109,21 @@ const SinglePost: React.FC<{}> = () => {
   };
   const handleDeleteClick = async () => {
     try {
-      await axios.post("http://127.0.0.1:8000/delete_post/", {
+     
+
+      await axios.post("http://127.0.0.1:8000/register_delete_all_comment/", {
+        post_id: postId,
+      });     
+      
+      await axios.post("http://127.0.0.1:8000/delete_blog_list/", {
         post_id: postId,
       });
-
-      // After deletion, you might want to navigate the user to another page or handle it accordingly
+      console.log("hello")
+  
+      // Refresh the page after deletion
+      //window.location.reload();
+      navigate('/blogview');
+  
     } catch (error) {
       console.error("Error deleting post:", error);
     }

@@ -56,11 +56,12 @@ class ReactView_DeleteMember_BlogList(APIView):
         print(member_id)
 
         try:
-            member = React.objects.get(userid=member_id)
+            member = React.objects.get(post_id=member_id)
+            print(member)
             member.delete()
             return Response({'success': True})
         except React.DoesNotExist:
-            return Response({'success': False, 'error': 'Member does not exist'})
+            return Response({'success': False, 'error': 'Post does not exist'})
 
 class ReactView_Register_BlogList_Comments(APIView):
     def get(self, request):
@@ -111,6 +112,21 @@ class ReactView_DeleteComment(APIView):
 
         # Delete the comment
         comment_instance.delete()
+
+        return Response({"success": True})
+    
+
+
+class ReactView_DeleteAllComment(APIView):
+    def post(self, request):
+        # Get the post ID for which you want to delete all comments
+        post_id = request.data.get('post_id')
+
+        # Get all comments associated with the post
+        comments_to_delete = Comment.objects.filter(post_id=post_id)
+
+        # Delete all comments
+        comments_to_delete.delete()
 
         return Response({"success": True})
 

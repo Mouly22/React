@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./write.css";
 import BlogImg from "./images/b1.jpg";
+import { useNavigate } from 'react-router-dom';
 
 const BlogForm: React.FC = () => {
   // Retrieve user data from local storage
   const userId = localStorage.getItem("userid");
   const userType = localStorage.getItem("user_type");
-
+  const navigate = useNavigate();
   // State to manage form data
   const [postTitle, setPostTitle] = useState<string>("");
   const [postContent, setPostContent] = useState<string>("");
@@ -60,6 +61,7 @@ const BlogForm: React.FC = () => {
       setPostTitle("");
       setPostContent("");
       setPostImage(null);
+      navigate('/blogview');
     } catch (error) {
       console.error("Error creating post:", error);
       // Handle errors (e.g., show an error message to the user)
