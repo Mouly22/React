@@ -113,3 +113,31 @@ class ReactView_DeleteComment(APIView):
         comment_instance.delete()
 
         return Response({"success": True})
+
+
+class ReactView_Blog_Edit(APIView):
+    def post(self, request):
+        serializer = ReactSerializer(data=request.data)
+        if serializer.is_valid():
+            post_id = request.data.get('post_id', '')
+            react_instance = get_object_or_404(React, post_id=post_id)
+
+            # Update the object with new data
+            react_instance.userid = request.data.get('userid', react_instance.userid)
+            react_instance.user_type = request.data.get('user_type', react_instance.user_type)
+            react_instance.post_title = request.data.get('post_title', react_instance.post_title)
+            react_instance.post_content = request.data.get('post_content', react_instance.post_content)
+            # You may need to handle the datetime format based on your requirements
+            react_instance.post_uploaded = request.data.get('post_uploaded', react_instance.post_uploaded)
+            react_instance.post_image = request.data.get('post_image', react_instance.post_image)
+
+            # Save the changes
+            react_instance.save()
+
+            # Update comments using the ManyToManyField
+            comment_ids = request.data.get('comments', [])
+            react_instance.comments.set(comment_ids)
+
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

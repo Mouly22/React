@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import "./singlePost.css"; // Import your CSS file
+import { Refresh } from "@mui/icons-material";
 
 const SinglePost: React.FC<{}> = () => {
   const { postId } = useParams<{ postId: string }>();
@@ -76,9 +77,15 @@ const SinglePost: React.FC<{}> = () => {
 
   const handleUpdateClick = async () => {
     try {
-      await axios.post("http://127.0.0.1:8000/update_post_content/", {
+      await axios.post("http://127.0.0.1:8000/edit_blog_list/", {
         post_id: postId,
-        updated_content: editedContent,
+        userid: userId,
+        user_type: postData.user_type,
+        post_title: postData.post_title,
+        post_content: editedContent,
+        post_uploaded: postData.post_uploaded,
+        post_image: "kaka",//postData.post_image,
+        comments: postData.comments,
       });
 
       // Fetch updated post data
@@ -88,14 +95,16 @@ const SinglePost: React.FC<{}> = () => {
 
       // Update the post data state
       setPostData(updatedPostData.data.user_data);
-
+      
       // Exit edit mode
+
       setEditMode(false);
+      window.location.reload();
     } catch (error) {
       console.error("Error updating post content:", error);
+      window.location.reload();
     }
   };
-
   const handleDeleteClick = async () => {
     try {
       await axios.post("http://127.0.0.1:8000/delete_post/", {
@@ -119,18 +128,20 @@ const SinglePost: React.FC<{}> = () => {
               Uploaded on: {new Date(postData.post_uploaded).toLocaleString()} by{" "}
               <span className="singlePostAuthor">{postData.userid}</span>
             </p>
-            <div className="buttonContainer">
-              {!editMode && (
-                <>
-                  <button onClick={handleEditClick} className="editButton">
-                    Edit
-                  </button>
-                  <button onClick={handleDeleteClick} className="deleteButton">
-                    Delete
-                  </button>
-                </>
-              )}
-            </div>
+            {postData.userid === userId && (
+              <div className="buttonContainer">
+                {!editMode && (
+                  <>
+                    <button onClick={handleEditClick} className="editButton">
+                      Edit
+                    </button>
+                    <button onClick={handleDeleteClick} className="deleteButton">
+                      Delete
+                    </button>
+                  </>
+                )}
+              </div>
+            )}
           </div>
           {editMode ? (
             <textarea
@@ -177,7 +188,6 @@ const SinglePost: React.FC<{}> = () => {
                 <button onClick={handleCommentSubmit}>Post Comment</button>
               </>
             )}
-           
           </div>
         </div>
       )}
@@ -186,4 +196,3 @@ const SinglePost: React.FC<{}> = () => {
 };
 
 export default SinglePost;
-

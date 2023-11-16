@@ -24,7 +24,7 @@ from login_stuffs.views import ReactView_Register_admin, CheckUserExistenceView 
 from field_officer_login.views import ReactView_Register_Field_Officer, CheckUserExistenceView_Field_Officer,ReactView_DeleteMember_Field_Officer,ReactView_Edit_Field_Officer
 from incoming_request.views import ReactView_DeleteMember_Incoming_request,ReactView_Register_Incoming_Request,CheckUserExistenceView_Incoming_request
 from all_login_credentials.views import ReactView_DeleteMember_all_login,ReactView_Register_all_login,CheckUserExistenceView_all_login,ReactView_Edit_all_login
-from bloglist.views import ReactView_DeleteMember_BlogList,ReactView_Register_BlogList_Comments,ReactView_Register_BlogList,CheckUserExistenceView_BlogList,ReactView_AddComment,ReactView_DeleteComment
+from bloglist.views import ReactView_DeleteMember_BlogList,ReactView_Register_BlogList_Comments,ReactView_Register_BlogList,CheckUserExistenceView_BlogList,ReactView_AddComment,ReactView_DeleteComment,ReactView_Blog_Edit
 from django.conf.urls.static import static
 from django.conf import settings
 from blog_images.views import GetImageView, YourModelNameView
@@ -63,6 +63,7 @@ urlpatterns = [
     path('register_blog_list/', ReactView_Register_BlogList.as_view(), name="anything"),# for fetching and adding bloglist
     path('login_blog_list/', CheckUserExistenceView_BlogList.as_view(), name="check_user"), # for checking a blog exists
     path('delete_blog_list/', ReactView_DeleteMember_BlogList.as_view(), name="delete_field_officer"), # deleting blog
+    path('edit_blog_list/', ReactView_Blog_Edit.as_view(), name="anything"),# for fetching and adding bloglist
 
     #Blog Comment
     path('register_add_comment/', ReactView_AddComment.as_view(), name="anything"),# for adding comments
