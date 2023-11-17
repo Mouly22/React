@@ -62,6 +62,54 @@ class ReactView_DeleteMember_BlogList(APIView):
             return Response({'success': True})
         except React.DoesNotExist:
             return Response({'success': False, 'error': 'Post does not exist'})
+        
+
+
+
+from django.db.models import Q
+
+class Search_In_BlogList(APIView):
+    def post(self, request):
+        search_word = request.data.get('search_word', '')
+        # Check if users with the given search_word in post_content exist
+        matched_posts = React.objects.filter(post_content__icontains=search_word)
+
+        if matched_posts.exists():
+            # At least one post with the specified word in post_content exists
+            matched_posts_data = []
+            for post in matched_posts:
+                serializer = CommentSerializer(post.comments.all(), many=True)
+                post_data = {
+                    "post_id": post.post_id,
+                    "userid": post.userid,
+                    "user_type": post.user_type,
+                    "post_title": post.post_title,
+                    "post_content": post.post_content,
+                    "post_uploaded": post.post_uploaded,
+                    "post_image": post.post_image,
+                    "comments": serializer.data,
+                }
+                matched_posts_data.append(post_data)
+
+            response_data = {
+                "search_word": search_word,
+                "exists": True,
+                "matched_posts": matched_posts_data,
+            }
+        else:
+            response_data = {"search_word": search_word, "exists": False, "matched_posts": []}
+
+        return Response(response_data)
+
+
+
+
+
+
+
+
+
+
 
 class ReactView_Register_BlogList_Comments(APIView):
     def get(self, request):
