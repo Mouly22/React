@@ -1,16 +1,23 @@
 import React, { useState } from "react";
 import "./Sidebar.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LogoImg from "./images/sidebarPic.jpg";
-import "./search"
-
+import "./search";
 
 const Sidebar: React.FC<{}> = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
 
   const handleSearch = () => {
-    
     console.log("Searching for:", searchTerm);
+    localStorage.setItem("searchpost", searchTerm);
+    navigate("/search");
+  };
+
+  const handleCategoryClick = (category: string) => {
+    console.log(`Clicked on category: ${category}`);
+    localStorage.setItem("searchpost", category);
+    navigate("/search");
   };
 
   return (
@@ -25,12 +32,42 @@ const Sidebar: React.FC<{}> = () => {
       <div className="sidebarItem">
         <span className="sidebarTitle">CATEGORIES</span>
         <ul className="sidebarList">
-          <li className="sidebarListItem">Farming</li>
-          <li className="sidebarListItem">Vegetables</li>
-          <li className="sidebarListItem">Agrotech</li>
-          <li className="sidebarListItem">Milk</li>
-          <li className="sidebarListItem">Green</li>
-          <li className="sidebarListItem">Business</li>
+          <li
+            className="sidebarListItem"
+            onClick={() => handleCategoryClick("Farming")}
+          >
+            Farming
+          </li>
+          <li
+            className="sidebarListItem"
+            onClick={() => handleCategoryClick("Vegetables")}
+          >
+            Vegetables
+          </li>
+          <li
+            className="sidebarListItem"
+            onClick={() => handleCategoryClick("Agrotech")}
+          >
+            Agrotech
+          </li>
+          <li
+            className="sidebarListItem"
+            onClick={() => handleCategoryClick("Milk")}
+          >
+            Milk
+          </li>
+          <li
+            className="sidebarListItem"
+            onClick={() => handleCategoryClick("Green")}
+          >
+            Green
+          </li>
+          <li
+            className="sidebarListItem"
+            onClick={() => handleCategoryClick("Business")}
+          >
+            Business
+          </li>
         </ul>
       </div>
 
@@ -45,9 +82,14 @@ const Sidebar: React.FC<{}> = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
 
-        <Link to="/search" type="button" className="btnn" onClick={handleSearch}>
-          Search
-        </Link>
+          {/* Call handleSearch and set the link directly */}
+          <button
+            type="button"
+            className="btnn"
+            onClick={handleSearch}
+          >
+            Search
+          </button>
         </div>
       </div>
     </div>

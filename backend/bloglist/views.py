@@ -68,16 +68,21 @@ class ReactView_DeleteMember_BlogList(APIView):
 
 from django.db.models import Q
 
+
+
 class Search_In_BlogList(APIView):
     def post(self, request):
         search_word = request.data.get('search_word', '')
+        
         # Check if users with the given search_word in post_content exist
-        matched_posts = React.objects.filter(post_content__icontains=search_word)
+        matched_posts_content = React.objects.filter(post_content__icontains=search_word)
+        matched_posts_title = React.objects.filter(post_title__icontains=search_word)
 
-        if matched_posts.exists():
-            # At least one post with the specified word in post_content exists
-            matched_posts_data = []
-            for post in matched_posts:
+        matched_posts_data = []
+        
+        if matched_posts_content.exists() or matched_posts_title.exists():
+            # Posts with the specified word in either post_content or post_title exist
+            for post in matched_posts_content:
                 serializer = CommentSerializer(post.comments.all(), many=True)
                 post_data = {
                     "post_id": post.post_id,
@@ -91,16 +96,28 @@ class Search_In_BlogList(APIView):
                 }
                 matched_posts_data.append(post_data)
 
-            response_data = {
-                "search_word": search_word,
-                "exists": True,
-                "matched_posts": matched_posts_data,
-            }
+            for post in matched_posts_title:
+                # Check if the post is not already included in the result
+                if post not in matched_posts_content:
+                    serializer = CommentSerializer(post.comments.all(), many=True)
+                    post_data = {
+                        "post_id": post.post_id,
+                        "userid": post.userid,
+                        "user_type": post.user_type,
+                        "post_title": post.post_title,
+                        "post_content": post.post_content,
+                        "post_uploaded": post.post_uploaded,
+                        "post_image": post.post_image,
+                        "comments": serializer.data,
+                    }
+                    matched_posts_data.append(post_data)
+
         else:
-            response_data = {"search_word": search_word, "exists": False, "matched_posts": []}
+            response_data = {False}
+            return Response(response_data)
 
+        response_data =  matched_posts_data
         return Response(response_data)
-
 
 
 
