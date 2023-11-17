@@ -10,6 +10,8 @@ import SinglePost from "./Pages/BlogF/singlePost"
 import Write from "./Pages/BlogF/write"
 import Sidebar from "./Pages/BlogF/Sidebar";
 import Profile from './Pages/Profile'
+import Graph from './Pages/Graph'
+import Form from './Pages/Form'
 //import Field_Officer_Page from "./views/field_officer";
 import Field_officer_Page from "./views_field_officers/Field_officer_view";
 import SignupForm_for_admin from "./views/admin_show_admin_adding_page";
@@ -32,6 +34,8 @@ function App() {
             
 
             <Route path = "/profile" element= {<Profile/>}/>
+            <Route path = "/graph" element= {<Graph/>}/>
+            <Route path = "/form" element= {<Form/>}/>
          
             
             <Route
