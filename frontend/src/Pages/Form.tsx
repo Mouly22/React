@@ -2,32 +2,41 @@ import React, { useState, useEffect } from 'react';
 import './Form.css';
 
 type FormState = {
-  food: string;
+  userid: string;
+  foods: {
+    type: string;
+    quantity: string;
+    quality: string;
+  }[];
   district: string;
-  area: string;
-  quantity : number;
-  quality: string;
   division: string;
 };
 
 const initialFormState: FormState = {
-  food: '',
+  userid: '',
+  foods: [
+    { type: 'rice', quantity: '', quality: '' },
+    { type: 'wheat', quantity: '', quality: '' },
+    { type: 'maize', quantity: '', quality: '' },
+    { type: 'potato', quantity: '', quality: '' },
+  ],
   district: '',
-  area: '',
-  quantity: 0,
-  quality: '',
   division: '',
 };
 
 const divisionsAndDistricts = {
-  Dhaka: ['Dhaka', 'Faridpur', 'Gazipur', 'Gopalganj', 'Kishoreganj', 'Madaripur', 'Manikganj', 'Munshiganj', 'Narayanganj', 'Narsingdi', 'Rajbari', 'Shariatpur', 'Tangail'],
-  Chittagong: ['Bandarban', 'Brahmanbaria', 'Chandpur', 'Chittagong', 'Comilla', 'Cox\'s Bazar', 'Feni', 'Khagrachhari', 'Lakshmipur', 'Noakhali', 'Rangamati'],
-  // Add other divisions and districts here...
+  Dhaka: ['Dhaka', 'Faridpur', 'Gazipur', 'Gopalganj', ],
+  Chittagong: ['Bandarban', 'Brahmanbaria', 'Chandpur', 'Chittagong', 'Comilla'],
 };
 
 function App() {
   const [form, setForm] = useState<FormState>(initialFormState);
   const [districts, setDistricts] = useState<string[]>([]);
+
+  useEffect(() => {
+    const storedUserId = localStorage.getItem('userid');
+    setForm({ ...form, userid: storedUserId || '' });
+  }, []);
 
   useEffect(() => {
     if (form.division) {
@@ -37,8 +46,10 @@ function App() {
     }
   }, [form.division]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+  const handleFoodChange = (index: number, field: string, value: string) => {
+    const newFoods = [...form.foods];
+    newFoods[index][field] = value;
+    setForm({ ...form, foods: newFoods });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -49,20 +60,11 @@ function App() {
   return (
     <div className="App">
       <form onSubmit={handleSubmit}>
-        <h1> Data For Foods</h1>
-        <label>
-          Food:
-          <select name="food" value={form.food} onChange={handleChange}>
-            <option value="">Select...</option>
-            <option value="Rice">Rice</option>
-            <option value="Wheat">Wheat</option>
-            <option value="Maize">Maize</option>
-            <option value="Potato">Potato</option>
-          </select>
-        </label>
+        <h1> Data For Foods <h6>({form.userid})</h6></h1>
+
         <label>
           Division:
-          <select name="division" value={form.division} onChange={handleChange}>
+          <select name="division" value={form.division} onChange={(e) => setForm({ ...form, division: e.target.value })}>
             <option value="">Select...</option>
             {Object.keys(divisionsAndDistricts).map(division => (
               <option key={division} value={division}>{division}</option>
@@ -71,30 +73,31 @@ function App() {
         </label>
         <label>
           District:
-          <select name="district" value={form.district} onChange={handleChange}>
+          <select name="district" value={form.district} onChange={(e) => setForm({ ...form, district: e.target.value })}>
             <option value="">Select...</option>
             {districts.map(district => (
               <option key={district} value={district}>{district}</option>
             ))}
           </select>
         </label>
-        <label>
-          Area:
-          <input type="text" name="area" value={form.area} onChange={handleChange} />
-        </label>
-        <label>
-          Quantity :
-          <input type="text" name="quantity" value={form.quantity} onChange={handleChange} />
-        </label>
-        <label>
-          Quality:
-          <select name="quality" value={form.quality} onChange={handleChange}>
-            <option value="">Select...</option>
-            <option value="Excellent">Excellent</option>
-            <option value="Good">Good</option>
-            <option value="Bad">Bad</option>
-          </select>
-        </label>
+        {form.foods.map((food, index) => (
+  <div key={index} className="food-item">
+    <label>
+      {food.type.charAt(0).toUpperCase() + food.type.slice(1)}:
+      <input type="text" value={food.quantity} onChange={(e) => handleFoodChange(index, 'quantity', e.target.value)} />
+    </label>
+    <label>
+      Quality:
+      <select value={food.quality} onChange={(e) => handleFoodChange(index, 'quality', e.target.value)}>
+        <option value="">Select...</option>
+        <option value="Excellent">Excellent</option>
+        <option value="Good">Good</option>
+        <option value="Bad">Bad</option>
+      </select>
+    </label>
+  </div>
+))}
+
         <button type="submit">Submit</button>
       </form>
     </div>
