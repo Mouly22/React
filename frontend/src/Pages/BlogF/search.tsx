@@ -26,7 +26,7 @@ const Search: React.FC<{}> = () => {
   }, [searchWord]); // Include searchWord in the dependency array to re-run effect when it changes
 
   return (
-    <div className="blog">
+    <div className="blog" style={{ maxHeight: '90vh', overflowY: 'auto' }}>
       {Array.isArray(posts) ? (
         posts[0] === false ? (
           <p>Nothing found</p>

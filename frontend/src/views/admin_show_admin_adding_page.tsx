@@ -138,7 +138,7 @@ const SignupForm_for_admin = () => {
           color="primary"
           fullWidth
           onClick={handleSubmit}
-          style={{ margin: "20px 0" }}
+          style={{ margin: "10px 0", backgroundColor: "#8db596", color: "#fff" }}
         >
           Sign Up
         </Button>

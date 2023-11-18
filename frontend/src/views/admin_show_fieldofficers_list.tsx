@@ -58,7 +58,7 @@ const Admin_Page_show_Field_Officers: React.FC = () => {
           Field Officers List
         </Typography>
       </Box>
-      <Button onClick={fetchData} variant="contained" color="primary">
+      <Button onClick={fetchData} variant="contained" style={{ margin: "10px 0", backgroundColor: "#8db596", color: "#fff" }}>
         {showTable ? 'Hide Field Officers List' : 'Show Field Officers List'}
       </Button>
       {showTable && (
@@ -67,7 +67,7 @@ const Admin_Page_show_Field_Officers: React.FC = () => {
             <TableHead>
               <TableRow>
                 <TableCell>User ID</TableCell>
-                <TableCell>Password</TableCell>
+
                 <TableCell>Email</TableCell>
                 <TableCell>Address</TableCell>
                 <TableCell>NID</TableCell>
@@ -79,13 +79,13 @@ const Admin_Page_show_Field_Officers: React.FC = () => {
               {data.map((item) => (
                 <TableRow key={item.id}>
                   <TableCell>{item.userid}</TableCell>
-                  <TableCell>{item.password}</TableCell>
+
                   <TableCell>{item.email}</TableCell>
                   <TableCell>{item.address}</TableCell>
                   <TableCell>{item.nid}</TableCell>
                   <TableCell>{item.user_type}</TableCell>
                   <TableCell>
-                    <Button onClick={() => deleteMember(item.userid)} variant="contained" color="secondary">
+                    <Button onClick={() => deleteMember(item.userid)} variant="contained" style={{ margin: "10px 0", backgroundColor: "#8db596", color: "#fff" }}>
                       Delete
                     </Button>
                   </TableCell>

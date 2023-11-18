@@ -22,12 +22,14 @@ from authentication.views import ReactView, CheckEmployeeExistenceView
 #from django.views.generic import RedirectView
 from login_stuffs.views import ReactView_Register_admin, CheckUserExistenceView , ReactView_DeleteMember,ReactView_Edit_Field_Admin
 from field_officer_login.views import ReactView_Register_Field_Officer, CheckUserExistenceView_Field_Officer,ReactView_DeleteMember_Field_Officer,ReactView_Edit_Field_Officer
+from expert.views import ReactView_Register_Expert,CheckUserExistenceView_Expert,ReactView_DeleteMember_Expert,ReactView_Edit_Expert
 from incoming_request.views import ReactView_DeleteMember_Incoming_request,ReactView_Register_Incoming_Request,CheckUserExistenceView_Incoming_request
 from all_login_credentials.views import ReactView_DeleteMember_all_login,ReactView_Register_all_login,CheckUserExistenceView_all_login,ReactView_Edit_all_login
 from bloglist.views import ReactView_DeleteMember_BlogList,ReactView_Register_BlogList_Comments,ReactView_Register_BlogList,CheckUserExistenceView_BlogList,ReactView_AddComment,ReactView_DeleteComment,ReactView_Blog_Edit,ReactView_DeleteAllComment,Search_In_BlogList
 from django.conf.urls.static import static
 from django.conf import settings
 from blog_images.views import GetImageView, YourModelNameView
+from dataforfoods.views import ReactView_Register_DataForFoods
 
 urlpatterns = [
     path('', ReactView.as_view(), name="anything"),
@@ -58,6 +60,12 @@ urlpatterns = [
     path('delete_field_officer/', ReactView_DeleteMember_Field_Officer.as_view(), name="delete_field_officer"),#for delete field officer
     path('edit_field_officer/', ReactView_Edit_Field_Officer.as_view(), name="anything"), # for edit field officer
 
+    #For Expert
+    path('register_expert/', ReactView_Register_Expert.as_view(), name="anything"),# for expert register
+    path('login_expert/', CheckUserExistenceView_Expert.as_view(), name="check_user"), # for  expert logins
+    path('delete_expert/', ReactView_DeleteMember_Expert.as_view(), name="delete_field_officer"),#for delete expert 
+    path('edit_expert/', ReactView_Edit_Expert.as_view(), name="anything"), # for edit expert
+
     #BLOG Part
 
     path('register_blog_list/', ReactView_Register_BlogList.as_view(), name="anything"),# for fetching and adding bloglist
@@ -74,6 +82,9 @@ urlpatterns = [
     #For Blog Images
     path('register_add_blog_images/', YourModelNameView.as_view(), name="anything"),# for adding comments
     path('login_blog_images/', GetImageView.as_view(), name="check_user"), # for checking a blog image exists if exists it returns the image
+
+    #For Data for foods
+    path('register_add_dataforfoods/', ReactView_Register_DataForFoods.as_view(), name="anything"),# for adding comments
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     'all_login_credentials',
     'bloglist',
     'blog_images',
+    'dataforfoods',
+    'expert',
 ]
 
 MIDDLEWARE = [

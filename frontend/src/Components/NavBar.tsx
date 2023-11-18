@@ -1,16 +1,15 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "./NavBar.css"
+import "./NavBar.css";
 
 const NavBar: React.FC<{}> = () => {
   const navigate = useNavigate();
   const userId = localStorage.getItem('userid');
+  const user_type = localStorage.getItem('user_type');
 
   const handleLogout = () => {
-    // Perform logout actions, such as clearing local storage
     localStorage.removeItem('userid');
     localStorage.removeItem('user_type');
-    // Redirect to the home page or login page
     navigate("/");
   };
 
@@ -42,12 +41,19 @@ const NavBar: React.FC<{}> = () => {
               </Link>
             </li>
            
-           
+            {userId && (
+              <li>
+                <Link to={`/${user_type}`} className="nav-link px-2 text-white">
+                  {user_type}
+                </Link>
+              </li>
+            )}
+            {userId && (
             <li>
               <Link to="/profile" className="nav-link px-2 text-white">
                 Profile
               </Link>
-            </li>
+            </li>)}
           </ul>
           <div className="text-end">
             {userId ? (
@@ -72,5 +78,3 @@ const NavBar: React.FC<{}> = () => {
 };
 
 export default NavBar;
-
-
