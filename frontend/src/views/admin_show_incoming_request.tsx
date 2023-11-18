@@ -78,7 +78,7 @@ const Admin_Page_show_Incoming_request: React.FC = () => {
         <Typography variant="h4" component="div" gutterBottom>
           Incoming Request
         </Typography>
-        <Button variant="contained" color="primary" onClick={() => setTableVisible(!tableVisible)}>
+        <Button variant="contained" style={{ margin: "2px 0", backgroundColor: "#8db596", color: "#fff" }} onClick={() => setTableVisible(!tableVisible)}>
           {tableVisible ? 'Hide Incoming Requests' : 'Show Incoming Requests'}
         </Button>
       </Box>
@@ -107,12 +107,12 @@ const Admin_Page_show_Incoming_request: React.FC = () => {
                   <TableCell>{item.nid}</TableCell>
                   <TableCell>{item.user_type}</TableCell>
                   <TableCell>
-                    <Button onClick={() => addMember(item)} variant="contained" color="primary">
+                    <Button onClick={() => addMember(item)} style={{ backgroundColor: "#8db596", color: "#fff" }}>
                       Add Member
                     </Button>
                   </TableCell>
                   <TableCell>
-                    <Button onClick={() => deleteMember(item.userid)} variant="contained" color="secondary">
+                    <Button onClick={() => deleteMember(item.userid)} style={{backgroundColor: "#8db596", color: "#fff" }}>
                       Delete
                     </Button>
                   </TableCell>

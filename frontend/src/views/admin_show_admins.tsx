@@ -51,7 +51,7 @@ const Admin_Page_show_admins: React.FC = () => {
         <Typography variant="h4" component="div" gutterBottom>
           Existing Admins
         </Typography>
-        <Button variant="contained" color="primary" onClick={() => setTableVisible(!tableVisible)}>
+        <Button variant="contained" style={{ margin: "10px 0", backgroundColor: "#8db596", color: "#fff" }} onClick={() => setTableVisible(!tableVisible)}>
           {tableVisible ? 'Hide Existing Admins List' : 'Show Existing Admins List'}
         </Button>
       </Box>
@@ -79,7 +79,7 @@ const Admin_Page_show_admins: React.FC = () => {
                   <TableCell>{item.nid}</TableCell>
                   <TableCell>{item.user_type}</TableCell>
                   <TableCell>
-                    <Button onClick={() => deleteMember(item.userid)} variant="contained" color="secondary">
+                    <Button onClick={() => deleteMember(item.userid)} variant="contained" style={{ margin: "10px 0", backgroundColor: "#8db596", color: "#fff" }}>
                       Delete
                     </Button>
                   </TableCell>

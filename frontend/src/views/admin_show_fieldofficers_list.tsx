@@ -58,7 +58,7 @@ const Admin_Page_show_Field_Officers: React.FC = () => {
           Field Officers List
         </Typography>
       </Box>
-      <Button onClick={fetchData} variant="contained" color="primary">
+      <Button onClick={fetchData} variant="contained" style={{ margin: "10px 0", backgroundColor: "#8db596", color: "#fff" }}>
         {showTable ? 'Hide Field Officers List' : 'Show Field Officers List'}
       </Button>
       {showTable && (
@@ -85,7 +85,7 @@ const Admin_Page_show_Field_Officers: React.FC = () => {
                   <TableCell>{item.nid}</TableCell>
                   <TableCell>{item.user_type}</TableCell>
                   <TableCell>
-                    <Button onClick={() => deleteMember(item.userid)} variant="contained" color="secondary">
+                    <Button onClick={() => deleteMember(item.userid)} variant="contained" style={{ margin: "10px 0", backgroundColor: "#8db596", color: "#fff" }}>
                       Delete
                     </Button>
                   </TableCell>

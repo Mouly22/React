@@ -92,11 +92,11 @@ const DataFormComponent_login: React.FC = () => {
           color="primary"
           fullWidth
           onClick={checkUserExistence}
-          style={{ marginTop: "20px" }}
+          style={{ margin: "10px 0", backgroundColor: "#8db596", color: "#fff" }}
         >
           Sign In
         </Button>
-        {userExists ? (
+        {userExists && (
           <Box mt={2}>
             {passwordMatch ? (
               <div>
@@ -110,15 +110,20 @@ const DataFormComponent_login: React.FC = () => {
                 <Typography>User gg: {localStorage.getItem("user_type")}</Typography>
               </div>
             ) : (
-              <Typography className="error-message">Password is wrong</Typography>
+              <Typography className="error-message" style={{ color: 'red' }} >Password is wrong! Try again </Typography>
             )}
+          
+          {!userExists && (<Typography className="error-message">User does not exist</Typography>
+
+          )}
           </Box>
-        ) : (
-          <Typography className="error-message">User does not exist</Typography>
-        )}
+          )}
+
       </Paper>
     </Container>
   );
 };
 
 export default DataFormComponent_login;
+
+
