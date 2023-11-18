@@ -8,8 +8,9 @@ import Blog from "./Pages/BlogF/Blog"
 import './App.css';
 import SinglePost from "./Pages/BlogF/singlePost"
 import Write from "./Pages/BlogF/write"
-import Sidebar from "./Pages/BlogF/Sidebar";
-import Profile from './Pages/Profile'
+import Blogview from "./Pages/BlogF/Blogview";
+import Profile from './Pages/Profile';
+import Search from "./Pages/BlogF/search";
 //import Field_Officer_Page from "./views/field_officer";
 import Field_officer_Page from "./views_field_officers/Field_officer_view";
 import SignupForm_for_admin from "./views/admin_show_admin_adding_page";
@@ -27,6 +28,8 @@ function App() {
             <Route path="/Blog" element={<Blog/>}/>
             <Route path = "/singlePost/:postId" element= {<SinglePost/>}/>
             <Route path = "/write" element= {<Write/>}/>
+            <Route path = "/blogview" element= {<Blogview/>}/>
+            <Route path = "/search" element= {<Search/>}/>
            
             
             

@@ -37,7 +37,7 @@ const NavBar: React.FC<{}> = () => {
               </Link>
             </li>
             <li>
-              <Link to="/blog" className="nav-link px-2 text-white">
+              <Link to="/blogview" className="nav-link px-2 text-white">
                 Blog
               </Link>
             </li>
@@ -59,7 +59,7 @@ const NavBar: React.FC<{}> = () => {
                 <Link to="/signin" type="button" className="btn btn-outline-light me-2">
                   Login
                 </Link>
-                <Link to="/signup" type="button" className="btn btn-warning">
+                <Link to="/signup" type="button" className="btn btn-outline-light me-2">
                   Sign Up
                 </Link>
               </>
