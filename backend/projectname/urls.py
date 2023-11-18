@@ -28,6 +28,7 @@ from bloglist.views import ReactView_DeleteMember_BlogList,ReactView_Register_Bl
 from django.conf.urls.static import static
 from django.conf import settings
 from blog_images.views import GetImageView, YourModelNameView
+from dataforfoods.views import ReactView_Register_DataForFoods
 
 urlpatterns = [
     path('', ReactView.as_view(), name="anything"),
@@ -74,6 +75,9 @@ urlpatterns = [
     #For Blog Images
     path('register_add_blog_images/', YourModelNameView.as_view(), name="anything"),# for adding comments
     path('login_blog_images/', GetImageView.as_view(), name="check_user"), # for checking a blog image exists if exists it returns the image
+
+    #For Data for foods
+    path('register_add_dataforfoods/', ReactView_Register_DataForFoods.as_view(), name="anything"),# for adding comments
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
