@@ -32,6 +32,8 @@ const DataFormComponent_login: React.FC = () => {
         navigate('/admin'); // Navigate to the admin page
       } else if (userType === "field_officer") {
         navigate('/field_officer');
+      }else if (userType === "expert") {
+        navigate('/expert');
       }
     }
   }, [passwordMatch, navigate, userid, userType]);

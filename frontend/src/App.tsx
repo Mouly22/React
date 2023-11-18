@@ -13,7 +13,9 @@ import Profile from './Pages/Profile';
 import Search from "./Pages/BlogF/search";
 //import Field_Officer_Page from "./views/field_officer";
 import Field_officer_Page from "./views_field_officers/Field_officer_view";
+import Expert_Page from "./views_expert/expert_view";
 import SignupForm_for_admin from "./views/admin_show_admin_adding_page";
+
 
 function App() {
   return (
@@ -47,7 +49,11 @@ function App() {
             />
               <Route
               path="/field_officer"
-              element={<Field_officer_Page />} // Display the Admin_Page component
+              element={<Field_officer_Page />} // Display the Field Officer component
+            />
+              <Route
+              path="/expert"
+              element={<Expert_Page />} // Display the Expert component
             />
           </Routes>
         </div>

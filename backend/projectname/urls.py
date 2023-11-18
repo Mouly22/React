@@ -22,6 +22,7 @@ from authentication.views import ReactView, CheckEmployeeExistenceView
 #from django.views.generic import RedirectView
 from login_stuffs.views import ReactView_Register_admin, CheckUserExistenceView , ReactView_DeleteMember,ReactView_Edit_Field_Admin
 from field_officer_login.views import ReactView_Register_Field_Officer, CheckUserExistenceView_Field_Officer,ReactView_DeleteMember_Field_Officer,ReactView_Edit_Field_Officer
+from expert.views import ReactView_Register_Expert,CheckUserExistenceView_Expert,ReactView_DeleteMember_Expert,ReactView_Edit_Expert
 from incoming_request.views import ReactView_DeleteMember_Incoming_request,ReactView_Register_Incoming_Request,CheckUserExistenceView_Incoming_request
 from all_login_credentials.views import ReactView_DeleteMember_all_login,ReactView_Register_all_login,CheckUserExistenceView_all_login,ReactView_Edit_all_login
 from bloglist.views import ReactView_DeleteMember_BlogList,ReactView_Register_BlogList_Comments,ReactView_Register_BlogList,CheckUserExistenceView_BlogList,ReactView_AddComment,ReactView_DeleteComment,ReactView_Blog_Edit,ReactView_DeleteAllComment,Search_In_BlogList
@@ -58,6 +59,12 @@ urlpatterns = [
     path('login_field_officer/', CheckUserExistenceView_Field_Officer.as_view(), name="check_user"), # for  field officer logins
     path('delete_field_officer/', ReactView_DeleteMember_Field_Officer.as_view(), name="delete_field_officer"),#for delete field officer
     path('edit_field_officer/', ReactView_Edit_Field_Officer.as_view(), name="anything"), # for edit field officer
+
+    #For Expert
+    path('register_expert/', ReactView_Register_Expert.as_view(), name="anything"),# for expert register
+    path('login_expert/', CheckUserExistenceView_Expert.as_view(), name="check_user"), # for  expert logins
+    path('delete_expert/', ReactView_DeleteMember_Expert.as_view(), name="delete_field_officer"),#for delete expert 
+    path('edit_expert/', ReactView_Edit_Expert.as_view(), name="anything"), # for edit expert
 
     #BLOG Part
 

@@ -2,15 +2,15 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Typography, Box } from '@mui/material';
 
-const Admin_Page_show_admins: React.FC = () => {
+const Admin_Page_show_Expert: React.FC = () => {
   const [userid, setUserid] = useState('');
   const [userType, setUserType] = useState('');
   const [data, setData] = useState([]);
   const [refresh, setRefresh] = useState(false);
-  const [tableVisible, setTableVisible] = useState(false); // Add state for table visibility
+  const [showTable, setShowTable] = useState(false);
 
   const deleteMember = (memberId: any) => {
-    axios.post('http://127.0.0.1:8000/delete_admin/', { memberId })
+    axios.post('http://127.0.0.1:8000/delete_expert/', { memberId })
       .then((response) => {
         if (response.data.success) {
           axios.post('http://127.0.0.1:8000/delete_all_login/', { memberId })
@@ -36,26 +36,32 @@ const Admin_Page_show_admins: React.FC = () => {
   }, []); // Load user info once
 
   useEffect(() => {
-    axios.get('http://127.0.0.1:8000/register/')
-      .then((response) => {
-        setData(response.data);
-      })
-      .catch((error) => {
-        console.error('Error fetching data:', error);
-      });
-  }, [refresh]);
+    if (showTable) {
+      axios.get("http://127.0.0.1:8000/register_expert/")
+        .then((response) => {
+          setData(response.data);
+        })
+        .catch((error) => {
+          console.error('Error fetching data:', error);
+        });
+    }
+  }, [refresh, showTable]);
+
+  const fetchData = () => {
+    setShowTable(!showTable);
+  };
 
   return (
     <div>
       <Box my={3}>
         <Typography variant="h4" component="div" gutterBottom>
-          Existing Admins
+          Agricultural Experts List
         </Typography>
-        <Button variant="contained" style={{ margin: "10px 0", backgroundColor: "#8db596", color: "#fff" }} onClick={() => setTableVisible(!tableVisible)}>
-          {tableVisible ? 'Hide Existing Admins List' : 'Show Existing Admins List'}
-        </Button>
       </Box>
-      {tableVisible && (
+      <Button onClick={fetchData} variant="contained" style={{ margin: "10px 0", backgroundColor: "#8db596", color: "#fff" }}>
+        {showTable ? 'Hide Field Officers List' : 'Show Field Officers List'}
+      </Button>
+      {showTable && (
         <TableContainer component={Paper}>
           <Table>
             <TableHead>
@@ -93,4 +99,4 @@ const Admin_Page_show_admins: React.FC = () => {
   );
 };
 
-export default Admin_Page_show_admins;
+export default Admin_Page_show_Expert;
