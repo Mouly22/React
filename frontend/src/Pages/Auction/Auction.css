@@ -1,0 +1,53 @@
+.amazon-container {
+    display: flex;
+  }
+  
+  .sidebar {
+    width: 20%;
+    min-width: 200px; /* Set a minimum width to ensure the sidebar is not too narrow */
+    background-color: #f0f0f0;
+    padding: 20px;
+  }
+  
+  .sidebar-button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .sort-options {
+    margin-top: 20px;
+  }
+  
+  .amazon-products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 80%; /* Adjust the width to take 8/10 (80%) of the screen */
+  }
+  
+  .product-card {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+  .product-card img {
+    margin-bottom: 10px;
+    width: 100%; /* Make the image width 100% of the parent container */
+  }
+
+  
+  
+  /* ... existing styles ... */
+  
+  
+
+  
