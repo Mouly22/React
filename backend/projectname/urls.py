@@ -30,6 +30,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from blog_images.views import GetImageView, YourModelNameView
 from dataforfoods.views import ReactView_Register_DataForFoods
+from auction_product_datas.views import ReactView_Register_Auction_Prodcuts
 
 urlpatterns = [
     path('', ReactView.as_view(), name="anything"),
@@ -84,7 +85,12 @@ urlpatterns = [
     path('login_blog_images/', GetImageView.as_view(), name="check_user"), # for checking a blog image exists if exists it returns the image
 
     #For Data for foods
-    path('register_add_dataforfoods/', ReactView_Register_DataForFoods.as_view(), name="anything"),# for adding comments
+    path('register_add_dataforfoods/', ReactView_Register_DataForFoods.as_view(), name="anything"),# for adding and getting field officer data posted
+
+    #For auction
+    path('register_add_auction_products/', ReactView_Register_Auction_Prodcuts.as_view(), name="anything"),
+
+
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
