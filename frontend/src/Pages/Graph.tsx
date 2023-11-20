@@ -38,7 +38,7 @@ export default function Example() {
     return { name: district, ...foodData };
   });
 
-  const [selectedFood, setSelectedFood] = useState(foodTypes[0]);
+  const [selectedFood, setSelectedFood] = useState("rice");
   const foodData = chartData.map(({ name, ...rest }) => ({ name, value: rest[selectedFood] }));
 
   return (
