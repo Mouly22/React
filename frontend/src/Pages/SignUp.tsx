@@ -54,9 +54,7 @@ const SignupForm = () => {
 
     try {
       let registerEndpoint = "http://127.0.0.1:8000/register_incoming_request/";
-      if (user_type === "field_officer") {
-        registerEndpoint = "http://127.0.0.1:8000/register_incoming_request/";
-      }
+
 
       await axios.post(registerEndpoint, {
         userid,

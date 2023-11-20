@@ -1,20 +1,19 @@
 .sidebar {
-  flex: 1;
-  height: fit-content;
-  margin: 10px;
-  padding-bottom: 10px;
-  background-color: #fdfbfb;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+    flex: 3;
+    height: fit-content;
+    margin: 50px;
+    padding-bottom: 20px;
+   
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+  }
   
   .sidebarItem {
     display: flex;
     flex-direction: column;
     align-items: center;
-   
   }
   
   .sidebarTitle {
@@ -33,13 +32,10 @@
   
   .sidebarItem > img {
     margin-top: 15px;
-    width: 50px;
+    width: 250px;
     height: 250px;
   }
-  
-  .sidebarItem > p {
-    padding: 30px;
-  }
+ 
   
   .sidebarList {
     list-style-type: none;
@@ -51,13 +47,49 @@
     width: 50%;
     margin-top: 15px;
     cursor: pointer;
+
   }
-  
-  .sidebarSocial {
-    margin-top: 15px;
-    width: 250px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+  /* Add these styles to your Sidebar.css file or create a new CSS file */
+
+.sidebarItem {
+  /* Existing styles for sidebar items */
+  margin-bottom: 20px;
+}
+
+.sidebarTitle {
+  /* Existing styles for sidebar titles */
+  display: block;
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+.searchContainer {
+  display: flex;
+  gap: 10px;
+}
+
+input[type="text"] {
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  flex: 1;
+}
+
+.btnn {
+  /* Style for the search button */
+  padding: 8px 16px;
+  background-color: #8db596; /* Adjust the color as needed */
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* Hover effect for the search button */
+.btnn:hover {
+  background-color: #00b309; /* Adjust the color as needed */
+}
+
   

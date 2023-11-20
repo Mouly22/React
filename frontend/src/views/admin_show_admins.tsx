@@ -51,7 +51,7 @@ const Admin_Page_show_admins: React.FC = () => {
         <Typography variant="h4" component="div" gutterBottom>
           Existing Admins
         </Typography>
-        <Button variant="contained" color="primary" onClick={() => setTableVisible(!tableVisible)}>
+        <Button variant="contained" style={{ margin: "10px 0", backgroundColor: "#8db596", color: "#fff" }} onClick={() => setTableVisible(!tableVisible)}>
           {tableVisible ? 'Hide Existing Admins List' : 'Show Existing Admins List'}
         </Button>
       </Box>
@@ -61,7 +61,7 @@ const Admin_Page_show_admins: React.FC = () => {
             <TableHead>
               <TableRow>
                 <TableCell>User ID</TableCell>
-                <TableCell>Password</TableCell>
+
                 <TableCell>Email</TableCell>
                 <TableCell>Address</TableCell>
                 <TableCell>NID</TableCell>
@@ -73,13 +73,13 @@ const Admin_Page_show_admins: React.FC = () => {
               {data.map((item) => (
                 <TableRow key={item.id}>
                   <TableCell>{item.userid}</TableCell>
-                  <TableCell>{item.password}</TableCell>
+
                   <TableCell>{item.email}</TableCell>
                   <TableCell>{item.address}</TableCell>
                   <TableCell>{item.nid}</TableCell>
                   <TableCell>{item.user_type}</TableCell>
                   <TableCell>
-                    <Button onClick={() => deleteMember(item.userid)} variant="contained" color="secondary">
+                    <Button onClick={() => deleteMember(item.userid)} variant="contained" style={{ margin: "10px 0", backgroundColor: "#8db596", color: "#fff" }}>
                       Delete
                     </Button>
                   </TableCell>

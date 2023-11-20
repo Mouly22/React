@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Nov 14, 2023 at 07:33 PM
+-- Generation Time: Nov 17, 2023 at 08:25 AM
 -- Server version: 8.1.0
 -- PHP Version: 8.2.8
 
@@ -35,7 +35,7 @@ CREATE TABLE `all_login_credentials` (
   `address` varchar(200) NOT NULL,
   `nid` int NOT NULL,
   `user_type` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `all_login_credentials`
@@ -48,8 +48,8 @@ INSERT INTO `all_login_credentials` (`id`, `userid`, `password`, `email`, `addre
 (5, 'Mugdho', '12345', 'mugdho@yahoo.com', 'Bogura', 21243, 'field_officer'),
 (7, 'Mouly', '12345', 'abira@taylorswift.com', 'Rangpur', 12345, 'admin'),
 (8, 'Didar', '12345', 'didar@gmail.com', 'Nowakhali', 21213, 'admin'),
-(9, 'ashik', '12345', 'ashikbanaya@gmail.com', 'Sherpur', 12341, 'field_officer'),
-(10, 'linux12', '12345', 'linux@linux.com', 'Rampura', 13245, 'admin');
+(9, 'ashik', '12345', 'ashik@yahoo.com', 'Sherpur', 123331, 'field_officer'),
+(10, 'linux12', '12345', 'linux@yahoo.com', 'Rampura', 123441, 'admin');
 
 -- --------------------------------------------------------
 
@@ -61,7 +61,7 @@ CREATE TABLE `authentication_react` (
   `id` bigint NOT NULL,
   `employee` varchar(30) NOT NULL,
   `department` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `authentication_react`
@@ -93,7 +93,7 @@ INSERT INTO `authentication_react` (`id`, `employee`, `department`) VALUES
 CREATE TABLE `auth_group` (
   `id` int NOT NULL,
   `name` varchar(150) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -105,7 +105,7 @@ CREATE TABLE `auth_group_permissions` (
   `id` bigint NOT NULL,
   `group_id` int NOT NULL,
   `permission_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -118,7 +118,7 @@ CREATE TABLE `auth_permission` (
   `name` varchar(255) NOT NULL,
   `content_type_id` int NOT NULL,
   `codename` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `auth_permission`
@@ -200,7 +200,7 @@ CREATE TABLE `auth_user` (
   `is_staff` tinyint(1) NOT NULL,
   `is_active` tinyint(1) NOT NULL,
   `date_joined` datetime(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `auth_user`
@@ -219,7 +219,7 @@ CREATE TABLE `auth_user_groups` (
   `id` bigint NOT NULL,
   `user_id` int NOT NULL,
   `group_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -231,7 +231,7 @@ CREATE TABLE `auth_user_user_permissions` (
   `id` bigint NOT NULL,
   `user_id` int NOT NULL,
   `permission_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -255,7 +255,12 @@ INSERT INTO `bloglist_comments` (`comment_id`, `userid`, `comment_content`, `pos
 (3, 'Mouly', 'Bhalo hoy nai dhur', 1),
 (4, 'BRACU', 'Where is my campus?', 2),
 (5, 'Mo', 'How you doin?', 2),
-(6, 'Kamal', 'Very bad', 2);
+(7, 'macorov', 'what can I say', 2),
+(8, 'macorov', 'what can I say!', 2),
+(13, 'Mouly', 'We were the inspiration of my childhood.', 2),
+(14, 'Mouly', 'I was just kidding. It is a good work indeed!', 1),
+(23, 'Didar', 'Jayga Jomi kinar time eshe gese dekhtesi', 7),
+(26, 'macorov', 'Contact me if you need any help!', 11);
 
 -- --------------------------------------------------------
 
@@ -278,7 +283,13 @@ INSERT INTO `blog_images_react` (`id`, `post_id`, `image`) VALUES
 (2, 2, 'images/960d33c6-026e-4c6b-bf7c-00549286c366.png'),
 (4, 3, 'images/cutecat.jpg'),
 (5, 4, 'images/fungal-smut-crop-disese.jpg'),
-(6, 5, 'images/Rust_leaves_MAIN-996x567.jpg');
+(6, 5, 'images/Rust_leaves_MAIN-996x567.jpg'),
+(7, 6, 'images/agriservices_country_bangladesh_full_width_8486.jpg'),
+(8, 7, 'images/image15.jpg'),
+(9, 8, 'images/List-of-fertilizers-and-pesticides-approved-by-the-Government-of-Bangladesh.png'),
+(10, 9, 'images/image-1-for-amino-acid.jpg'),
+(11, 10, 'images/List-of-fertilizers-and-pesticides-approved-by-the-Government-of-Bangladesh_6Pckwhc.png'),
+(12, 11, 'images/bangladesh-banner-photo.jpg');
 
 -- --------------------------------------------------------
 
@@ -301,11 +312,11 @@ CREATE TABLE `blog_list` (
 --
 
 INSERT INTO `blog_list` (`post_id`, `userid`, `user_type`, `post_title`, `post_content`, `post_uploaded`, `post_image`) VALUES
-(1, 'john_doe', 'admin', 'Exciting News', 'This is a fascinating post about...', '2023-11-13 11:17:01.661279', 'base64_encoded_image_data'),
-(2, 'macorov', 'admin', 'Whats up Danger', 'This is one of the fascinating article about how spiderman got into agriculture..', '2023-11-13 11:18:27.425414', 'base64_encoded_image_data'),
-(3, 'macorov', 'admin', 'What is this?', 'Do you know where I can find this?', '2023-11-14 19:21:42.377413', 'kaka'),
-(4, 'macorov', 'admin', 'What is this?', 'What should I do?', '2023-11-14 19:24:44.156833', 'kaka'),
-(5, 'macorov', 'admin', 'Can anyone help me with this?', 'This is happening and I have no idea what to do', '2023-11-14 19:25:59.682730', 'kaka');
+(1, 'john_doe\n', 'admin', 'Hi I am new', 'This is my first post', '2023-11-13 11:17:01.661279', 'kaka'),
+(2, 'macorov', 'admin', 'Whats up Danger', '\r\nAfter years of swinging through the concrete jungle and battling super villains, Peter Parker, the Amazing Spider-Man, found himself yearning for a change of pace. His senses, once attuned to the rhythm of the city, now craved the tranquility of nature. His webs, once used to capture criminals, now yearned to nurture life.\r\n\r\nDrawn by a newfound appreciation for the simple things, Peter found himself drawn to the world of agriculture. He envisioned himself tending to fields of vibrant crops, cultivating fertile soil, and nurturing the delicate balance of nature.\r\n\r\nWith a newfound enthusiasm, Peter embarked on a journey of agricultural enlightenment. He enrolled in courses, sought guidance from experienced farmers, and immersed himself in the wisdom of ancient farming practices. He learned the intricacies of irrigation systems, the delicate science of soil composition, and the art of nurturing a diverse ecosystem.\r\n\r\nAs Peter delved deeper into the world of agriculture, he discovered a profound connection between his powers and the natural world. His spider-like agility allowed him to navigate effortlessly through fields, his web-shooters transformed into tools for precision pollination, and his heightened senses enabled him to detect subtle changes in the environment, ensuring the optimal growth of his crops.\r\n\r\nWith each passing day, Peter\'s identity as Spider-Man intertwined with his newfound passion for agriculture. He became the \'Eco-Spider,\' a protector of the environment, using his powers to combat deforestation, promote sustainable farming practices, and educate others about the importance of preserving the delicate balance of nature.\r\n\r\nIn the tranquil fields, far from the clamor of the city, Peter Parker found a new purpose, a new identity, and a new way to use his extraordinary abilities for the betterment of the world. He traded the thrill of urban adventures for the satisfaction of nurturing life, the adrenaline rush of battles for the serenity of a harvest. And in the process, he discovered that the true power of a hero lies not just in their physical strength or superhuman abilities, but in their ability to connect with the world around them and make a positive impact on the lives of others.', '2023-11-13 11:18:27.425414', 'base64_encoded_image_data'),
+(7, 'macorov', 'admin', 'Farming in Sonargaon', 'As the first rays of dawn paint the sky with hues of gold and crimson, the farmers of Sonargaon rise to greet the day. Their hands, gnarled and weathered by years of toil, carry the tools of their trade – hoes, ploughs, and baskets – as they head towards their fields. The air is filled with the sweet scent of freshly tilled earth, a symphony of sounds – the chirping of birds, the rustling of leaves, and the distant murmur of the village – harmonizing with the gentle breeze.\n\nThe fields of Sonargaon stretch out like a patchwork quilt, each plot a testament to the hard work and dedication of its caretaker. Rice seedlings, their delicate green shoots reaching towards the sun, sway gently in the breeze, their promise of a bountiful harvest filling the hearts of the farmers with hope. The sun climbs higher in the sky, casting long shadows across the fields, as the farmers work tirelessly, their movements a graceful dance of labor and love.\n\nThe women of Sonargaon play an equally vital role in the agricultural tapestry of their community. Their nimble fingers weave baskets from locally sourced materials, their hands deftly transplanting seedlings and harvesting crops. Their laughter, like the tinkling of bells, fills the air, a melody that mingles with the sounds of nature, creating a harmonious symphony of life.', '2023-11-16 21:10:24.272162', 'kaka'),
+(9, 'macorov', 'admin', 'Using advance fertilizers', 'Advanced fertilizers are a type of fertilizer that is designed to release nutrients to plants slowly over time. This helps to improve nutrient use efficiency and reduce nutrient losses to the environment. Advanced fertilizers can also help to improve soil health and water retention.\n\nThere are several types of advanced fertilizers available, including:\n\nSlow-release fertilizers: These fertilizers release nutrients to plants slowly over time, which helps to improve nutrient use efficiency and reduce nutrient losses to the environment.\nControlled-release fertilizers: These fertilizers release nutrients to plants at a predetermined rate, which helps to provide plants with the nutrients they need at the time they need them.\nNitrification inhibitors: These inhibitors slow the conversion of ammonium to nitrate in the soil, which helps to reduce nitrogen losses to the environment.\nThe use of advanced fertilizers in Bangladesh has the potential to improve the productivity of agriculture in the country. It can also help to reduce the environmental impact of agriculture.\n\nHere are some of the benefits of using advanced fertilizers in Bangladesh:\n\nImproved nutrient use efficiency: Advanced fertilizers release nutrients to plants slowly over time, which helps to improve nutrient use efficiency. This can lead to increased crop yields and reduced fertilizer costs.\nReduced nutrient losses to the environment: Advanced fertilizers help to reduce nutrient losses to the environment by releasing nutrients to plants slowly over time. This can help to improve water quality and reduce the risk of eutrophication.\nImproved soil health: Advanced fertilizers can help to improve soil health by increasing organic matter in the soil. This can lead to increased water retention and nutrient availability.', '2023-11-16 21:22:53.360917', 'kaka'),
+(11, 'macorov', 'admin', 'From Humble Beginnings to Thriving Farm', 'In the lush, emerald expanse of Bangladesh\'s countryside, amidst verdant paddy fields and sprawling rivers, lived a young farmer named Rashid. With nothing but a worn pair of sandals, a weathered bamboo hat, and an unwavering determination, Rashid embarked on his journey to transform a barren plot of land into a thriving farm.\n\nThe road ahead was far from easy. The land, once fertile and productive, had been ravaged by floods and soil erosion, leaving behind a desolate expanse of cracked earth and stunted crops. Rashid\'s hands, calloused and rough from years of toil, bore the brunt of the work. He tirelessly tilled the soil, planted seeds, and nurtured the crops, his spirit unwavering in the face of adversity.\n\nAs the seasons turned and the monsoon rains brought life-giving water to the parched land, Rashid\'s perseverance began to bear fruit. The once barren fields sprouted with life, the paddy swaying in the gentle breeze, their golden grains promising a bountiful harvest. Rashid\'s crops flourished, their resilience a testament to his dedication and passion.\n\nWord of Rashid\'s success spread throughout the village, attracting curious visitors to his once-desolate farm. They marveled at the transformation, their eyes wide with wonder as they witnessed the verdant fields and the abundant harvests. Rashid, once a solitary figure working tirelessly in his fields, found himself surrounded by a community eager to learn from his wisdom and expertise.\n\nWith open arms and a heart full of generosity, Rashid shared his knowledge, teaching others the secrets of sustainable farming and the power of hard work and determination. He established a thriving cooperative, connecting local farmers with buyers, ensuring that fresh, wholesome produce reached the tables of families across the region.\n\nAs the years passed, Rashid\'s farm became a beacon of hope and inspiration, a symbol of what can be achieved through hard work, perseverance, and a deep connection to the land. His story echoed through the generations, reminding all who heard it that even from humble beginnings, extraordinary dreams can take root and flourish.\n\nRashid\'s tale is a testament to the resilience and ingenuity of the Bangladeshi people, their ability to transform adversity into opportunity, their unwavering spirit that has carried them through countless challenges. His legacy lives on in the thriving farms that dot the Bangladeshi landscape, each one a symbol of hope and a promise of a brighter future.\n\n\n                                                                                                                       \n\nTags: Business, Green', '2023-11-17 08:06:44.263034', 'kaka');
 
 -- --------------------------------------------------------
 
@@ -324,11 +335,13 @@ CREATE TABLE `blog_list_comments` (
 --
 
 INSERT INTO `blog_list_comments` (`id`, `react_id`, `comment_id`) VALUES
-(2, 1, 2),
-(3, 1, 3),
 (4, 2, 4),
 (5, 2, 5),
-(6, 2, 6);
+(7, 2, 7),
+(8, 2, 8),
+(13, 2, 13),
+(23, 7, 23),
+(26, 11, 26);
 
 -- --------------------------------------------------------
 
@@ -345,7 +358,7 @@ CREATE TABLE `django_admin_log` (
   `change_message` longtext NOT NULL,
   `content_type_id` int DEFAULT NULL,
   `user_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -357,7 +370,7 @@ CREATE TABLE `django_content_type` (
   `id` int NOT NULL,
   `app_label` varchar(100) NOT NULL,
   `model` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `django_content_type`
@@ -390,7 +403,7 @@ CREATE TABLE `django_migrations` (
   `app` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `applied` datetime(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `django_migrations`
@@ -433,7 +446,7 @@ CREATE TABLE `django_session` (
   `session_key` varchar(40) NOT NULL,
   `session_data` longtext NOT NULL,
   `expire_date` datetime(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -449,7 +462,7 @@ CREATE TABLE `field_officer_credentials` (
   `address` varchar(200) NOT NULL,
   `nid` int NOT NULL,
   `user_type` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `field_officer_credentials`
@@ -458,7 +471,7 @@ CREATE TABLE `field_officer_credentials` (
 INSERT INTO `field_officer_credentials` (`id`, `userid`, `password`, `email`, `address`, `nid`, `user_type`) VALUES
 (1, 'kamal', '12345', 'kamal@gmail.com', 'Sylhet City, Country', 12325, 'field_officer'),
 (15, 'Mugdho', '12345', 'mugdho@yahoo.com', 'Bogura', 21243, 'field_officer'),
-(17, 'ashik', '12345', 'ashikbanaya@gmail.com', 'Sherpur', 12341, 'field_officer');
+(17, 'ashik', '12345', 'ashik@yahoo.com', 'Sherpur', 123331, 'field_officer');
 
 -- --------------------------------------------------------
 
@@ -474,7 +487,7 @@ CREATE TABLE `incoming_requests` (
   `address` varchar(200) NOT NULL,
   `nid` int NOT NULL,
   `user_type` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `incoming_requests`
@@ -497,7 +510,7 @@ CREATE TABLE `user_credentials` (
   `address` varchar(200) NOT NULL,
   `nid` int NOT NULL,
   `user_type` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `user_credentials`
@@ -508,7 +521,7 @@ INSERT INTO `user_credentials` (`id`, `userid`, `password`, `email`, `address`, 
 (24, 'Michael', '12345', 'michael@yahoo.com', 'Jamalpur', 21343234, 'admin'),
 (25, 'Mouly', '12345', 'abira@taylorswift.com', 'Rangpur', 12345, 'admin'),
 (26, 'Didar', '12345', 'didar@gmail.com', 'Nowakhali', 21213, 'admin'),
-(27, 'linux12', '12345', 'linux@linux.com', 'Rampura', 13245, 'admin');
+(27, 'linux12', '12345', 'linux@yahoo.com', 'Rampura', 123441, 'admin');
 
 --
 -- Indexes for dumped tables
@@ -699,25 +712,25 @@ ALTER TABLE `auth_user_user_permissions`
 -- AUTO_INCREMENT for table `bloglist_comments`
 --
 ALTER TABLE `bloglist_comments`
-  MODIFY `comment_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `comment_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `blog_images_react`
 --
 ALTER TABLE `blog_images_react`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `blog_list`
 --
 ALTER TABLE `blog_list`
-  MODIFY `post_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `post_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `blog_list_comments`
 --
 ALTER TABLE `blog_list_comments`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `django_admin_log`

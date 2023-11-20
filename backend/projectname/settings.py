@@ -15,9 +15,9 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-from dotenv import load_dotenv
-import os
-load_dotenv()
+#from dotenv import load_dotenv
+#import os
+#load_dotenv()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     'all_login_credentials',
     'bloglist',
     'blog_images',
+    'dataforfoods',
+    'expert',
 ]
 
 MIDDLEWARE = [
@@ -95,15 +97,17 @@ WSGI_APPLICATION = 'projectname.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ.get('DB_NAME'),
-        'USER': os.environ.get('DB_USER'),
-        'PASSWORD': os.environ.get('DB_PASS'),
-        'HOST': os.environ.get('DB_HOST'),  # or the hostname where your MySQL server is running
-        'PORT': os.environ.get('DB_PORT'),      # or the port on which your MySQL server is listening
-    }
+'default': {
+'ENGINE': 'django.db.backends.mysql',
+'NAME': 'sample2', # database name
+'USER': 'root',
+'PASSWORD': 'root',
+'HOST': '172.17.0.2', # or the hostname where your MySQL server is running
+'PORT': '', # or the port on which your MySQL server is listening
 }
+}
+
+
 
 
 

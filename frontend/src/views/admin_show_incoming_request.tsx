@@ -42,6 +42,8 @@ const Admin_Page_show_Incoming_request: React.FC = () => {
       Url = 'http://127.0.0.1:8000/register/';
     } else if (newUserData.user_type === 'field_officer') {
       Url = 'http://127.0.0.1:8000/register_field_officer/';
+    }else if (newUserData.user_type === 'expert') {
+      Url = 'http://127.0.0.1:8000/register_expert/';
     }
     axios.post(Url, newUserData)
       .then((response) => {
@@ -78,7 +80,7 @@ const Admin_Page_show_Incoming_request: React.FC = () => {
         <Typography variant="h4" component="div" gutterBottom>
           Incoming Request
         </Typography>
-        <Button variant="contained" color="primary" onClick={() => setTableVisible(!tableVisible)}>
+        <Button variant="contained" style={{ margin: "2px 0", backgroundColor: "#8db596", color: "#fff" }} onClick={() => setTableVisible(!tableVisible)}>
           {tableVisible ? 'Hide Incoming Requests' : 'Show Incoming Requests'}
         </Button>
       </Box>
@@ -88,7 +90,7 @@ const Admin_Page_show_Incoming_request: React.FC = () => {
             <TableHead>
               <TableRow>
                 <TableCell>User ID</TableCell>
-                <TableCell>Password</TableCell>
+
                 <TableCell>Email</TableCell>
                 <TableCell>Address</TableCell>
                 <TableCell>NID</TableCell>
@@ -101,18 +103,18 @@ const Admin_Page_show_Incoming_request: React.FC = () => {
               {data.map((item) => (
                 <TableRow key={item.id}>
                   <TableCell>{item.userid}</TableCell>
-                  <TableCell>{item.password}</TableCell>
+
                   <TableCell>{item.email}</TableCell>
                   <TableCell>{item.address}</TableCell>
                   <TableCell>{item.nid}</TableCell>
                   <TableCell>{item.user_type}</TableCell>
                   <TableCell>
-                    <Button onClick={() => addMember(item)} variant="contained" color="primary">
+                    <Button onClick={() => addMember(item)} style={{ backgroundColor: "#8db596", color: "#fff" }}>
                       Add Member
                     </Button>
                   </TableCell>
                   <TableCell>
-                    <Button onClick={() => deleteMember(item.userid)} variant="contained" color="secondary">
+                    <Button onClick={() => deleteMember(item.userid)} style={{backgroundColor: "#8db596", color: "#fff" }}>
                       Delete
                     </Button>
                   </TableCell>

@@ -9,7 +9,7 @@ const AddAdminsButton: React.FC = () => {
           Add New Admin
     </Typography>
     <Link to="/add_admins">
-      <Button variant="contained" color="primary">
+      <Button variant="contained" style={{ margin: "10px 0", backgroundColor: "#8db596", color: "#fff" }}>
         Add Admins
       </Button>
     </Link>

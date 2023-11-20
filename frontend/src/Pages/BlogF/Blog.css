@@ -1,21 +1,27 @@
-.blog{
-    flex: 9;
-    display: flex;
-    flex-wrap: wrap;
-    margin: 20px;
+.blog {
+  flex: 9;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
 }
 
-.blog-container {
-    display: flex;
-    justify-content: space-between;
+.post {
+  /* Your existing styles for each post container */
+
+  /* Add hover effect to the entire post */
+  &:hover {
+    transform: scale(1.05); /* Enlarge the entire post slightly on hover */
   }
-  
-  .posts-container {
-    flex: 1; /* Take up the available space */
-    margin-right: 16px; /* Adjust as needed */
-  }
-  
-  .sidebar {
-    width: 350px; /* Adjust as needed */
-    /* Add any additional styling for your sidebar */
-  }
+}
+
+.singlePostImg {
+  width: 100%;
+  height: 500px;
+  border-radius: 15px;
+  object-fit: contain;
+  margin-bottom: 15px;
+  transition: transform 0.3s ease; /* Add a smooth transition effect for the hover */
+}
+
