@@ -52,9 +52,31 @@ function App() {
     setForm({ ...form, foods: newFoods });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(form);
+    const data = {
+      user_id: form.userid,
+      district: form.district,
+      division: form.division,
+      items: form.foods.map(food => ({
+        type: food.type,
+        quantity: parseInt(food.quantity),
+        quality: parseInt(food.quality),
+      })),
+    };
+    const response = await fetch('http://127.0.0.1:8000/register_add_dataforfoods/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (response.ok) {
+      console.log('Data successfully sent to the server!');
+    } else {
+      console.log('Failed to send data to the server.');
+    }
   };
 
   return (
@@ -90,9 +112,9 @@ function App() {
       Quality:
       <select value={food.quality} onChange={(e) => handleFoodChange(index, 'quality', e.target.value)}>
         <option value="">Select...</option>
-        <option value="Excellent">Excellent</option>
-        <option value="Good">Good</option>
-        <option value="Bad">Bad</option>
+        <option value="1">Bad</option>
+        <option value="2">Good</option>
+        <option value="3">Excellent</option>
       </select>
     </label>
   </div>
