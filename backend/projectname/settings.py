@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'dataforfoods',
     'expert',
     'auction_product_datas',
+    'auction_images',
 ]
 
 MIDDLEWARE = [

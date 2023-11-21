@@ -31,6 +31,7 @@ from django.conf import settings
 from blog_images.views import GetImageView, YourModelNameView
 from dataforfoods.views import ReactView_Register_DataForFoods
 from auction_product_datas.views import ReactView_Register_Auction_Prodcuts
+from auction_images.views import GetImageView_Auction,YourModelNameView_Auction
 
 urlpatterns = [
     path('', ReactView.as_view(), name="anything"),
@@ -81,7 +82,7 @@ urlpatterns = [
     path('register_delete_all_comment/', ReactView_DeleteAllComment.as_view(), name="anything"),# for deleting comments
 
     #For Blog Images
-    path('register_add_blog_images/', YourModelNameView.as_view(), name="anything"),# for adding comments
+    path('register_add_blog_images/', YourModelNameView.as_view(), name="anything"),# for images
     path('login_blog_images/', GetImageView.as_view(), name="check_user"), # for checking a blog image exists if exists it returns the image
 
     #For Data for foods
@@ -89,6 +90,10 @@ urlpatterns = [
 
     #For auction
     path('register_add_auction_products/', ReactView_Register_Auction_Prodcuts.as_view(), name="anything"),
+
+    #For auction images
+    path('register_add_auction_images/', YourModelNameView_Auction.as_view(), name="anything"),# for images
+    path('login_auction_images/', GetImageView_Auction.as_view(), name="check_user"), # for checking a blog image exists if exists it returns the image
 
 
 

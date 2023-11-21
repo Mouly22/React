@@ -1,155 +1,64 @@
 import React, { useState, useEffect } from 'react';
 import './Auction.css';
-import Img1 from './Aimages/potato.jpg';
-import Img2 from './Aimages/tomato.jpeg';
-import Img3 from './Aimages/rice.jpg';
-import Img4 from './Aimages/carrot.jpg';
+import axios from 'axios';
 
-interface Product {
-  id: number;
+interface AuctionItem {
+  post_id: number;
   name: string;
-  weight: string;
-  price: number;
-  originalPrice: number;
-  rating: number;
-  imageUrl: string;
+  amount: string;
+  price: string;
+  total_bidding_placed: number;
+  start_time: string;
+  end_time: string;
+  current_time: string;
+  items: { type: string; description: string }[];
 }
 
-const products: Product[] = [
-  {
-    id: 1,
-    name: 'Potato',
-    weight: '5 ounce',
-    price: 2.5,
-    originalPrice: 2.5,
-    rating: 4,
-    imageUrl: Img1,
-  },
-  {
-    id: 2,
-    name: 'Tomato',
-    weight: '5 ounce',
-    price: 2.5,
-    originalPrice: 2.5,
-    rating: 4,
-    imageUrl: Img2,
-  },
-  {
-    id: 3,
-    name: 'Rice',
-    weight: '5 ounce',
-    price: 570,
-    originalPrice: 2.5,
-    rating: 4,
-    imageUrl: Img3,
-  },
-  {
-    id: 9,
-    name: 'Rice',
-    price: 570,
-    weight: '5 ounce',
-    originalPrice: 2.5,
-    rating: 4,
-    imageUrl: Img3,
-  },
-  {
-    id: 4,
-    name: 'Carrot',
-    price: 2.5,
-    weight: '5 ounce',
-    originalPrice: 2.5,
-    rating: 4,
-    imageUrl: Img4,
-  },
-  {
-    id: 5,
-    name: 'Carrot',
-    weight: '5 ounce',
-    price: 2.5,
-    originalPrice: 2.5,
-    rating: 4,
-    imageUrl: Img4,
-  },
-  {
-    id: 6,
-    name: 'Carrot',
-    weight: '5 ounce',
-    price: 2.5,
-    originalPrice: 2.5,
-    rating: 4,
-    imageUrl: Img4,
-  },
-  {
-    id: 7,
-    name: 'Carrot',
-    weight: '5 ounce',
-    price: 2.5,
-    originalPrice: 2.5,
-    rating: 4,
-    imageUrl: Img4,
-  },
-  {
-    id: 8,
-    name: 'Carrot',
-    weight: '5 ounce',
-    price: 2.5,
-    originalPrice: 2.5,
-    rating: 4,
-    imageUrl: Img4,
-  },
-  {
-    id: 10,
-    name: 'Tomato',
-    weight: '5 ounce',
-    price: 2.5,
-    originalPrice: 2.5,
-    rating: 4,
-    imageUrl: Img2,
-  },
-  // Add more products as needed
-];
-
-const resizeImage = (imageUrl: string, width: number, height: number) => {
-  const img = new Image();
-  const canvas = document.createElement('canvas');
-  const ctx = canvas.getContext('2d')!;
-
-  return new Promise<string>((resolve) => {
-    img.onload = () => {
-      canvas.width = width;
-      canvas.height = height;
-      ctx.drawImage(img, 0, 0, width, height);
-      resolve(canvas.toDataURL());
-    };
-    img.src = imageUrl;
-  });
-};
-
 const Auction: React.FC = () => {
+  const [auctionProducts, setAuctionProducts] = useState<AuctionItem[]>([]);
   const [resizedImages, setResizedImages] = useState<string[]>([]);
 
   useEffect(() => {
-    const fetchResizedImages = async () => {
-      const resized = await Promise.all(
-        products.map((product) => resizeImage(product.imageUrl, 200, 150))
-      );
-      setResizedImages(resized);
+    const fetchAuctionProducts = async () => {
+      try {
+        const response = await axios.get('http://127.0.0.1:8000/register_add_auction_products/');
+        setAuctionProducts(response.data);
+
+        // Fetch images by post_id
+        const imageResponses = await Promise.all(
+          response.data.map(async (product: AuctionItem) => {
+            // Fetch image
+            const imageResponse = await axios.post(
+              'http://127.0.0.1:8000/login_auction_images/',
+              {
+                post_id: product.post_id,
+              },
+              {
+                responseType: 'arraybuffer', // This is important for binary data
+              }
+            );
+
+            const base64 = btoa(
+              new Uint8Array(imageResponse.data).reduce(
+                (data, byte) => data + String.fromCharCode(byte),
+                ''
+              )
+            );
+
+            return `data:${imageResponse.headers['content-type']};base64,${base64}`;
+          })
+        );
+        setResizedImages(imageResponses);
+      } catch (error) {
+        console.error('Error fetching auction products:', error);
+      }
     };
 
-    fetchResizedImages();
+    fetchAuctionProducts();
   }, []);
 
-  const increasePrice = (productId: number) => {
-    setResizedImages((prevImages) => {
-      return prevImages.map((image, index) => {
-        if (index === productId - 1) {
-          const updatedPrice = products[index].price + 1;
-          const updatedProduct = { ...products[index], price: updatedPrice };
-          products[index] = updatedProduct;
-        }
-        return image;
-      });
-    });
+  const increasePrice = (post_id: number) => {
+    // Implement your logic for increasing price
   };
 
   return (
@@ -166,44 +75,39 @@ const Auction: React.FC = () => {
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="amazon-products" >
-        {products.map((product, index) => (
-          <div key={product.id} className="product-card">
-            <img
-              src={resizedImages[index]}
-              alt={product.name}
-              style={{ width: '200px', height: '150px' }}
-            />
-            <h3>{product.name}</h3>
-            <h6>Amount: {product.weight}</h6>
-            <h6>Rating: {product.rating}</h6>
-            <h5>${product.price.toFixed(2)}</h5>
-            <button onClick={() => increasePrice(product.id)}>Place your bidding</button>
-          </div>
-        ))}
+      <div className="amazon-products">
+        {auctionProducts.map((product, index) => {
+          // Calculate remaining time in milliseconds
+          const remainingTime = new Date(product.end_time).getTime() - new Date().getTime();
+          console.log(remainingTime);
+
+          // Convert milliseconds to hours
+          const remainingHours = Math.floor(remainingTime / (1000 * 60 * 60));
+
+          return (
+            <div key={product.post_id} className="product-card">
+              {resizedImages[index] && (
+                <img
+                  src={resizedImages[index]}
+                  alt={product.name}
+                  style={{ width: '200px', height: '150px' }}
+                />
+              )}
+              <h3>{product.name}</h3>
+              <h6>Amount: {product.amount}</h6>
+              <h6>Total Bidding Placed: {product.total_bidding_placed}</h6>
+              <h6>
+                {remainingHours > 0
+                  ? `${remainingHours} hours remaining`
+                  : 'Auction has ended'}
+              </h6>
+              <button onClick={() => increasePrice(product.post_id)}>Place your bidding</button>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
 };
 
 export default Auction;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
