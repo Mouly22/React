@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Auction.css';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 interface AuctionItem {
   post_id: number;
@@ -65,7 +66,11 @@ const Auction: React.FC = () => {
     <div className="amazon-container">
       {/* Sidebar */}
       <div className="sidebar">
-        <button className="sidebar-button">Create New Post</button>
+      <Link to="/postcreate" type="button" className="btnn">
+          Create New Post
+      </Link>
+        
+  
         <div className="sort-options">
           <p>Sort Options:</p>
           <button className="sidebar-button">Price Low to High</button>
