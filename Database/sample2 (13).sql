@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Nov 17, 2023 at 08:25 AM
+-- Generation Time: Nov 21, 2023 at 07:22 AM
 -- Server version: 8.1.0
 -- PHP Version: 8.2.8
 
@@ -49,7 +49,106 @@ INSERT INTO `all_login_credentials` (`id`, `userid`, `password`, `email`, `addre
 (7, 'Mouly', '12345', 'abira@taylorswift.com', 'Rangpur', 12345, 'admin'),
 (8, 'Didar', '12345', 'didar@gmail.com', 'Nowakhali', 21213, 'admin'),
 (9, 'ashik', '12345', 'ashik@yahoo.com', 'Sherpur', 123331, 'field_officer'),
-(10, 'linux12', '12345', 'linux@yahoo.com', 'Rampura', 123441, 'admin');
+(10, 'linux12', '12345', 'linux@yahoo.com', 'Rampura', 123441, 'admin'),
+(11, 'Mughal', '12345', 'mughal@yahoo.com', 'Kisharganj', 213143, 'field_officer'),
+(12, 'DrJahangir', '12345', 'jahangir@yahoo.com', 'Baridhara', 2123433, 'expert');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `auction_fooditems`
+--
+
+CREATE TABLE `auction_fooditems` (
+  `id` bigint NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `description` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `auction_fooditems`
+--
+
+INSERT INTO `auction_fooditems` (`id`, `type`, `description`) VALUES
+(1, 'Origin', 'Bagerhaat'),
+(2, 'Size', 'Biger than normal'),
+(3, 'color', 'Bright'),
+(4, 'Origin', 'Jamalpur'),
+(5, 'Size', 'Biger than normal'),
+(6, 'Origin', 'Nepal'),
+(7, 'Size', 'Normal');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `auction_fooditems_inventory`
+--
+
+CREATE TABLE `auction_fooditems_inventory` (
+  `post_id` int NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `amount` decimal(10,2) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `total_bidding_placed` int UNSIGNED NOT NULL,
+  `start_time` datetime(6) NOT NULL,
+  `end_time` datetime(6) NOT NULL,
+  `current_time` datetime(6) NOT NULL
+) ;
+
+--
+-- Dumping data for table `auction_fooditems_inventory`
+--
+
+INSERT INTO `auction_fooditems_inventory` (`post_id`, `name`, `amount`, `price`, `total_bidding_placed`, `start_time`, `end_time`, `current_time`) VALUES
+(1, 'Potato', 10.99, 55.99, 0, '2023-11-20 21:05:05.501857', '2023-11-23 12:00:00.000000', '2023-11-20 21:05:05.501927'),
+(2, 'Tomato', 10.99, 45.99, 0, '2023-11-21 06:35:16.421017', '2023-11-23 12:00:00.000000', '2023-11-21 06:35:16.421060'),
+(3, 'Brocoli', 15.99, 40.99, 0, '2023-11-21 07:17:14.573355', '2023-11-24 12:00:00.000000', '2023-11-21 07:17:14.573399');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `auction_fooditems_inventory_items`
+--
+
+CREATE TABLE `auction_fooditems_inventory_items` (
+  `id` bigint NOT NULL,
+  `foodinventory_id` int NOT NULL,
+  `fooditem_id` bigint NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `auction_fooditems_inventory_items`
+--
+
+INSERT INTO `auction_fooditems_inventory_items` (`id`, `foodinventory_id`, `fooditem_id`) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 1, 3),
+(4, 2, 4),
+(5, 2, 5),
+(6, 3, 6),
+(7, 3, 7);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `auction_images_react`
+--
+
+CREATE TABLE `auction_images_react` (
+  `id` bigint NOT NULL,
+  `post_id` int NOT NULL,
+  `image` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `auction_images_react`
+--
+
+INSERT INTO `auction_images_react` (`id`, `post_id`, `image`) VALUES
+(1, 1, 'auction_images/potato.jpg'),
+(2, 2, 'auction_images/tomato.jpeg'),
+(3, 3, 'auction_images/broccoli-1238250_640.jpg');
 
 -- --------------------------------------------------------
 
@@ -180,7 +279,31 @@ INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALU
 (53, 'Can add react', 14, 'add_react'),
 (54, 'Can change react', 14, 'change_react'),
 (55, 'Can delete react', 14, 'delete_react'),
-(56, 'Can view react', 14, 'view_react');
+(56, 'Can view react', 14, 'view_react'),
+(57, 'Can add food item', 15, 'add_fooditem'),
+(58, 'Can change food item', 15, 'change_fooditem'),
+(59, 'Can delete food item', 15, 'delete_fooditem'),
+(60, 'Can view food item', 15, 'view_fooditem'),
+(61, 'Can add food inventory', 16, 'add_foodinventory'),
+(62, 'Can change food inventory', 16, 'change_foodinventory'),
+(63, 'Can delete food inventory', 16, 'delete_foodinventory'),
+(64, 'Can view food inventory', 16, 'view_foodinventory'),
+(65, 'Can add react', 17, 'add_react'),
+(66, 'Can change react', 17, 'change_react'),
+(67, 'Can delete react', 17, 'delete_react'),
+(68, 'Can view react', 17, 'view_react'),
+(69, 'Can add food item', 18, 'add_fooditem'),
+(70, 'Can change food item', 18, 'change_fooditem'),
+(71, 'Can delete food item', 18, 'delete_fooditem'),
+(72, 'Can view food item', 18, 'view_fooditem'),
+(73, 'Can add food inventory', 19, 'add_foodinventory'),
+(74, 'Can change food inventory', 19, 'change_foodinventory'),
+(75, 'Can delete food inventory', 19, 'delete_foodinventory'),
+(76, 'Can view food inventory', 19, 'view_foodinventory'),
+(77, 'Can add react', 20, 'add_react'),
+(78, 'Can change react', 20, 'change_react'),
+(79, 'Can delete react', 20, 'delete_react'),
+(80, 'Can view react', 20, 'view_react');
 
 -- --------------------------------------------------------
 
@@ -265,6 +388,81 @@ INSERT INTO `bloglist_comments` (`comment_id`, `userid`, `comment_content`, `pos
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `bloglist_fooditems`
+--
+
+CREATE TABLE `bloglist_fooditems` (
+  `id` bigint NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `quantity` int NOT NULL,
+  `quality` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `bloglist_fooditems`
+--
+
+INSERT INTO `bloglist_fooditems` (`id`, `type`, `quantity`, `quality`) VALUES
+(1, 'rice', 2, 3),
+(2, 'wheat', 1, 1),
+(3, 'maize', 3, 2),
+(4, 'potato', 5, 3),
+(5, 'rice', 10, 3),
+(6, 'wheat', 13, 2),
+(7, 'maize', 30, 3),
+(8, 'potato', 50, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bloglist_inventory`
+--
+
+CREATE TABLE `bloglist_inventory` (
+  `id` bigint NOT NULL,
+  `user_id` varchar(255) NOT NULL,
+  `district` varchar(255) NOT NULL,
+  `division` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `bloglist_inventory`
+--
+
+INSERT INTO `bloglist_inventory` (`id`, `user_id`, `district`, `division`) VALUES
+(1, 'user123', 'Dhaka', 'Dhaka'),
+(2, 'user123', 'Dhaka', 'Dhaka'),
+(3, 'Mugdho', 'Bogura', 'Rajsahi');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bloglist_inventory_items`
+--
+
+CREATE TABLE `bloglist_inventory_items` (
+  `id` bigint NOT NULL,
+  `foodinventory_id` bigint NOT NULL,
+  `fooditem_id` bigint NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `bloglist_inventory_items`
+--
+
+INSERT INTO `bloglist_inventory_items` (`id`, `foodinventory_id`, `fooditem_id`) VALUES
+(1, 2, 1),
+(2, 2, 2),
+(3, 2, 3),
+(4, 2, 4),
+(5, 3, 5),
+(6, 3, 6),
+(7, 3, 7),
+(8, 3, 8);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `blog_images_react`
 --
 
@@ -289,7 +487,8 @@ INSERT INTO `blog_images_react` (`id`, `post_id`, `image`) VALUES
 (9, 8, 'images/List-of-fertilizers-and-pesticides-approved-by-the-Government-of-Bangladesh.png'),
 (10, 9, 'images/image-1-for-amino-acid.jpg'),
 (11, 10, 'images/List-of-fertilizers-and-pesticides-approved-by-the-Government-of-Bangladesh_6Pckwhc.png'),
-(12, 11, 'images/bangladesh-banner-photo.jpg');
+(12, 11, 'images/bangladesh-banner-photo.jpg'),
+(13, 12, 'images/featured-6.jpg');
 
 -- --------------------------------------------------------
 
@@ -316,7 +515,8 @@ INSERT INTO `blog_list` (`post_id`, `userid`, `user_type`, `post_title`, `post_c
 (2, 'macorov', 'admin', 'Whats up Danger', '\r\nAfter years of swinging through the concrete jungle and battling super villains, Peter Parker, the Amazing Spider-Man, found himself yearning for a change of pace. His senses, once attuned to the rhythm of the city, now craved the tranquility of nature. His webs, once used to capture criminals, now yearned to nurture life.\r\n\r\nDrawn by a newfound appreciation for the simple things, Peter found himself drawn to the world of agriculture. He envisioned himself tending to fields of vibrant crops, cultivating fertile soil, and nurturing the delicate balance of nature.\r\n\r\nWith a newfound enthusiasm, Peter embarked on a journey of agricultural enlightenment. He enrolled in courses, sought guidance from experienced farmers, and immersed himself in the wisdom of ancient farming practices. He learned the intricacies of irrigation systems, the delicate science of soil composition, and the art of nurturing a diverse ecosystem.\r\n\r\nAs Peter delved deeper into the world of agriculture, he discovered a profound connection between his powers and the natural world. His spider-like agility allowed him to navigate effortlessly through fields, his web-shooters transformed into tools for precision pollination, and his heightened senses enabled him to detect subtle changes in the environment, ensuring the optimal growth of his crops.\r\n\r\nWith each passing day, Peter\'s identity as Spider-Man intertwined with his newfound passion for agriculture. He became the \'Eco-Spider,\' a protector of the environment, using his powers to combat deforestation, promote sustainable farming practices, and educate others about the importance of preserving the delicate balance of nature.\r\n\r\nIn the tranquil fields, far from the clamor of the city, Peter Parker found a new purpose, a new identity, and a new way to use his extraordinary abilities for the betterment of the world. He traded the thrill of urban adventures for the satisfaction of nurturing life, the adrenaline rush of battles for the serenity of a harvest. And in the process, he discovered that the true power of a hero lies not just in their physical strength or superhuman abilities, but in their ability to connect with the world around them and make a positive impact on the lives of others.', '2023-11-13 11:18:27.425414', 'base64_encoded_image_data'),
 (7, 'macorov', 'admin', 'Farming in Sonargaon', 'As the first rays of dawn paint the sky with hues of gold and crimson, the farmers of Sonargaon rise to greet the day. Their hands, gnarled and weathered by years of toil, carry the tools of their trade – hoes, ploughs, and baskets – as they head towards their fields. The air is filled with the sweet scent of freshly tilled earth, a symphony of sounds – the chirping of birds, the rustling of leaves, and the distant murmur of the village – harmonizing with the gentle breeze.\n\nThe fields of Sonargaon stretch out like a patchwork quilt, each plot a testament to the hard work and dedication of its caretaker. Rice seedlings, their delicate green shoots reaching towards the sun, sway gently in the breeze, their promise of a bountiful harvest filling the hearts of the farmers with hope. The sun climbs higher in the sky, casting long shadows across the fields, as the farmers work tirelessly, their movements a graceful dance of labor and love.\n\nThe women of Sonargaon play an equally vital role in the agricultural tapestry of their community. Their nimble fingers weave baskets from locally sourced materials, their hands deftly transplanting seedlings and harvesting crops. Their laughter, like the tinkling of bells, fills the air, a melody that mingles with the sounds of nature, creating a harmonious symphony of life.', '2023-11-16 21:10:24.272162', 'kaka'),
 (9, 'macorov', 'admin', 'Using advance fertilizers', 'Advanced fertilizers are a type of fertilizer that is designed to release nutrients to plants slowly over time. This helps to improve nutrient use efficiency and reduce nutrient losses to the environment. Advanced fertilizers can also help to improve soil health and water retention.\n\nThere are several types of advanced fertilizers available, including:\n\nSlow-release fertilizers: These fertilizers release nutrients to plants slowly over time, which helps to improve nutrient use efficiency and reduce nutrient losses to the environment.\nControlled-release fertilizers: These fertilizers release nutrients to plants at a predetermined rate, which helps to provide plants with the nutrients they need at the time they need them.\nNitrification inhibitors: These inhibitors slow the conversion of ammonium to nitrate in the soil, which helps to reduce nitrogen losses to the environment.\nThe use of advanced fertilizers in Bangladesh has the potential to improve the productivity of agriculture in the country. It can also help to reduce the environmental impact of agriculture.\n\nHere are some of the benefits of using advanced fertilizers in Bangladesh:\n\nImproved nutrient use efficiency: Advanced fertilizers release nutrients to plants slowly over time, which helps to improve nutrient use efficiency. This can lead to increased crop yields and reduced fertilizer costs.\nReduced nutrient losses to the environment: Advanced fertilizers help to reduce nutrient losses to the environment by releasing nutrients to plants slowly over time. This can help to improve water quality and reduce the risk of eutrophication.\nImproved soil health: Advanced fertilizers can help to improve soil health by increasing organic matter in the soil. This can lead to increased water retention and nutrient availability.', '2023-11-16 21:22:53.360917', 'kaka'),
-(11, 'macorov', 'admin', 'From Humble Beginnings to Thriving Farm', 'In the lush, emerald expanse of Bangladesh\'s countryside, amidst verdant paddy fields and sprawling rivers, lived a young farmer named Rashid. With nothing but a worn pair of sandals, a weathered bamboo hat, and an unwavering determination, Rashid embarked on his journey to transform a barren plot of land into a thriving farm.\n\nThe road ahead was far from easy. The land, once fertile and productive, had been ravaged by floods and soil erosion, leaving behind a desolate expanse of cracked earth and stunted crops. Rashid\'s hands, calloused and rough from years of toil, bore the brunt of the work. He tirelessly tilled the soil, planted seeds, and nurtured the crops, his spirit unwavering in the face of adversity.\n\nAs the seasons turned and the monsoon rains brought life-giving water to the parched land, Rashid\'s perseverance began to bear fruit. The once barren fields sprouted with life, the paddy swaying in the gentle breeze, their golden grains promising a bountiful harvest. Rashid\'s crops flourished, their resilience a testament to his dedication and passion.\n\nWord of Rashid\'s success spread throughout the village, attracting curious visitors to his once-desolate farm. They marveled at the transformation, their eyes wide with wonder as they witnessed the verdant fields and the abundant harvests. Rashid, once a solitary figure working tirelessly in his fields, found himself surrounded by a community eager to learn from his wisdom and expertise.\n\nWith open arms and a heart full of generosity, Rashid shared his knowledge, teaching others the secrets of sustainable farming and the power of hard work and determination. He established a thriving cooperative, connecting local farmers with buyers, ensuring that fresh, wholesome produce reached the tables of families across the region.\n\nAs the years passed, Rashid\'s farm became a beacon of hope and inspiration, a symbol of what can be achieved through hard work, perseverance, and a deep connection to the land. His story echoed through the generations, reminding all who heard it that even from humble beginnings, extraordinary dreams can take root and flourish.\n\nRashid\'s tale is a testament to the resilience and ingenuity of the Bangladeshi people, their ability to transform adversity into opportunity, their unwavering spirit that has carried them through countless challenges. His legacy lives on in the thriving farms that dot the Bangladeshi landscape, each one a symbol of hope and a promise of a brighter future.\n\n\n                                                                                                                       \n\nTags: Business, Green', '2023-11-17 08:06:44.263034', 'kaka');
+(11, 'macorov', 'admin', 'From Humble Beginnings to Thriving Farm', 'In the lush, emerald expanse of Bangladesh\'s countryside, amidst verdant paddy fields and sprawling rivers, lived a young farmer named Rashid. With nothing but a worn pair of sandals, a weathered bamboo hat, and an unwavering determination, Rashid embarked on his journey to transform a barren plot of land into a thriving farm.\n\nThe road ahead was far from easy. The land, once fertile and productive, had been ravaged by floods and soil erosion, leaving behind a desolate expanse of cracked earth and stunted crops. Rashid\'s hands, calloused and rough from years of toil, bore the brunt of the work. He tirelessly tilled the soil, planted seeds, and nurtured the crops, his spirit unwavering in the face of adversity.\n\nAs the seasons turned and the monsoon rains brought life-giving water to the parched land, Rashid\'s perseverance began to bear fruit. The once barren fields sprouted with life, the paddy swaying in the gentle breeze, their golden grains promising a bountiful harvest. Rashid\'s crops flourished, their resilience a testament to his dedication and passion.\n\nWord of Rashid\'s success spread throughout the village, attracting curious visitors to his once-desolate farm. They marveled at the transformation, their eyes wide with wonder as they witnessed the verdant fields and the abundant harvests. Rashid, once a solitary figure working tirelessly in his fields, found himself surrounded by a community eager to learn from his wisdom and expertise.\n\nWith open arms and a heart full of generosity, Rashid shared his knowledge, teaching others the secrets of sustainable farming and the power of hard work and determination. He established a thriving cooperative, connecting local farmers with buyers, ensuring that fresh, wholesome produce reached the tables of families across the region.\n\nAs the years passed, Rashid\'s farm became a beacon of hope and inspiration, a symbol of what can be achieved through hard work, perseverance, and a deep connection to the land. His story echoed through the generations, reminding all who heard it that even from humble beginnings, extraordinary dreams can take root and flourish.\n\nRashid\'s tale is a testament to the resilience and ingenuity of the Bangladeshi people, their ability to transform adversity into opportunity, their unwavering spirit that has carried them through countless challenges. His legacy lives on in the thriving farms that dot the Bangladeshi landscape, each one a symbol of hope and a promise of a brighter future.\n\n\n                                                                                                                       \n\nTags: Business, Green', '2023-11-17 08:06:44.263034', 'kaka'),
+(12, 'macorov', 'admin', 'From Humble Beginnings to Poultry Success: The Story of Amira', 'The road ahead was far from easy. The poultry industry was competitive, and Amira\'s resources were limited. But she was undeterred. She tirelessly studied poultry care, researching the best practices for raising healthy and productive chickens. She spent countless hours cleaning her poultry house, ensuring a safe and comfortable environment for her feathered friends.\n\nAs the weeks turned into months, Amira\'s dedication began to pay off. Her chickens thrived under her care, their numbers growing steadily. She carefully monitored their growth, ensuring they received the proper nutrition and care. Her passion for poultry farming shone through in her attentive demeanor and her gentle touch.\n\nWord of Amira\'s success spread throughout the village, attracting curious visitors to her poultry house. They marveled at her healthy chickens, their eyes wide with admiration as they witnessed the fruits of her labor. Amira, once a quiet and unassuming woman, found herself surrounded by a community eager to learn from her expertise.\n\nWith open arms and a heart full of generosity, Amira shared her knowledge, teaching others the secrets of successful poultry farming. She emphasized the importance of cleanliness, proper nutrition, and attentive care. She encouraged her fellow villagers to embrace poultry farming as a means of livelihood, empowering them to achieve economic independence.\n\nAs the years passed, Amira\'s poultry farm became a beacon of hope and inspiration, a symbol of what can be achieved through hard work, perseverance, and a deep connection to her feathered friends. Her story echoed through the generations, reminding all who heard it that even from humble beginnings, extraordinary dreams can take flight. Tags: Business, Agrotech, Green', '2023-11-18 05:59:08.342471', 'kaka');
 
 -- --------------------------------------------------------
 
@@ -379,6 +579,9 @@ CREATE TABLE `django_content_type` (
 INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
 (1, 'admin', 'logentry'),
 (11, 'all_login_credentials', 'react'),
+(20, 'auction_images', 'react'),
+(19, 'auction_product_datas', 'foodinventory'),
+(18, 'auction_product_datas', 'fooditem'),
 (3, 'auth', 'group'),
 (2, 'auth', 'permission'),
 (4, 'auth', 'user'),
@@ -387,6 +590,9 @@ INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
 (12, 'bloglist', 'comment'),
 (13, 'bloglist', 'react'),
 (5, 'contenttypes', 'contenttype'),
+(16, 'dataforfoods', 'foodinventory'),
+(15, 'dataforfoods', 'fooditem'),
+(17, 'expert', 'react'),
 (9, 'field_officer_login', 'react'),
 (10, 'incoming_request', 'react'),
 (8, 'login_stuffs', 'react'),
@@ -434,7 +640,12 @@ INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
 (22, 'incoming_request', '0001_initial', '2023-10-27 13:52:41.652120'),
 (23, 'all_login_credentials', '0001_initial', '2023-11-09 06:23:58.868098'),
 (24, 'bloglist', '0001_initial', '2023-11-13 11:12:22.446765'),
-(25, 'blog_images', '0001_initial', '2023-11-14 16:37:36.786632');
+(25, 'blog_images', '0001_initial', '2023-11-14 16:37:36.786632'),
+(26, 'dataforfoods', '0001_initial', '2023-11-18 05:37:00.399915'),
+(27, 'dataforfoods', '0002_alter_foodinventory_items_alter_fooditem_quality_and_more', '2023-11-18 05:48:51.182973'),
+(28, 'expert', '0001_initial', '2023-11-18 07:10:47.798581'),
+(29, 'auction_product_datas', '0001_initial', '2023-11-20 20:58:30.709779'),
+(30, 'auction_images', '0001_initial', '2023-11-21 06:50:04.888429');
 
 -- --------------------------------------------------------
 
@@ -447,6 +658,29 @@ CREATE TABLE `django_session` (
   `session_data` longtext NOT NULL,
   `expire_date` datetime(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `expert_credentials`
+--
+
+CREATE TABLE `expert_credentials` (
+  `id` bigint NOT NULL,
+  `userid` varchar(30) NOT NULL,
+  `password` varchar(200) NOT NULL,
+  `email` varchar(200) NOT NULL,
+  `address` varchar(200) NOT NULL,
+  `nid` int NOT NULL,
+  `user_type` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `expert_credentials`
+--
+
+INSERT INTO `expert_credentials` (`id`, `userid`, `password`, `email`, `address`, `nid`, `user_type`) VALUES
+(3, 'DrJahangir', '12345', 'jahangir@yahoo.com', 'Baridhara', 2123433, 'expert');
 
 -- --------------------------------------------------------
 
@@ -471,7 +705,8 @@ CREATE TABLE `field_officer_credentials` (
 INSERT INTO `field_officer_credentials` (`id`, `userid`, `password`, `email`, `address`, `nid`, `user_type`) VALUES
 (1, 'kamal', '12345', 'kamal@gmail.com', 'Sylhet City, Country', 12325, 'field_officer'),
 (15, 'Mugdho', '12345', 'mugdho@yahoo.com', 'Bogura', 21243, 'field_officer'),
-(17, 'ashik', '12345', 'ashik@yahoo.com', 'Sherpur', 123331, 'field_officer');
+(17, 'ashik', '12345', 'ashik@yahoo.com', 'Sherpur', 123331, 'field_officer'),
+(18, 'Mughal', '12345', 'mughal@yahoo.com', 'Kisharganj', 213143, 'field_officer');
 
 -- --------------------------------------------------------
 
@@ -534,6 +769,32 @@ ALTER TABLE `all_login_credentials`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `auction_fooditems`
+--
+ALTER TABLE `auction_fooditems`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `auction_fooditems_inventory`
+--
+ALTER TABLE `auction_fooditems_inventory`
+  ADD PRIMARY KEY (`post_id`);
+
+--
+-- Indexes for table `auction_fooditems_inventory_items`
+--
+ALTER TABLE `auction_fooditems_inventory_items`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `auction_fooditems_invent_foodinventory_id_foodite_73c0f049_uniq` (`foodinventory_id`,`fooditem_id`),
+  ADD KEY `auction_fooditems_in_fooditem_id_b20e6240_fk_auction_f` (`fooditem_id`);
+
+--
+-- Indexes for table `auction_images_react`
+--
+ALTER TABLE `auction_images_react`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `authentication_react`
 --
 ALTER TABLE `authentication_react`
@@ -591,6 +852,26 @@ ALTER TABLE `bloglist_comments`
   ADD PRIMARY KEY (`comment_id`);
 
 --
+-- Indexes for table `bloglist_fooditems`
+--
+ALTER TABLE `bloglist_fooditems`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `bloglist_inventory`
+--
+ALTER TABLE `bloglist_inventory`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `bloglist_inventory_items`
+--
+ALTER TABLE `bloglist_inventory_items`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `bloglist_inventory_items_foodinventory_id_foodite_19e10ef5_uniq` (`foodinventory_id`,`fooditem_id`),
+  ADD KEY `bloglist_inventory_i_fooditem_id_78188814_fk_bloglist_` (`fooditem_id`);
+
+--
 -- Indexes for table `blog_images_react`
 --
 ALTER TABLE `blog_images_react`
@@ -639,6 +920,12 @@ ALTER TABLE `django_session`
   ADD KEY `django_session_expire_date_a5c62663` (`expire_date`);
 
 --
+-- Indexes for table `expert_credentials`
+--
+ALTER TABLE `expert_credentials`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `field_officer_credentials`
 --
 ALTER TABLE `field_officer_credentials`
@@ -664,7 +951,31 @@ ALTER TABLE `user_credentials`
 -- AUTO_INCREMENT for table `all_login_credentials`
 --
 ALTER TABLE `all_login_credentials`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `auction_fooditems`
+--
+ALTER TABLE `auction_fooditems`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `auction_fooditems_inventory`
+--
+ALTER TABLE `auction_fooditems_inventory`
+  MODIFY `post_id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `auction_fooditems_inventory_items`
+--
+ALTER TABLE `auction_fooditems_inventory_items`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `auction_images_react`
+--
+ALTER TABLE `auction_images_react`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `authentication_react`
@@ -688,7 +999,7 @@ ALTER TABLE `auth_group_permissions`
 -- AUTO_INCREMENT for table `auth_permission`
 --
 ALTER TABLE `auth_permission`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
 -- AUTO_INCREMENT for table `auth_user`
@@ -715,16 +1026,34 @@ ALTER TABLE `bloglist_comments`
   MODIFY `comment_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
+-- AUTO_INCREMENT for table `bloglist_fooditems`
+--
+ALTER TABLE `bloglist_fooditems`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `bloglist_inventory`
+--
+ALTER TABLE `bloglist_inventory`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `bloglist_inventory_items`
+--
+ALTER TABLE `bloglist_inventory_items`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT for table `blog_images_react`
 --
 ALTER TABLE `blog_images_react`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `blog_list`
 --
 ALTER TABLE `blog_list`
-  MODIFY `post_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `post_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `blog_list_comments`
@@ -742,25 +1071,31 @@ ALTER TABLE `django_admin_log`
 -- AUTO_INCREMENT for table `django_content_type`
 --
 ALTER TABLE `django_content_type`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- AUTO_INCREMENT for table `expert_credentials`
+--
+ALTER TABLE `expert_credentials`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `field_officer_credentials`
 --
 ALTER TABLE `field_officer_credentials`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `incoming_requests`
 --
 ALTER TABLE `incoming_requests`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `user_credentials`
@@ -771,6 +1106,13 @@ ALTER TABLE `user_credentials`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `auction_fooditems_inventory_items`
+--
+ALTER TABLE `auction_fooditems_inventory_items`
+  ADD CONSTRAINT `auction_fooditems_in_foodinventory_id_3ccdbfb9_fk_auction_f` FOREIGN KEY (`foodinventory_id`) REFERENCES `auction_fooditems_inventory` (`post_id`),
+  ADD CONSTRAINT `auction_fooditems_in_fooditem_id_b20e6240_fk_auction_f` FOREIGN KEY (`fooditem_id`) REFERENCES `auction_fooditems` (`id`);
 
 --
 -- Constraints for table `auth_group_permissions`
@@ -798,6 +1140,13 @@ ALTER TABLE `auth_user_groups`
 ALTER TABLE `auth_user_user_permissions`
   ADD CONSTRAINT `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
   ADD CONSTRAINT `auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);
+
+--
+-- Constraints for table `bloglist_inventory_items`
+--
+ALTER TABLE `bloglist_inventory_items`
+  ADD CONSTRAINT `bloglist_inventory_i_foodinventory_id_fad37989_fk_bloglist_` FOREIGN KEY (`foodinventory_id`) REFERENCES `bloglist_inventory` (`id`),
+  ADD CONSTRAINT `bloglist_inventory_i_fooditem_id_78188814_fk_bloglist_` FOREIGN KEY (`fooditem_id`) REFERENCES `bloglist_fooditems` (`id`);
 
 --
 -- Constraints for table `blog_list_comments`
