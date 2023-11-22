@@ -100,6 +100,7 @@ const Auction: React.FC = () => {
               )}
               <h3>{product.name}</h3>
               <h6>Amount: {product.amount}</h6>
+              <h6>Price: {product.price} Taka only</h6>
               <h6>Total Bidding Placed: {product.total_bidding_placed}</h6>
               <h6>
                 {remainingHours > 0

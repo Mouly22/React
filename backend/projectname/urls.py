@@ -30,7 +30,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from blog_images.views import GetImageView, YourModelNameView
 from dataforfoods.views import ReactView_Register_DataForFoods
-from auction_product_datas.views import ReactView_Register_Auction_Prodcuts
+from auction_posts_datas.views import ReactView_Register_Auction_Prodcuts
 from auction_images.views import GetImageView_Auction,YourModelNameView_Auction
 
 urlpatterns = [
