@@ -44,9 +44,9 @@ export default function Example() {
   return (
     <div className='graph'>
       <div>
-        <h1>
+        <h4>
           <b>Pie Chart of Food Production</b>
-        </h1>
+        </h4>
         <select value={selectedFood} onChange={(e) => setSelectedFood(e.target.value)}>
           {foodTypes.map(type => <option key={type} value={type}>{type}</option>)}
         </select>
@@ -75,9 +75,9 @@ export default function Example() {
         </PieChart>
       </div>
       <div>
-        <h1>
+        <h4>
           <b>Bar Chart of Foods</b>
-        </h1>
+        </h4>
         <BarChart
           width={500}
           height={300}
