@@ -13,6 +13,7 @@ import Profile from './Pages/Profile';
 import Search from "./Pages/BlogF/search";
 import Auction from "./Pages/Auction/Auction";
 import PostCreate from "./Pages/Auction/postCreate";
+import PostDetails from "./Pages/Auction/PostDetails";
 //import Field_Officer_Page from "./views/field_officer";
 import Field_officer_Page from "./views_field_officers/Field_officer_view";
 import Expert_Page from "./views_expert/expert_view";
@@ -36,6 +37,7 @@ function App() {
             <Route path = "/search" element= {<Search/>}/>
             <Route path = "/auction" element= {<Auction/>}/>
             <Route path = "/postcreate" element = {<PostCreate/>}/>
+            <Route path = "/postdetails" element = {<PostDetails/>}/>
            
             
             

@@ -63,7 +63,7 @@ const Auction: React.FC = () => {
   };
 
   return (
-    <div className="amazon-container">
+    <div className="amazon-container" >
       {/* Sidebar */}
       <div className="sidebar">
       <Link to="/postcreate" type="button" className="btnn">
@@ -80,7 +80,7 @@ const Auction: React.FC = () => {
         </div>
       </div>
 
-      <div className="amazon-products">
+      <div className="amazon-products" style={{ maxHeight: '90vh', overflowY: 'auto' }}>
         {auctionProducts.map((product, index) => {
           // Calculate remaining time in milliseconds
           const remainingTime = new Date(product.end_time).getTime() - new Date().getTime();
@@ -99,7 +99,7 @@ const Auction: React.FC = () => {
                 />
               )}
               <h3>{product.name}</h3>
-              <h6>Amount: {product.amount}</h6>
+              <h6>Amount: {product.amount} kg</h6>
               <h6>Price: {product.price} Taka only</h6>
               <h6>Total Bidding Placed: {product.total_bidding_placed}</h6>
               <h6>
@@ -107,7 +107,12 @@ const Auction: React.FC = () => {
                   ? `${remainingHours} hours remaining`
                   : 'Auction has ended'}
               </h6>
-              <button onClick={() => increasePrice(product.post_id)}>Place your bidding</button>
+              <div className = "btnn">
+              <Link to="/postdetails" type="button" className="btnn">
+              Place your bidding
+              </Link>
+              
+              </div>
             </div>
           );
         })}
