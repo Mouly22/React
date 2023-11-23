@@ -79,7 +79,7 @@ const Admin_Page_show_Incoming_request: React.FC = () => {
   return (
     <>
       <Box my={3}>
-        <Typography variant="h4" component="div" gutterBottom>
+        <Typography variant="h5" component="div" gutterBottom>
           Incoming Request
         </Typography>
         <Button variant="contained" style={{ margin: "2px 0", backgroundColor: "#8db596", color: "#fff" }} onClick={() => setTableVisible(!tableVisible)}>

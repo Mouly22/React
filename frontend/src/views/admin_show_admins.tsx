@@ -48,7 +48,7 @@ const Admin_Page_show_admins: React.FC = () => {
   return (
     <div>
       <Box my={3}>
-        <Typography variant="h4" component="div" gutterBottom>
+        <Typography variant="h5" component="div" gutterBottom>
           Existing Admins
         </Typography>
         <Button variant="contained" style={{ margin: "10px 0", backgroundColor: "#8db596", color: "#fff" }} onClick={() => setTableVisible(!tableVisible)}>
