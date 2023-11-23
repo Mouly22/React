@@ -30,10 +30,10 @@ from django.conf.urls.static import static
 from django.conf import settings
 from blog_images.views import GetImageView, YourModelNameView
 from dataforfoods.views import ReactView_Register_DataForFoods
-from auction_posts_datas.views import ReactView_Register_Auction_Prodcuts,CheckPostsExistenceView_Auction_List
+from auction_posts_datas.views import ReactView_Register_Auction_Prodcuts,CheckPostsExistenceView_Auction_List,ReactView_DeleteMember_Auction_list
 from auction_images.views import GetImageView_Auction,YourModelNameView_Auction
 from businessmen.views import ReactView_Register_Businessmen,CheckUserExistenceView_Businessmen,ReactView_Edit_Businessmen,ReactView_DeleteMember_Businessmen
-from latest_bidding.views import ReactView_Register_latest_bidding,CheckUserExistenceView_latest_bidding,ReactView_Edit_latest_bidding,ReactView_DeleteMember_latest_bidding
+from latest_bidding.views import ReactView_Register_latest_bidding,CheckUserExistenceView_latest_bidding,ReactView_Edit_latest_bidding,ReactView_DeleteMember_latest_bidding, ReactView_Edit_latest_bidding_ended
 
 
 
@@ -102,16 +102,19 @@ urlpatterns = [
     #For auction
     path('register_add_auction_products/', ReactView_Register_Auction_Prodcuts.as_view(), name="anything"), #for adding auction products
     path('check_auction_products/', CheckPostsExistenceView_Auction_List.as_view(), name="anything"), #for checking if a product exists or not
+    path('delete_auction_products/', ReactView_DeleteMember_Auction_list.as_view(), name="anything"),#for delete auction products
 
     #For auction images
     path('register_add_auction_images/', YourModelNameView_Auction.as_view(), name="anything"),# for images
     path('login_auction_images/', GetImageView_Auction.as_view(), name="check_user"), # for checking a blog image exists if exists it returns the image
+    
 
     #For latest bidding
     path('register_latest_bidding/', ReactView_Register_latest_bidding.as_view(), name="anything"),# for businessmen register
     path('login_latest_bidding/', CheckUserExistenceView_latest_bidding.as_view(), name="check_user"), # for  businessmen  logins
     path('delete_latest_bidding/', ReactView_DeleteMember_latest_bidding.as_view(), name="delete_field_officer"),#for delete businessmen 
     path('edit_latest_bidding/', ReactView_Edit_latest_bidding.as_view(), name="anything"), # for edit businessmen 
+    path('edit_latest_bidding_ending/', ReactView_Edit_latest_bidding_ended.as_view(), name="anything"), # for edit businessmen 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

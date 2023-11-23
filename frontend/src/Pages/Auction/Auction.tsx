@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Category from './Category';
 import Price from './Price';
 import ASidebar from './ASidebar';
+
 interface AuctionItem {
   post_id: number;
   name: string;
@@ -58,19 +59,39 @@ const Auction: React.FC = () => {
     fetchAuctionProducts();
   }, []);
 
-  const increasePrice = (post_id: number) => {
-    // Implement your logic for increasing price
+  const handlePlaceBidding = (post_id: number) => {
+    // Check if remainingHours > 0
+    const remainingTime = new Date(auctionProducts.find(p => p.post_id === post_id)?.end_time || '').getTime() - new Date().getTime();
+    const remainingHours = Math.floor(remainingTime / (1000 * 60 * 60));
+
+    if (remainingHours > 0) {
+      // Navigate to details page
+      window.location.href = `/postdetails/${post_id}`;
+    } else {
+      // Call function to post post_id to the specified URLs
+      postToUrls(post_id);
+    }
+  };
+
+  const postToUrls = async (post_id: number) => {
+    try {
+      // Post to http://127.0.0.1:8000/delete_auction_products/
+      await axios.post('http://127.0.0.1:8000/delete_auction_products/', { post_id });
+
+      // Post to http://127.0.0.1:8000/delete_latest_bidding/
+      await axios.post('http://127.0.0.1:8000/delete_latest_bidding/', { post_id });
+      window.location.reload();
+
+      // Add additional logic if needed
+    } catch (error) {
+      console.error('Error posting to URLs:', error);
+    }
   };
 
   return (
     <div className="amazon-container">
       {/* Sidebar */}
-      <ASidebar/>
-
-    
-        
-
-
+      <ASidebar />
 
       <div className="amazon-products" style={{ maxHeight: '90vh', overflowY: 'auto' }}>
         {auctionProducts.map((product, index) => {
@@ -94,13 +115,13 @@ const Auction: React.FC = () => {
                 {remainingHours > 0 ? `${remainingHours} hours remaining` : 'Auction has ended'}
               </h6>
               <div className="btnn">
-                <Link
-                  to={`/postdetails/${product.post_id}`}  // Use post_id in the URL
+                <button
                   type="button"
                   className="btnn"
+                  onClick={() => handlePlaceBidding(product.post_id)}
                 >
                   Place your bidding
-                </Link>
+                </button>
               </div>
             </div>
           );

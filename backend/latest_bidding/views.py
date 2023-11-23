@@ -72,3 +72,21 @@ class ReactView_Edit_latest_bidding(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class ReactView_Edit_latest_bidding_ended(APIView):
+    def post(self, request):
+
+            post_id = request.data.get('post_id', '')
+            react_instance = get_object_or_404(React, post_id=post_id)
+            
+            # Update the object with new data
+
+            react_instance.bidding_ended = request.data.get('bidding_ended', react_instance.bidding_ended)
+
+
+            # Save the changes
+            react_instance.save()
+
+            return Response(status=status.HTTP_201_CREATED)
+
+        

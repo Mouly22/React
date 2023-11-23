@@ -60,3 +60,18 @@ class CheckPostsExistenceView_Auction_List(APIView):
             response_data = {"post_id": post_id, "exists": False, "user_data": {}}
 
         return Response(response_data)
+
+
+
+class ReactView_DeleteMember_Auction_list(APIView):
+    def post(self, request):
+        post_id = request.data.get('post_id')
+        print(post_id)
+
+        try:
+            member = AuctionsInventory.objects.get(post_id=post_id)
+            member.delete()
+            return Response({'success': True})
+        except AuctionsInventory.DoesNotExist:
+            return Response({'success': False, 'error': 'Member does not exist'})
+
