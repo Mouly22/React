@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Nov 21, 2023 at 07:22 AM
+-- Generation Time: Nov 23, 2023 at 07:15 PM
 -- Server version: 8.1.0
 -- PHP Version: 8.2.8
 
@@ -51,83 +51,9 @@ INSERT INTO `all_login_credentials` (`id`, `userid`, `password`, `email`, `addre
 (9, 'ashik', '12345', 'ashik@yahoo.com', 'Sherpur', 123331, 'field_officer'),
 (10, 'linux12', '12345', 'linux@yahoo.com', 'Rampura', 123441, 'admin'),
 (11, 'Mughal', '12345', 'mughal@yahoo.com', 'Kisharganj', 213143, 'field_officer'),
-(12, 'DrJahangir', '12345', 'jahangir@yahoo.com', 'Baridhara', 2123433, 'expert');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `auction_fooditems`
---
-
-CREATE TABLE `auction_fooditems` (
-  `id` bigint NOT NULL,
-  `type` varchar(255) NOT NULL,
-  `description` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `auction_fooditems`
---
-
-INSERT INTO `auction_fooditems` (`id`, `type`, `description`) VALUES
-(1, 'Origin', 'Bagerhaat'),
-(2, 'Size', 'Biger than normal'),
-(3, 'color', 'Bright'),
-(4, 'Origin', 'Jamalpur'),
-(5, 'Size', 'Biger than normal'),
-(6, 'Origin', 'Nepal'),
-(7, 'Size', 'Normal');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `auction_fooditems_inventory`
---
-
-CREATE TABLE `auction_fooditems_inventory` (
-  `post_id` int NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `amount` decimal(10,2) NOT NULL,
-  `price` decimal(10,2) NOT NULL,
-  `total_bidding_placed` int UNSIGNED NOT NULL,
-  `start_time` datetime(6) NOT NULL,
-  `end_time` datetime(6) NOT NULL,
-  `current_time` datetime(6) NOT NULL
-) ;
-
---
--- Dumping data for table `auction_fooditems_inventory`
---
-
-INSERT INTO `auction_fooditems_inventory` (`post_id`, `name`, `amount`, `price`, `total_bidding_placed`, `start_time`, `end_time`, `current_time`) VALUES
-(1, 'Potato', 10.99, 55.99, 0, '2023-11-20 21:05:05.501857', '2023-11-23 12:00:00.000000', '2023-11-20 21:05:05.501927'),
-(2, 'Tomato', 10.99, 45.99, 0, '2023-11-21 06:35:16.421017', '2023-11-23 12:00:00.000000', '2023-11-21 06:35:16.421060'),
-(3, 'Brocoli', 15.99, 40.99, 0, '2023-11-21 07:17:14.573355', '2023-11-24 12:00:00.000000', '2023-11-21 07:17:14.573399');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `auction_fooditems_inventory_items`
---
-
-CREATE TABLE `auction_fooditems_inventory_items` (
-  `id` bigint NOT NULL,
-  `foodinventory_id` int NOT NULL,
-  `fooditem_id` bigint NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `auction_fooditems_inventory_items`
---
-
-INSERT INTO `auction_fooditems_inventory_items` (`id`, `foodinventory_id`, `fooditem_id`) VALUES
-(1, 1, 1),
-(2, 1, 2),
-(3, 1, 3),
-(4, 2, 4),
-(5, 2, 5),
-(6, 3, 6),
-(7, 3, 7);
+(12, 'DrJahangir', '12345', 'jahangir@yahoo.com', 'Baridhara', 2123433, 'expert'),
+(14, 'Mukto', '12345', 'muktobb@gmail.com', 'Pabna', 21312, 'admin'),
+(15, 'Azam Khan', '12345', 'azamkhan@gmail.com', 'Kalshi, Dhaka', 214564, 'businessman');
 
 -- --------------------------------------------------------
 
@@ -147,8 +73,24 @@ CREATE TABLE `auction_images_react` (
 
 INSERT INTO `auction_images_react` (`id`, `post_id`, `image`) VALUES
 (1, 1, 'auction_images/potato.jpg'),
-(2, 2, 'auction_images/tomato.jpeg'),
-(3, 3, 'auction_images/broccoli-1238250_640.jpg');
+(4, 2, 'auction_images/tomato.jpeg'),
+(5, 3, 'auction_images/broccoli-1238250_640.jpg'),
+(6, 4, 'auction_images/featured-6.jpg'),
+(7, 5, 'auction_images/potato_vqfG5KE.jpg'),
+(9, 5, 'auction_images/carrot_iRl2kgX.jpg'),
+(10, 6, 'auction_images/carrot_wBCJE50.jpg'),
+(11, 7, 'auction_images/rice.jpg'),
+(12, 9, 'auction_images/1639724957419.jpeg'),
+(13, 11, 'auction_images/1639724957419_3mJi58m.jpeg'),
+(14, 12, 'auction_images/chickpeas-garbanzos.jpg.webp'),
+(15, 13, 'auction_images/carrot_A6U2T35.jpg'),
+(16, 14, 'auction_images/chickpeas-garbanzos.jpg_FvMgtdX.webp'),
+(17, 15, 'auction_images/1639724957419_XfKoQ0g.jpeg'),
+(18, 16, 'auction_images/51UYy7tiE3L.jpg'),
+(19, 17, 'auction_images/observerbd.com_1639847404.jpg'),
+(21, 22, 'auction_images/1.jpeg'),
+(22, 23, 'auction_images/1.jpg'),
+(23, 24, 'auction_images/tomato_Hy7CVnr.jpeg');
 
 -- --------------------------------------------------------
 
@@ -303,7 +245,19 @@ INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALU
 (77, 'Can add react', 20, 'add_react'),
 (78, 'Can change react', 20, 'change_react'),
 (79, 'Can delete react', 20, 'delete_react'),
-(80, 'Can view react', 20, 'view_react');
+(80, 'Can view react', 20, 'view_react'),
+(81, 'Can add auctions inventory', 21, 'add_auctionsinventory'),
+(82, 'Can change auctions inventory', 21, 'change_auctionsinventory'),
+(83, 'Can delete auctions inventory', 21, 'delete_auctionsinventory'),
+(84, 'Can view auctions inventory', 21, 'view_auctionsinventory'),
+(85, 'Can add react', 22, 'add_react'),
+(86, 'Can change react', 22, 'change_react'),
+(87, 'Can delete react', 22, 'delete_react'),
+(88, 'Can view react', 22, 'view_react'),
+(89, 'Can add react', 23, 'add_react'),
+(90, 'Can change react', 23, 'change_react'),
+(91, 'Can delete react', 23, 'delete_react'),
+(92, 'Can view react', 23, 'view_react');
 
 -- --------------------------------------------------------
 
@@ -383,7 +337,8 @@ INSERT INTO `bloglist_comments` (`comment_id`, `userid`, `comment_content`, `pos
 (13, 'Mouly', 'We were the inspiration of my childhood.', 2),
 (14, 'Mouly', 'I was just kidding. It is a good work indeed!', 1),
 (23, 'Didar', 'Jayga Jomi kinar time eshe gese dekhtesi', 7),
-(26, 'macorov', 'Contact me if you need any help!', 11);
+(26, 'macorov', 'Contact me if you need any help!', 11),
+(27, 'Azam Khan', 'Nice work!', 2);
 
 -- --------------------------------------------------------
 
@@ -540,8 +495,32 @@ INSERT INTO `blog_list_comments` (`id`, `react_id`, `comment_id`) VALUES
 (7, 2, 7),
 (8, 2, 8),
 (13, 2, 13),
+(27, 2, 27),
 (23, 7, 23),
 (26, 11, 26);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `businessmen_credentials`
+--
+
+CREATE TABLE `businessmen_credentials` (
+  `id` bigint NOT NULL,
+  `userid` varchar(30) NOT NULL,
+  `password` varchar(200) NOT NULL,
+  `email` varchar(200) NOT NULL,
+  `address` varchar(200) NOT NULL,
+  `nid` int NOT NULL,
+  `user_type` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `businessmen_credentials`
+--
+
+INSERT INTO `businessmen_credentials` (`id`, `userid`, `password`, `email`, `address`, `nid`, `user_type`) VALUES
+(1, 'Azam Khan', '12345', 'azamkhan@gmail.com', 'Kalshi, Dhaka', 214564, 'businessman');
 
 -- --------------------------------------------------------
 
@@ -580,6 +559,7 @@ INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
 (1, 'admin', 'logentry'),
 (11, 'all_login_credentials', 'react'),
 (20, 'auction_images', 'react'),
+(21, 'auction_posts_datas', 'auctionsinventory'),
 (19, 'auction_product_datas', 'foodinventory'),
 (18, 'auction_product_datas', 'fooditem'),
 (3, 'auth', 'group'),
@@ -589,12 +569,14 @@ INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
 (14, 'blog_images', 'react'),
 (12, 'bloglist', 'comment'),
 (13, 'bloglist', 'react'),
+(22, 'businessmen', 'react'),
 (5, 'contenttypes', 'contenttype'),
 (16, 'dataforfoods', 'foodinventory'),
 (15, 'dataforfoods', 'fooditem'),
 (17, 'expert', 'react'),
 (9, 'field_officer_login', 'react'),
 (10, 'incoming_request', 'react'),
+(23, 'latest_bidding', 'react'),
 (8, 'login_stuffs', 'react'),
 (6, 'sessions', 'session');
 
@@ -645,7 +627,16 @@ INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
 (27, 'dataforfoods', '0002_alter_foodinventory_items_alter_fooditem_quality_and_more', '2023-11-18 05:48:51.182973'),
 (28, 'expert', '0001_initial', '2023-11-18 07:10:47.798581'),
 (29, 'auction_product_datas', '0001_initial', '2023-11-20 20:58:30.709779'),
-(30, 'auction_images', '0001_initial', '2023-11-21 06:50:04.888429');
+(30, 'auction_images', '0001_initial', '2023-11-21 06:50:04.888429'),
+(31, 'auction_posts_datas', '0001_initial', '2023-11-22 11:42:46.868187'),
+(32, 'auction_posts_datas', '0002_alter_foodinventory_table', '2023-11-22 11:42:46.917680'),
+(33, 'auction_posts_datas', '0003_alter_foodinventory_table', '2023-11-22 11:42:46.969511'),
+(34, 'auction_posts_datas', '0004_alter_foodinventory_table', '2023-11-22 11:42:47.017014'),
+(35, 'auction_posts_datas', '0005_rename_foodinventory_auctionsinventory', '2023-11-22 11:42:47.057192'),
+(36, 'auction_posts_datas', '0006_rename_items_auctionsinventory_description', '2023-11-22 11:42:47.095873'),
+(37, 'auction_posts_datas', '0007_auctionsinventory_posted_by', '2023-11-23 08:50:44.300330'),
+(38, 'businessmen', '0001_initial', '2023-11-23 11:19:34.157173'),
+(39, 'latest_bidding', '0001_initial', '2023-11-23 18:57:36.796774');
 
 -- --------------------------------------------------------
 
@@ -681,6 +672,43 @@ CREATE TABLE `expert_credentials` (
 
 INSERT INTO `expert_credentials` (`id`, `userid`, `password`, `email`, `address`, `nid`, `user_type`) VALUES
 (3, 'DrJahangir', '12345', 'jahangir@yahoo.com', 'Baridhara', 2123433, 'expert');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `farmer_auction_posts_inventory_list`
+--
+
+CREATE TABLE `farmer_auction_posts_inventory_list` (
+  `post_id` int NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `amount` decimal(10,2) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `total_bidding_placed` int UNSIGNED NOT NULL,
+  `start_time` datetime(6) NOT NULL,
+  `end_time` datetime(6) NOT NULL,
+  `current_time` datetime(6) NOT NULL,
+  `description` longtext NOT NULL,
+  `posted_by` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `farmer_auction_posts_inventory_list`
+--
+
+INSERT INTO `farmer_auction_posts_inventory_list` (`post_id`, `name`, `amount`, `price`, `total_bidding_placed`, `start_time`, `end_time`, `current_time`, `description`, `posted_by`) VALUES
+(1, 'Potato', 100.50, 500.00, 0, '2023-11-22 11:48:28.074218', '2023-12-31 23:59:59.000000', '2023-11-22 11:48:28.074258', 'Origin: Bagerhatt\r\nColor: Red', ''),
+(2, 'Tomato', 10.99, 6000.00, 0, '2023-11-22 12:21:29.329482', '2023-11-24 18:20:00.000000', '2023-11-22 12:21:29.329633', 'Origin: Kamalpur\r\nColor: Bright Red', ''),
+(3, 'Brocoli', 10.99, 54000.00, 0, '2023-11-22 12:32:58.444580', '2023-11-24 18:32:00.000000', '2023-11-22 12:32:58.444752', 'Origin: Dhaka\r\nColor: Red', ''),
+(4, 'Rooster', 500.00, 49000.00, 0, '2023-11-22 12:44:44.250932', '2023-11-30 20:44:00.000000', '2023-11-22 12:44:44.250985', 'Origin:  Gopal Ganj\r\nColor: Colorful\r\nSize: Big', ''),
+(6, 'carrot', 4.00, 500.00, 0, '2023-11-22 14:00:35.680225', '2023-11-24 20:00:00.000000', '2023-11-22 14:00:35.680378', 'fresh', ''),
+(7, 'Aman Rice', 500.00, 300.00, 0, '2023-11-22 14:01:31.551855', '2023-11-25 20:01:00.000000', '2023-11-22 14:01:31.551951', 'good quality', ''),
+(14, 'Chick pea', 300.00, 500.00, 0, '2023-11-22 14:23:34.999321', '2023-11-25 20:23:00.000000', '2023-11-22 14:23:34.999601', 'good', ''),
+(15, 'Eggplant', 200.00, 5000.00, 0, '2023-11-22 14:28:04.596645', '2023-11-27 20:28:00.000000', '2023-11-22 14:28:04.596709', 'fresh, healthy', ''),
+(17, 'Brinjal', 300.00, 5000.00, 0, '2023-11-22 14:34:12.031453', '2023-11-23 20:34:00.000000', '2023-11-22 14:34:12.031759', 'fresh', ''),
+(22, 'Red Onion', 20.00, 2000.00, 0, '2023-11-22 14:47:30.786867', '2023-11-25 20:47:00.000000', '2023-11-22 14:47:30.786978', 'fresh', ''),
+(23, 'Cauliflower', 2.00, 200.00, 0, '2023-11-22 14:53:39.092569', '2023-11-25 20:53:00.000000', '2023-11-22 14:53:39.092690', 'fresh', ''),
+(24, 'Deshi Red Tomato', 500.00, 32999.00, 0, '2023-11-23 08:55:54.168820', '2023-11-26 14:55:00.000000', '2023-11-23 08:55:54.169002', 'Origin: Bangladesh\r\nShape: Standard', 'macorov');
 
 -- --------------------------------------------------------
 
@@ -724,12 +752,38 @@ CREATE TABLE `incoming_requests` (
   `user_type` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `incoming_requests`
+-- Table structure for table `latest_bidding`
 --
 
-INSERT INTO `incoming_requests` (`id`, `userid`, `password`, `email`, `address`, `nid`, `user_type`) VALUES
-(24, 'Mukto', '12345', 'muktobb@gmail.com', 'Pabna', 21312, 'admin');
+CREATE TABLE `latest_bidding` (
+  `id` bigint NOT NULL,
+  `post_id` int NOT NULL,
+  `max_price` decimal(10,2) NOT NULL,
+  `current_price` decimal(10,2) NOT NULL,
+  `last_bidder` varchar(255) DEFAULT NULL,
+  `bidding_ended` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `latest_bidding`
+--
+
+INSERT INTO `latest_bidding` (`id`, `post_id`, `max_price`, `current_price`, `last_bidder`, `bidding_ended`) VALUES
+(1, 1, 1000.00, 500.00, '', 0),
+(2, 2, 8000.00, 6000.00, '', 0),
+(3, 3, 65000.00, 54000.00, '', 0),
+(4, 4, 70000.00, 49000.00, '', 0),
+(5, 6, 2000.00, 500.00, '', 0),
+(6, 7, 1000.00, 300.00, '', 0),
+(7, 14, 1000.00, 500.00, '', 0),
+(8, 15, 10000.00, 5000.00, '', 0),
+(9, 17, 10000.00, 5000.00, '', 0),
+(10, 22, 50000.00, 2000.00, '', 0),
+(11, 23, 500.00, 200.00, '', 0),
+(12, 24, 50000.00, 32999.00, '', 0);
 
 -- --------------------------------------------------------
 
@@ -756,7 +810,8 @@ INSERT INTO `user_credentials` (`id`, `userid`, `password`, `email`, `address`, 
 (24, 'Michael', '12345', 'michael@yahoo.com', 'Jamalpur', 21343234, 'admin'),
 (25, 'Mouly', '12345', 'abira@taylorswift.com', 'Rangpur', 12345, 'admin'),
 (26, 'Didar', '12345', 'didar@gmail.com', 'Nowakhali', 21213, 'admin'),
-(27, 'linux12', '12345', 'linux@yahoo.com', 'Rampura', 123441, 'admin');
+(27, 'linux12', '12345', 'linux@yahoo.com', 'Rampura', 123441, 'admin'),
+(28, 'Mukto', '12345', 'muktobb@gmail.com', 'Pabna', 21312, 'admin');
 
 --
 -- Indexes for dumped tables
@@ -767,26 +822,6 @@ INSERT INTO `user_credentials` (`id`, `userid`, `password`, `email`, `address`, 
 --
 ALTER TABLE `all_login_credentials`
   ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `auction_fooditems`
---
-ALTER TABLE `auction_fooditems`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `auction_fooditems_inventory`
---
-ALTER TABLE `auction_fooditems_inventory`
-  ADD PRIMARY KEY (`post_id`);
-
---
--- Indexes for table `auction_fooditems_inventory_items`
---
-ALTER TABLE `auction_fooditems_inventory_items`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `auction_fooditems_invent_foodinventory_id_foodite_73c0f049_uniq` (`foodinventory_id`,`fooditem_id`),
-  ADD KEY `auction_fooditems_in_fooditem_id_b20e6240_fk_auction_f` (`fooditem_id`);
 
 --
 -- Indexes for table `auction_images_react`
@@ -892,6 +927,12 @@ ALTER TABLE `blog_list_comments`
   ADD KEY `blog_list_comments_comment_id_a4bf910f_fk_bloglist_` (`comment_id`);
 
 --
+-- Indexes for table `businessmen_credentials`
+--
+ALTER TABLE `businessmen_credentials`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
@@ -926,6 +967,12 @@ ALTER TABLE `expert_credentials`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `farmer_auction_posts_inventory_list`
+--
+ALTER TABLE `farmer_auction_posts_inventory_list`
+  ADD PRIMARY KEY (`post_id`);
+
+--
 -- Indexes for table `field_officer_credentials`
 --
 ALTER TABLE `field_officer_credentials`
@@ -935,6 +982,12 @@ ALTER TABLE `field_officer_credentials`
 -- Indexes for table `incoming_requests`
 --
 ALTER TABLE `incoming_requests`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `latest_bidding`
+--
+ALTER TABLE `latest_bidding`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -951,31 +1004,13 @@ ALTER TABLE `user_credentials`
 -- AUTO_INCREMENT for table `all_login_credentials`
 --
 ALTER TABLE `all_login_credentials`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
---
--- AUTO_INCREMENT for table `auction_fooditems`
---
-ALTER TABLE `auction_fooditems`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT for table `auction_fooditems_inventory`
---
-ALTER TABLE `auction_fooditems_inventory`
-  MODIFY `post_id` int NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `auction_fooditems_inventory_items`
---
-ALTER TABLE `auction_fooditems_inventory_items`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `auction_images_react`
 --
 ALTER TABLE `auction_images_react`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `authentication_react`
@@ -999,7 +1034,7 @@ ALTER TABLE `auth_group_permissions`
 -- AUTO_INCREMENT for table `auth_permission`
 --
 ALTER TABLE `auth_permission`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 
 --
 -- AUTO_INCREMENT for table `auth_user`
@@ -1023,7 +1058,7 @@ ALTER TABLE `auth_user_user_permissions`
 -- AUTO_INCREMENT for table `bloglist_comments`
 --
 ALTER TABLE `bloglist_comments`
-  MODIFY `comment_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `comment_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `bloglist_fooditems`
@@ -1059,7 +1094,13 @@ ALTER TABLE `blog_list`
 -- AUTO_INCREMENT for table `blog_list_comments`
 --
 ALTER TABLE `blog_list_comments`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
+-- AUTO_INCREMENT for table `businessmen_credentials`
+--
+ALTER TABLE `businessmen_credentials`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `django_admin_log`
@@ -1071,19 +1112,25 @@ ALTER TABLE `django_admin_log`
 -- AUTO_INCREMENT for table `django_content_type`
 --
 ALTER TABLE `django_content_type`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `expert_credentials`
 --
 ALTER TABLE `expert_credentials`
   MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `farmer_auction_posts_inventory_list`
+--
+ALTER TABLE `farmer_auction_posts_inventory_list`
+  MODIFY `post_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `field_officer_credentials`
@@ -1095,24 +1142,23 @@ ALTER TABLE `field_officer_credentials`
 -- AUTO_INCREMENT for table `incoming_requests`
 --
 ALTER TABLE `incoming_requests`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
+--
+-- AUTO_INCREMENT for table `latest_bidding`
+--
+ALTER TABLE `latest_bidding`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `user_credentials`
 --
 ALTER TABLE `user_credentials`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `auction_fooditems_inventory_items`
---
-ALTER TABLE `auction_fooditems_inventory_items`
-  ADD CONSTRAINT `auction_fooditems_in_foodinventory_id_3ccdbfb9_fk_auction_f` FOREIGN KEY (`foodinventory_id`) REFERENCES `auction_fooditems_inventory` (`post_id`),
-  ADD CONSTRAINT `auction_fooditems_in_fooditem_id_b20e6240_fk_auction_f` FOREIGN KEY (`fooditem_id`) REFERENCES `auction_fooditems` (`id`);
 
 --
 -- Constraints for table `auth_group_permissions`
