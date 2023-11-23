@@ -51,6 +51,7 @@ class CheckPostsExistenceView_Auction_List(APIView):
                     "start_time": react_instance.start_time,
                     "end_time": react_instance.end_time,
                     "current_time": react_instance.current_time,
+                    "posted_by": react_instance.posted_by,
                     "description": myDesc,
                     
                 }
