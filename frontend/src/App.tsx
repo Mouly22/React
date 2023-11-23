@@ -18,6 +18,7 @@ import PostDetails from "./Pages/Auction/PostDetails";
 import Field_officer_Page from "./views_field_officers/Field_officer_view";
 import Expert_Page from "./views_expert/expert_view";
 import SignupForm_for_admin from "./views/admin_show_admin_adding_page";
+import Businessmen_Page from "./views_businessmen/businessmen_view";
 
 
 function App() {
@@ -60,6 +61,10 @@ function App() {
               <Route
               path="/expert"
               element={<Expert_Page />} // Display the Expert component
+            />
+              <Route
+              path="/businessman"
+              element={<Businessmen_Page />} // Display the Businessmen component
             />
           </Routes>
         </div>

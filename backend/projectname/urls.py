@@ -32,6 +32,7 @@ from blog_images.views import GetImageView, YourModelNameView
 from dataforfoods.views import ReactView_Register_DataForFoods
 from auction_posts_datas.views import ReactView_Register_Auction_Prodcuts,CheckPostsExistenceView_Auction_List
 from auction_images.views import GetImageView_Auction,YourModelNameView_Auction
+from businessmen.views import ReactView_Register_Businessmen,CheckUserExistenceView_Businessmen,ReactView_Edit_Businessmen,ReactView_DeleteMember_Businessmen
 
 urlpatterns = [
     path('', ReactView.as_view(), name="anything"),
@@ -67,6 +68,13 @@ urlpatterns = [
     path('login_expert/', CheckUserExistenceView_Expert.as_view(), name="check_user"), # for  expert logins
     path('delete_expert/', ReactView_DeleteMember_Expert.as_view(), name="delete_field_officer"),#for delete expert 
     path('edit_expert/', ReactView_Edit_Expert.as_view(), name="anything"), # for edit expert
+
+    #For Businessmen
+    path('register_businessman/', ReactView_Register_Businessmen.as_view(), name="anything"),# for businessmen register
+    path('login_businessman/', CheckUserExistenceView_Businessmen.as_view(), name="check_user"), # for  businessmen  logins
+    path('delete_businessman/', ReactView_DeleteMember_Businessmen.as_view(), name="delete_field_officer"),#for delete businessmen 
+    path('edit_businessman/', ReactView_Edit_Businessmen.as_view(), name="anything"), # for edit businessmen 
+
 
     #BLOG Part
 

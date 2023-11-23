@@ -15,6 +15,7 @@ const PostCreate: React.FC<{}> = () => {
   const [amount, setAmount] = useState<number | null>(null);
   const [auctionDuration, setAuctionDuration] = useState<string>('');
   const [items, setItems] = useState<Item[]>([]);
+  const userId = localStorage.getItem('userid');
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -57,6 +58,7 @@ const PostCreate: React.FC<{}> = () => {
       auctionFormData.append('start_time', new Date().toISOString());
       auctionFormData.append('end_time', auctionDuration); // replace with the actual end time
       auctionFormData.append('current_time', new Date().toISOString());
+      auctionFormData.append('posted_by', userId);
       auctionFormData.append('description', description);
 
       // Post auction product data

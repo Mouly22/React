@@ -13,6 +13,7 @@ class AuctionsInventory(models.Model):
     end_time = models.DateTimeField()
     current_time = models.DateTimeField(auto_now_add=True)
     #place_bid_button = models.BooleanField(default=True)
+    posted_by = models.CharField(max_length=255, default='')
     description = models.TextField(max_length=555)
 
     class Meta:
