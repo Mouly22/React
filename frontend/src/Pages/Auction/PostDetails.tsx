@@ -23,7 +23,13 @@ const PostDetails: React.FC = () => {
   const { postId } = useParams<{ postId: string }>();
   const [auctionProduct, setAuctionProduct] = useState<AuctionItem | null>(null);
   const [image, setImage] = useState<string | null>(null);
+  const [bidAmount, setBidAmount] = useState<number>(0); // State for the bid amount
 
+  const handleBidSubmit = () => {
+    // Implement logic for submitting the bid amount (you can send it to the server, etc.)
+    console.log('Bid Amount Submitted:', bidAmount);
+    // You can add additional logic here, such as sending the bid amount to the server.
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -61,10 +67,8 @@ const PostDetails: React.FC = () => {
     fetchData();
   }, [postId]);
 
-  
-
   return (
-    <div className="post-details-container" style={{ maxHeight: '90vh', overflowY: 'auto' }}> 
+    <div className="post-details-container" style={{ maxHeight: '90vh', overflowY: 'auto' }}>
       {auctionProduct && (
         <>
           <h2>{auctionProduct.name}</h2>
@@ -72,9 +76,7 @@ const PostDetails: React.FC = () => {
             <img src={image} alt="Product Image" />
           </div>
           <div>
-            
             <ul>
-           
               {auctionProduct.items &&
                 auctionProduct.items
                   .filter((item) => item.type !== 'image')
@@ -86,11 +88,9 @@ const PostDetails: React.FC = () => {
             </ul>
           </div>
           <div className="details-section">
-         
             <h3>Description:</h3>
             {auctionProduct.user_data && (
               <>
-              
                 <p>
                   <h4><strong>Name:</strong> {auctionProduct.user_data.name}</h4>
                 </p>
@@ -120,6 +120,17 @@ const PostDetails: React.FC = () => {
                   ))}
                 </ul>
                 <h4>Place your Bidding:</h4>
+                <div className='bid-section'>
+               
+                <input
+                  type="number"
+                  placeholder="Enter Bid Amount"
+                  value={bidAmount}
+                  onChange={(e) => setBidAmount(parseInt(e.target.value))}
+                />
+                
+                <button onClick={handleBidSubmit}>Submit Bid</button>
+                </div>
               </>
             )}
           </div>

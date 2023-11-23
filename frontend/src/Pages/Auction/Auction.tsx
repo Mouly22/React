@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import './Auction.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-
+import Category from './Category';
+import Price from './Price';
+import ASidebar from './ASidebar';
 interface AuctionItem {
   post_id: number;
   name: string;
@@ -63,19 +65,12 @@ const Auction: React.FC = () => {
   return (
     <div className="amazon-container">
       {/* Sidebar */}
-      <div className="sidebar">
-        <Link to="/postcreate" type="button" className="btnn">
-          Create New Post
-        </Link>
+      <ASidebar/>
 
-        <div className="sort-options">
-          <p>Sort Options:</p>
-          <button className="sidebar-button">Price Low to High</button>
-          <button className="sidebar-button">Price High to Low</button>
-          <button className="sidebar-button">Name A-Z</button>
-          <button className="sidebar-button">Name Z-A</button>
-        </div>
-      </div>
+    
+        
+
+
 
       <div className="amazon-products" style={{ maxHeight: '90vh', overflowY: 'auto' }}>
         {auctionProducts.map((product, index) => {

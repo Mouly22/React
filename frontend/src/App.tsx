@@ -7,6 +7,7 @@ import Admin_Page from "./views/admin";
 import Blog from "./Pages/BlogF/Blog"
 import './App.css';
 import SinglePost from "./Pages/BlogF/singlePost"
+import ASidebar from "./Pages/Auction/ASidebar";
 import Write from "./Pages/BlogF/write"
 import Blogview from "./Pages/BlogF/Blogview";
 import Profile from './Pages/Profile';
@@ -36,8 +37,9 @@ function App() {
             <Route path = "/write" element= {<Write/>}/>
             <Route path = "/blogview" element= {<Blogview/>}/>
             <Route path = "/search" element= {<Search/>}/>
-            <Route path = "/auction" element= {<Auction/>}/>
+            <Route path = "/asidebar" element= {<ASidebar/>}/>
             <Route path = "/postcreate" element = {<PostCreate/>}/>
+            <Route path = "/auction" element = {<Auction/>}/>
             <Route path = "/postdetails/:postId" element = {<PostDetails/>}/>
            
             
