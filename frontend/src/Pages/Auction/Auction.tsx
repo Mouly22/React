@@ -25,17 +25,15 @@ const Auction: React.FC = () => {
         const response = await axios.get('http://127.0.0.1:8000/register_add_auction_products/');
         setAuctionProducts(response.data);
 
-        // Fetch images by post_id
         const imageResponses = await Promise.all(
           response.data.map(async (product: AuctionItem) => {
-            // Fetch image
             const imageResponse = await axios.post(
               'http://127.0.0.1:8000/login_auction_images/',
               {
                 post_id: product.post_id,
               },
               {
-                responseType: 'arraybuffer', // This is important for binary data
+                responseType: 'arraybuffer',
               }
             );
 
@@ -63,14 +61,13 @@ const Auction: React.FC = () => {
   };
 
   return (
-    <div className="amazon-container" >
+    <div className="amazon-container">
       {/* Sidebar */}
       <div className="sidebar">
-      <Link to="/postcreate" type="button" className="btnn">
+        <Link to="/postcreate" type="button" className="btnn">
           Create New Post
-      </Link>
-        
-  
+        </Link>
+
         <div className="sort-options">
           <p>Sort Options:</p>
           <button className="sidebar-button">Price Low to High</button>
@@ -82,11 +79,7 @@ const Auction: React.FC = () => {
 
       <div className="amazon-products" style={{ maxHeight: '90vh', overflowY: 'auto' }}>
         {auctionProducts.map((product, index) => {
-          // Calculate remaining time in milliseconds
           const remainingTime = new Date(product.end_time).getTime() - new Date().getTime();
-          console.log(remainingTime);
-
-          // Convert milliseconds to hours
           const remainingHours = Math.floor(remainingTime / (1000 * 60 * 60));
 
           return (
@@ -103,15 +96,16 @@ const Auction: React.FC = () => {
               <h6>Price: {product.price} Taka only</h6>
               <h6>Total Bidding Placed: {product.total_bidding_placed}</h6>
               <h6>
-                {remainingHours > 0
-                  ? `${remainingHours} hours remaining`
-                  : 'Auction has ended'}
+                {remainingHours > 0 ? `${remainingHours} hours remaining` : 'Auction has ended'}
               </h6>
-              <div className = "btnn">
-              <Link to="/postdetails" type="button" className="btnn">
-              Place your bidding
-              </Link>
-              
+              <div className="btnn">
+                <Link
+                  to={`/postdetails/${product.post_id}`}  // Use post_id in the URL
+                  type="button"
+                  className="btnn"
+                >
+                  Place your bidding
+                </Link>
               </div>
             </div>
           );

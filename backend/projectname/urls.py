@@ -30,7 +30,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from blog_images.views import GetImageView, YourModelNameView
 from dataforfoods.views import ReactView_Register_DataForFoods
-from auction_posts_datas.views import ReactView_Register_Auction_Prodcuts
+from auction_posts_datas.views import ReactView_Register_Auction_Prodcuts,CheckPostsExistenceView_Auction_List
 from auction_images.views import GetImageView_Auction,YourModelNameView_Auction
 
 urlpatterns = [
@@ -89,7 +89,8 @@ urlpatterns = [
     path('register_add_dataforfoods/', ReactView_Register_DataForFoods.as_view(), name="anything"),# for adding and getting field officer data posted
 
     #For auction
-    path('register_add_auction_products/', ReactView_Register_Auction_Prodcuts.as_view(), name="anything"),
+    path('register_add_auction_products/', ReactView_Register_Auction_Prodcuts.as_view(), name="anything"), #for adding auction products
+    path('check_auction_products/', CheckPostsExistenceView_Auction_List.as_view(), name="anything"), #for checking if a product exists or not
 
     #For auction images
     path('register_add_auction_images/', YourModelNameView_Auction.as_view(), name="anything"),# for images

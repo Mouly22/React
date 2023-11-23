@@ -37,7 +37,7 @@ function App() {
             <Route path = "/search" element= {<Search/>}/>
             <Route path = "/auction" element= {<Auction/>}/>
             <Route path = "/postcreate" element = {<PostCreate/>}/>
-            <Route path = "/postdetails" element = {<PostDetails/>}/>
+            <Route path = "/postdetails/:postId" element = {<PostDetails/>}/>
            
             
             
