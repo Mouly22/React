@@ -30,7 +30,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from blog_images.views import GetImageView, YourModelNameView
 from dataforfoods.views import ReactView_Register_DataForFoods
-from auction_posts_datas.views import ReactView_Register_Auction_Prodcuts,CheckPostsExistenceView_Auction_List,ReactView_DeleteMember_Auction_list
+from auction_posts_datas.views import ReactView_Register_Auction_Prodcuts,CheckPostsExistenceView_Auction_List,ReactView_DeleteMember_Auction_list,ReactView_Edit_Auction_list_current_price
 from auction_images.views import GetImageView_Auction,YourModelNameView_Auction
 from businessmen.views import ReactView_Register_Businessmen,CheckUserExistenceView_Businessmen,ReactView_Edit_Businessmen,ReactView_DeleteMember_Businessmen
 from latest_bidding.views import ReactView_Register_latest_bidding,CheckUserExistenceView_latest_bidding,ReactView_Edit_latest_bidding,ReactView_DeleteMember_latest_bidding, ReactView_Edit_latest_bidding_ended
@@ -103,6 +103,7 @@ urlpatterns = [
     path('register_add_auction_products/', ReactView_Register_Auction_Prodcuts.as_view(), name="anything"), #for adding auction products
     path('check_auction_products/', CheckPostsExistenceView_Auction_List.as_view(), name="anything"), #for checking if a product exists or not
     path('delete_auction_products/', ReactView_DeleteMember_Auction_list.as_view(), name="anything"),#for delete auction products
+    path('edit_auction_products_current_price/', ReactView_Edit_Auction_list_current_price.as_view(), name="anything"), # for edit businessmen 
 
     #For auction images
     path('register_add_auction_images/', YourModelNameView_Auction.as_view(), name="anything"),# for images

@@ -75,3 +75,18 @@ class ReactView_DeleteMember_Auction_list(APIView):
         except AuctionsInventory.DoesNotExist:
             return Response({'success': False, 'error': 'Member does not exist'})
 
+class ReactView_Edit_Auction_list_current_price(APIView):
+    def post(self, request):
+
+            post_id = request.data.get('post_id', '')
+            react_instance = get_object_or_404(AuctionsInventory, post_id=post_id)
+            
+            # Update the object with new data
+
+            react_instance.price = request.data.get('price', react_instance.price)
+            react_instance.total_bidding_placed = request.data.get('total_bidding_placed', react_instance.total_bidding_placed)
+
+            # Save the changes
+            react_instance.save()
+
+            return Response(status=status.HTTP_201_CREATED)

@@ -24,11 +24,47 @@ const PostDetails: React.FC = () => {
   const [auctionProduct, setAuctionProduct] = useState<AuctionItem | null>(null);
   const [image, setImage] = useState<string | null>(null);
   const [bidAmount, setBidAmount] = useState<number>(0); // State for the bid amount
+  const userId = localStorage.getItem('userid');
 
-  const handleBidSubmit = () => {
-    // Implement logic for submitting the bid amount (you can send it to the server, etc.)
-    console.log('Bid Amount Submitted:', bidAmount);
-    // You can add additional logic here, such as sending the bid amount to the server.
+  const handleBidSubmit = async () => {
+    try {
+      // Fetch data by posting 'post_id' to http://127.0.0.1:8000/login_latest_bidding/
+      const bidDataResponse = await axios.post('http://127.0.0.1:8000/login_latest_bidding/', {
+        post_id: postId,
+      });
+
+      const { post_id, max_price, current_price, last_bidder, bidding_ended } = bidDataResponse.data.user_data;
+      console.log(current_price+bidAmount,max_price);
+      // Compare if (current_price + bidAmount) < max_price
+      if (current_price + bidAmount < max_price) {
+        console.log("YO")
+        // Make a post request to http://127.0.0.1:8000/edit_latest_bidding_ending/
+        await axios.post('http://127.0.0.1:8000/edit_auction_products_current_price/', {
+          post_id: post_id,
+          price: current_price + bidAmount,
+          total_bidding_placed: auctionProduct.user_data.bidding_placed + 1,
+        });
+
+        // Make another post request to http://127.0.0.1:8000/login_latest_bidding/
+        await axios.post('http://127.0.0.1:8000/edit_latest_bidding/', {
+          post_id:post_id,
+          max_price:max_price,
+          current_price: current_price + bidAmount,
+          last_bidder: userId,
+          bidding_ended: false,
+        });
+        window.location.reload();
+        // Additional logic if needed
+      } else {
+        // Handle the case where the bid amount exceeds the maximum price
+        console.log('Bid amount exceeds maximum price.');
+        alert("Amount exceeds maximum price.");
+        console.log(current_price+bidAmount)
+
+      }
+    } catch (error) {
+      console.error('Error submitting bid:', error);
+    }
   };
 
   useEffect(() => {
@@ -121,15 +157,13 @@ const PostDetails: React.FC = () => {
                 </ul>
                 <h4>Place your Bidding:</h4>
                 <div className='bid-section'>
-               
-                <input
-                  type="number"
-                  placeholder="Enter Bid Amount"
-                  value={bidAmount}
-                  onChange={(e) => setBidAmount(parseInt(e.target.value))}
-                />
-                
-                <button onClick={handleBidSubmit}>Submit Bid</button>
+                  <input
+                    type="number"
+                    placeholder="Enter Bid Amount"
+                    value={bidAmount}
+                    onChange={(e) => setBidAmount(parseInt(e.target.value))}
+                  />
+                  <button onClick={handleBidSubmit}>Submit Bid</button>
                 </div>
               </>
             )}
@@ -141,4 +175,3 @@ const PostDetails: React.FC = () => {
 };
 
 export default PostDetails;
-

@@ -80,7 +80,7 @@ class ReactView_Edit_latest_bidding_ended(APIView):
             react_instance = get_object_or_404(React, post_id=post_id)
             
             # Update the object with new data
-
+            
             react_instance.bidding_ended = request.data.get('bidding_ended', react_instance.bidding_ended)
 
 
