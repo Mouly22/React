@@ -24,6 +24,7 @@ const PostDetails: React.FC = () => {
   const [auctionProduct, setAuctionProduct] = useState<AuctionItem | null>(null);
   const [image, setImage] = useState<string | null>(null);
 
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -60,15 +61,20 @@ const PostDetails: React.FC = () => {
     fetchData();
   }, [postId]);
 
+  
+
   return (
-    <div className="place-bid-container" style={{ maxHeight: '90vh', overflowY: 'auto' }}> {/* Adjust the class name based on your CSS */}
+    <div className="post-details-container" style={{ maxHeight: '90vh', overflowY: 'auto' }}> 
       {auctionProduct && (
         <>
           <h2>{auctionProduct.name}</h2>
-          {image && <img src={image} alt="Product Image" />}
-          <div className="details-section">
-            <h3>Product Details:</h3>
+          <div className="image-gallery">
+            <img src={image} alt="Product Image" />
+          </div>
+          <div>
+            
             <ul>
+           
               {auctionProduct.items &&
                 auctionProduct.items
                   .filter((item) => item.type !== 'image')
@@ -79,15 +85,14 @@ const PostDetails: React.FC = () => {
                   ))}
             </ul>
           </div>
-          <div className="bid-section">
-            <h3>Place Your Bid:</h3>
+          <div className="details-section">
+         
+            <h3>Description:</h3>
             {auctionProduct.user_data && (
               <>
+              
                 <p>
-                  <strong>Post ID:</strong> {auctionProduct.user_data.post_id}
-                </p>
-                <p>
-                  <strong>Name:</strong> {auctionProduct.user_data.name}
+                  <h4><strong>Name:</strong> {auctionProduct.user_data.name}</h4>
                 </p>
                 <p>
                   <strong>Amount:</strong> {auctionProduct.user_data.amount} kg
@@ -107,7 +112,6 @@ const PostDetails: React.FC = () => {
                 <p>
                   <strong>Current Time:</strong> {auctionProduct.user_data.current_time}
                 </p>
-                <h4>Description:</h4>
                 <ul>
                   {auctionProduct.user_data.description.map((desc, index) => (
                     <li key={index}>
@@ -115,6 +119,7 @@ const PostDetails: React.FC = () => {
                     </li>
                   ))}
                 </ul>
+                <h4>Place your Bidding:</h4>
               </>
             )}
           </div>
@@ -125,3 +130,4 @@ const PostDetails: React.FC = () => {
 };
 
 export default PostDetails;
+
