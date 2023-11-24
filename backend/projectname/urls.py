@@ -33,7 +33,7 @@ from dataforfoods.views import ReactView_Register_DataForFoods
 from auction_posts_datas.views import ReactView_Register_Auction_Prodcuts,CheckPostsExistenceView_Auction_List,ReactView_DeleteMember_Auction_list,ReactView_Edit_Auction_list_current_price
 from auction_images.views import GetImageView_Auction,YourModelNameView_Auction
 from businessmen.views import ReactView_Register_Businessmen,CheckUserExistenceView_Businessmen,ReactView_Edit_Businessmen,ReactView_DeleteMember_Businessmen
-from latest_bidding.views import ReactView_Register_latest_bidding,CheckUserExistenceView_latest_bidding,ReactView_Edit_latest_bidding,ReactView_DeleteMember_latest_bidding, ReactView_Edit_latest_bidding_ended
+from latest_bidding.views import ReactView_Register_latest_bidding,CheckUserExistenceView_latest_bidding,ReactView_Edit_latest_bidding,ReactView_DeleteMember_latest_bidding, ReactView_Edit_latest_bidding_ended, ReactView_Edit_latest_bidding_maxprice
 from incoming_auction_request.views import ReactView_Register_Incoming_Auction_Prodcuts,CheckPostsExistenceView_Incoming_Auction_List,ReactView_DeleteMember_Incoming_Auction_list,ReactView_Edit_Incoming_Auction_list_current_price
 from incoming_auction_images.views import GetImageView_incoming_Auction,YourModelNameView_incoming_Auction
 
@@ -117,7 +117,7 @@ urlpatterns = [
     path('delete_latest_bidding/', ReactView_DeleteMember_latest_bidding.as_view(), name="delete_field_officer"),#for delete latest_bidding
     path('edit_latest_bidding/', ReactView_Edit_latest_bidding.as_view(), name="anything"), # for edit latest_bidding
     path('edit_latest_bidding_ending/', ReactView_Edit_latest_bidding_ended.as_view(), name="anything"), # for edit latest_bidding
-
+    path('edit_latest_bidding_maxprice/', ReactView_Edit_latest_bidding_maxprice.as_view(), name="anything"), # for edit latest_bidding
 
     #For incoming auction request
     path('register_add_incoming_auction_products/', ReactView_Register_Incoming_Auction_Prodcuts.as_view(), name="anything"), #for adding auction products

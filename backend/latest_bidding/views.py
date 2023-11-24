@@ -89,4 +89,20 @@ class ReactView_Edit_latest_bidding_ended(APIView):
 
             return Response(status=status.HTTP_201_CREATED)
 
+class ReactView_Edit_latest_bidding_maxprice(APIView):
+    def post(self, request):
+
+            post_id = request.data.get('post_id', '')
+            react_instance = get_object_or_404(React, post_id=post_id)
+            
+            # Update the object with new data
+            
+            react_instance.max_price = request.data.get('max_price', react_instance.bidding_ended)
+
+
+            # Save the changes
+            react_instance.save()
+
+            return Response(status=status.HTTP_201_CREATED)
+
         

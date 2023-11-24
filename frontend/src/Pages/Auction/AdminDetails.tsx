@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
 import './PostDetails.css'; // Replace with your CSS file
 
 interface AuctionItem {
@@ -14,6 +15,7 @@ interface AuctionItem {
     start_time: string;
     end_time: string;
     current_time: string;
+    posted_by: string;
     description: { [key: string]: string }[];
   };
 }
@@ -22,36 +24,80 @@ const AdminDetails: React.FC = () => {
   const { postId } = useParams<{ postId: string }>();
   const [auctionProduct, setAuctionProduct] = useState<AuctionItem | null>(null);
   const [image, setImage] = useState<string | null>(null);
-  const [bidAmount, setBidAmount] = useState<number>(0); // State for the bid amount
+  const [maxAmount, setMaxAmount] = useState<number>(0); // State for the bid amount
   const userId = localStorage.getItem('userid');
+  const [initialPostid, setinitialPostid] = useState<number>(0); // State for the bid amount
 
   const handleBidSubmit = async () => {
-    // Handle bidding logic (UI-only)
-    console.log('Submit Bid:', bidAmount);
+    try {
+      // Make a post request to http://127.0.0.1:8000/register_add_auction_products/
+
+
+      // Post image
+      // Post image
+
+
+      // Make another post request to http://127.0.0.1:8000/login_latest_bidding/
+      await axios.post('http://127.0.0.1:8000/edit_latest_bidding_maxprice/', {
+        post_id: postId,
+        max_price: maxAmount,
+
+      });
+
+      // Additional logic if needed
+      window.location.reload(); // Reload the page after submitting the bid
+    } catch (error) {
+      console.error('Error submitting bid:', error);
+    }
+  };
+
+  // Helper function to convert data URI to Blob
+  const dataURItoBlob = (dataURI: string) => {
+    const byteString = atob(dataURI.split(',')[1]);
+    const ab = new ArrayBuffer(byteString.length);
+    const ia = new Uint8Array(ab);
+
+    for (let i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+
+    return new Blob([ab], { type: 'image/jpeg' }); // Adjust type if needed
   };
 
   useEffect(() => {
-    // Simulated data for demonstration
-    const demoAuctionProduct: AuctionItem = {
-      name: 'Product 1',
-      items: [{ type: 'Type 1', description: 'Description 1' }],
-      user_data: {
-        post_id: 1,
-        name: 'Product 1',
-        amount: 10,
-        price: 100,
-        bidding_placed: 5,
-        start_time: '2023-01-01T00:00:00Z',
-        end_time: '2023-01-02T00:00:00Z',
-        current_time: '2023-01-01T12:00:00Z',
-        description: [{ key: 'Key 1', value: 'Value 1' }],
-      },
+    const fetchData = async () => {
+      try {
+        const response = await axios.post('http://127.0.0.1:8000/check_auction_products/', {
+          post_id: postId,
+        });
+
+        setAuctionProduct(response.data);
+
+        // Fetch image
+        const imageResponse = await axios.post(
+          'http://127.0.0.1:8000/login_auction_images/',
+          {
+            post_id: response.data.user_data.post_id,
+          },
+          {
+            responseType: 'arraybuffer', // This is important for binary data
+          }
+        );
+        setinitialPostid(response.data.user_data.post_id);
+        const base64 = btoa(
+          new Uint8Array(imageResponse.data).reduce(
+            (data, byte) => data + String.fromCharCode(byte),
+            ''
+          )
+        );
+
+        setImage(`data:${imageResponse.headers['content-type']};base64,${base64}`);
+      } catch (error) {
+        console.error('Error fetching auction product:', error);
+      }
     };
 
-    setAuctionProduct(demoAuctionProduct);
-    // Simulated image data for demonstration
-    const demoImage: string = 'image1.jpg'; // Replace with actual image URL
-    setImage(demoImage);
+    fetchData();
   }, [postId]);
 
   return (
@@ -63,7 +109,16 @@ const AdminDetails: React.FC = () => {
             <img src={image} alt="Product Image" />
           </div>
           <div>
-            
+            <ul>
+              {auctionProduct.items &&
+                auctionProduct.items
+                  .filter((item) => item.type !== 'image')
+                  .map((item, index) => (
+                    <li key={index}>
+                      <strong>{item.type}:</strong> {item.description}
+                    </li>
+                  ))}
+            </ul>
           </div>
           <div className="details-section">
             <h3>Description:</h3>
@@ -90,6 +145,9 @@ const AdminDetails: React.FC = () => {
                 <p>
                   <strong>Current Time:</strong> {auctionProduct.user_data.current_time}
                 </p>
+                <p>
+                  <strong>Posted By:</strong> {auctionProduct.user_data.posted_by}
+                </p>
                 <ul>
                   {auctionProduct.user_data.description.map((desc, index) => (
                     <li key={index}>
@@ -97,15 +155,15 @@ const AdminDetails: React.FC = () => {
                     </li>
                   ))}
                 </ul>
-                <h4>Set a Max Bidding Amount for this Product:</h4>
+                <h4>Enter Max limit for Bidding:</h4>
                 <div className='bid-section'>
                   <input
                     type="number"
-                    placeholder="Enter Amount.."
-                    value={bidAmount}
-                    onChange={(e) => setBidAmount(parseInt(e.target.value))}
+                    placeholder="Enter Max limit for Bidding"
+                    value={maxAmount}
+                    onChange={(e) => setMaxAmount(parseInt(e.target.value))}
                   />
-                  <button onClick={handleBidSubmit}>Confirm</button>
+                  <button onClick={handleBidSubmit}>Submit Max Amount</button>
                 </div>
               </>
             )}
@@ -117,4 +175,3 @@ const AdminDetails: React.FC = () => {
 };
 
 export default AdminDetails;
-

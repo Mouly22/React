@@ -28,6 +28,7 @@ const Auction: React.FC = () => {
         const response = await axios.get('http://127.0.0.1:8000/register_add_auction_products/');
         setAuctionProducts(response.data);
 
+
         const imageResponses = await Promise.all(
           response.data.map(async (product: AuctionItem) => {
             const imageResponse = await axios.post(

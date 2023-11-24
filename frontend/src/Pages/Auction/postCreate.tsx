@@ -66,6 +66,13 @@ const PostCreate: React.FC<{}> = () => {
         'http://127.0.0.1:8000/register_add_auction_products/',
         auctionFormData
       );
+      await axios.post('http://127.0.0.1:8000/register_latest_bidding/', {
+        post_id: response.data.post_id,
+        max_price: 99999999,
+        current_price: reservePrice,
+        last_bidder: "",
+        bidding_ended: false,
+      });
 
       // Post image
       if (image) {
@@ -80,6 +87,7 @@ const PostCreate: React.FC<{}> = () => {
       }
 
       console.log('Auction post published successfully!');
+      window.location.reload();
     } catch (error) {
       console.error('Error publishing auction post:', error);
     }

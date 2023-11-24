@@ -44,7 +44,7 @@ function App() {
             <Route path = "/auction" element = {<Auction/>}/>
             <Route path = "/postdetails/:postId" element = {<PostDetails/>}/>
             <Route path = "/adminpost" element = {<AdminPost/>}/>
-            <Route path = "/admindetails" element = {<AdminDetails/>}/>
+            <Route path = "/admindetails/:postId" element = {<AdminDetails/>}/>
            
             
             
