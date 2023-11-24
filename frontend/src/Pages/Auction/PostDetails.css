@@ -1,0 +1,96 @@
+.post-details-container {
+  max-width: 1600px;
+  margin: 80px auto;
+  padding: 60px;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-gallery {
+  flex: 1;
+}
+
+.image-gallery img {
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+  display: block;
+  margin: 0 auto;
+}
+
+.details-section {
+  flex: 2;
+  padding-left: 60px;
+  font-size: 14px;
+  
+}
+
+
+.details-section h4 {
+  font-size: 18px;
+  color: darkred;
+}
+
+.details-section h3 {
+  color: darkred;
+  font-size: 28px;
+}
+
+.details-section ul {
+  list-style-type: none;
+  padding: 0;
+  
+}
+
+.details-section li {
+  margin-bottom: 30px;
+  line-height: 1.8;
+  font-size: 15px;
+  margin-bottom: 5px;
+  
+  
+}
+
+.bid-section {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.bid-section input {
+  padding: 10px;
+  font-size: 15px;
+  margin-right: 10px;
+  width: 100px;
+  border: 1px solid #ccc; /* Add border for input */
+}
+
+.bid-section button {
+  padding: 10px 20px;
+  font-size: 15px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Add smooth transition effect */
+}
+
+.bid-section button:hover {
+  background-color: #45a049; /* Darker color on hover */
+}
+
+
+
+
+
+
+
+  
+  
+  

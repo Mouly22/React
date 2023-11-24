@@ -5,7 +5,7 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
 const AddAdminsButton: React.FC = () => {
   return (
     <>
-    <Typography variant="h4" component="div" gutterBottom>
+    <Typography variant="h6" component="div" gutterBottom>
           Add New Admin
     </Typography>
     <Link to="/add_admins">

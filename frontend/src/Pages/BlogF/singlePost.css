@@ -15,7 +15,6 @@
   margin-bottom: 15px;
   transition: transform 0.3s ease; /* Add a smooth transition effect for the hover */
 
-  /* Hover effect */
   &:hover {
     transform: scale(1.1); /* Enlarge the image slightly on hover */
   }

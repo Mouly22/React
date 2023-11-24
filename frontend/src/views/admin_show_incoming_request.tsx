@@ -44,6 +44,8 @@ const Admin_Page_show_Incoming_request: React.FC = () => {
       Url = 'http://127.0.0.1:8000/register_field_officer/';
     }else if (newUserData.user_type === 'expert') {
       Url = 'http://127.0.0.1:8000/register_expert/';
+    }else if (newUserData.user_type === 'businessman') {
+      Url = 'http://127.0.0.1:8000/register_businessman/';
     }
     axios.post(Url, newUserData)
       .then((response) => {
@@ -77,7 +79,7 @@ const Admin_Page_show_Incoming_request: React.FC = () => {
   return (
     <>
       <Box my={3}>
-        <Typography variant="h4" component="div" gutterBottom>
+        <Typography variant="h5" component="div" gutterBottom>
           Incoming Request
         </Typography>
         <Button variant="contained" style={{ margin: "2px 0", backgroundColor: "#8db596", color: "#fff" }} onClick={() => setTableVisible(!tableVisible)}>

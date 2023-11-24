@@ -30,6 +30,13 @@ from django.conf.urls.static import static
 from django.conf import settings
 from blog_images.views import GetImageView, YourModelNameView
 from dataforfoods.views import ReactView_Register_DataForFoods
+from auction_posts_datas.views import ReactView_Register_Auction_Prodcuts,CheckPostsExistenceView_Auction_List,ReactView_DeleteMember_Auction_list,ReactView_Edit_Auction_list_current_price,ReactView_Search_Sort_Auction_Prodcuts
+from auction_images.views import GetImageView_Auction,YourModelNameView_Auction
+from businessmen.views import ReactView_Register_Businessmen,CheckUserExistenceView_Businessmen,ReactView_Edit_Businessmen,ReactView_DeleteMember_Businessmen
+from latest_bidding.views import ReactView_Register_latest_bidding,CheckUserExistenceView_latest_bidding,ReactView_Edit_latest_bidding,ReactView_DeleteMember_latest_bidding, ReactView_Edit_latest_bidding_ended, ReactView_Edit_latest_bidding_maxprice
+from incoming_auction_request.views import ReactView_Register_Incoming_Auction_Prodcuts,CheckPostsExistenceView_Incoming_Auction_List,ReactView_DeleteMember_Incoming_Auction_list,ReactView_Edit_Incoming_Auction_list_current_price
+from incoming_auction_images.views import GetImageView_incoming_Auction,YourModelNameView_incoming_Auction
+
 
 urlpatterns = [
     path('', ReactView.as_view(), name="anything"),
@@ -66,6 +73,13 @@ urlpatterns = [
     path('delete_expert/', ReactView_DeleteMember_Expert.as_view(), name="delete_field_officer"),#for delete expert 
     path('edit_expert/', ReactView_Edit_Expert.as_view(), name="anything"), # for edit expert
 
+    #For Businessmen
+    path('register_businessman/', ReactView_Register_Businessmen.as_view(), name="anything"),# for businessmen register
+    path('login_businessman/', CheckUserExistenceView_Businessmen.as_view(), name="check_user"), # for  businessmen  logins
+    path('delete_businessman/', ReactView_DeleteMember_Businessmen.as_view(), name="delete_field_officer"),#for delete businessmen 
+    path('edit_businessman/', ReactView_Edit_Businessmen.as_view(), name="anything"), # for edit businessmen 
+
+
     #BLOG Part
 
     path('register_blog_list/', ReactView_Register_BlogList.as_view(), name="anything"),# for fetching and adding bloglist
@@ -80,11 +94,41 @@ urlpatterns = [
     path('register_delete_all_comment/', ReactView_DeleteAllComment.as_view(), name="anything"),# for deleting comments
 
     #For Blog Images
-    path('register_add_blog_images/', YourModelNameView.as_view(), name="anything"),# for adding comments
+    path('register_add_blog_images/', YourModelNameView.as_view(), name="anything"),# for images
     path('login_blog_images/', GetImageView.as_view(), name="check_user"), # for checking a blog image exists if exists it returns the image
 
     #For Data for foods
-    path('register_add_dataforfoods/', ReactView_Register_DataForFoods.as_view(), name="anything"),# for adding comments
+    path('register_add_dataforfoods/', ReactView_Register_DataForFoods.as_view(), name="anything"),# for adding and getting field officer data posted
+
+    #For auction
+    path('register_add_auction_products/', ReactView_Register_Auction_Prodcuts.as_view(), name="anything"), #for adding auction products
+    path('check_auction_products/', CheckPostsExistenceView_Auction_List.as_view(), name="anything"), #for checking if a product exists or not
+    path('delete_auction_products/', ReactView_DeleteMember_Auction_list.as_view(), name="anything"),#for delete auction products
+    path('edit_auction_products_current_price/', ReactView_Edit_Auction_list_current_price.as_view(), name="anything"), # for edit acution post price
+    path('search_auction_products/', ReactView_Search_Sort_Auction_Prodcuts.as_view(), name="anything"), # for search acution post price
+
+    #For auction images
+    path('register_add_auction_images/', YourModelNameView_Auction.as_view(), name="anything"),# for images
+    path('login_auction_images/', GetImageView_Auction.as_view(), name="check_user"), # for checking a blog image exists if exists it returns the image
+    
+
+    #For latest bidding
+    path('register_latest_bidding/', ReactView_Register_latest_bidding.as_view(), name="anything"),# for latest_bidding register
+    path('login_latest_bidding/', CheckUserExistenceView_latest_bidding.as_view(), name="check_user"), # for  latest_bidding logins
+    path('delete_latest_bidding/', ReactView_DeleteMember_latest_bidding.as_view(), name="delete_field_officer"),#for delete latest_bidding
+    path('edit_latest_bidding/', ReactView_Edit_latest_bidding.as_view(), name="anything"), # for edit latest_bidding
+    path('edit_latest_bidding_ending/', ReactView_Edit_latest_bidding_ended.as_view(), name="anything"), # for edit latest_bidding
+    path('edit_latest_bidding_maxprice/', ReactView_Edit_latest_bidding_maxprice.as_view(), name="anything"), # for edit latest_bidding
+
+    #For incoming auction request
+    path('register_add_incoming_auction_products/', ReactView_Register_Incoming_Auction_Prodcuts.as_view(), name="anything"), #for adding auction products
+    path('check_incoming_auction_products/', CheckPostsExistenceView_Incoming_Auction_List.as_view(), name="anything"), #for checking if a product exists or not
+    path('delete_incoming_auction_products/', ReactView_DeleteMember_Incoming_Auction_list.as_view(), name="anything"),#for delete auction products
+    path('edit_incoming_auction_products_current_price/', ReactView_Edit_Incoming_Auction_list_current_price.as_view(), name="anything"), # for edit acution post price
+
+    #For incoming auction images
+    path('register_add_incoming_auction_images/', YourModelNameView_incoming_Auction.as_view(), name="anything"),# for images
+    path('login_incoming_auction_images/', GetImageView_incoming_Auction.as_view(), name="check_user"), # for checking a blog image exists if exists it returns the image
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

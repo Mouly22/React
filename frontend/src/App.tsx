@@ -7,14 +7,21 @@ import Admin_Page from "./views/admin";
 import Blog from "./Pages/BlogF/Blog"
 import './App.css';
 import SinglePost from "./Pages/BlogF/singlePost"
+import ASidebar from "./Pages/Auction/ASidebar";
 import Write from "./Pages/BlogF/write"
 import Blogview from "./Pages/BlogF/Blogview";
 import Profile from './Pages/Profile';
 import Search from "./Pages/BlogF/search";
+import Auction from "./Pages/Auction/Auction";
+import PostCreate from "./Pages/Auction/postCreate";
+import PostDetails from "./Pages/Auction/PostDetails";
+import AdminPost from "./Pages/Auction/AdminPost";
+import AdminDetails from "./Pages/Auction/AdminDetails";
 //import Field_Officer_Page from "./views/field_officer";
 import Field_officer_Page from "./views_field_officers/Field_officer_view";
 import Expert_Page from "./views_expert/expert_view";
 import SignupForm_for_admin from "./views/admin_show_admin_adding_page";
+import Businessmen_Page from "./views_businessmen/businessmen_view";
 
 
 function App() {
@@ -32,6 +39,12 @@ function App() {
             <Route path = "/write" element= {<Write/>}/>
             <Route path = "/blogview" element= {<Blogview/>}/>
             <Route path = "/search" element= {<Search/>}/>
+            <Route path = "/asidebar" element= {<ASidebar/>}/>
+            <Route path = "/postcreate" element = {<PostCreate/>}/>
+            <Route path = "/auction" element = {<Auction/>}/>
+            <Route path = "/postdetails/:postId" element = {<PostDetails/>}/>
+            <Route path = "/adminpost" element = {<AdminPost/>}/>
+            <Route path = "/admindetails/:postId" element = {<AdminDetails/>}/>
            
             
             
@@ -54,6 +67,10 @@ function App() {
               <Route
               path="/expert"
               element={<Expert_Page />} // Display the Expert component
+            />
+              <Route
+              path="/businessman"
+              element={<Businessmen_Page />} // Display the Businessmen component
             />
           </Routes>
         </div>
