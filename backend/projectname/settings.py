@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'auction_product_datas',
     'businessmen',
     'latest_bidding',
+    'incoming_auction_request',
 ]
 
 MIDDLEWARE = [
