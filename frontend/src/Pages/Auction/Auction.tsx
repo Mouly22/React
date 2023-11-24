@@ -114,7 +114,7 @@ const Auction: React.FC = () => {
               <h6>
                 {remainingHours > 0 ? `${remainingHours} hours remaining` : 'Auction has ended'}
               </h6>
-              <div className="btnn">
+              <div>
                 <button
                   type="button"
                   className="btnn"
