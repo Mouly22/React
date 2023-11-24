@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Nov 23, 2023 at 07:15 PM
+-- Generation Time: Nov 24, 2023 at 04:43 PM
 -- Server version: 8.1.0
 -- PHP Version: 8.2.8
 
@@ -90,7 +90,11 @@ INSERT INTO `auction_images_react` (`id`, `post_id`, `image`) VALUES
 (19, 17, 'auction_images/observerbd.com_1639847404.jpg'),
 (21, 22, 'auction_images/1.jpeg'),
 (22, 23, 'auction_images/1.jpg'),
-(23, 24, 'auction_images/tomato_Hy7CVnr.jpeg');
+(23, 24, 'auction_images/tomato_Hy7CVnr.jpeg'),
+(24, 34, 'auction_images/tomato_JEjsps4.jpeg'),
+(25, 35, 'auction_images/green-capsicum-15-gm-300-gm.jpeg'),
+(26, 36, 'auction_images/broccoli-1238250_640_zJSejQD.jpg'),
+(27, 37, 'auction_images/A1QAAV.png');
 
 -- --------------------------------------------------------
 
@@ -257,7 +261,15 @@ INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALU
 (89, 'Can add react', 23, 'add_react'),
 (90, 'Can change react', 23, 'change_react'),
 (91, 'Can delete react', 23, 'delete_react'),
-(92, 'Can view react', 23, 'view_react');
+(92, 'Can view react', 23, 'view_react'),
+(93, 'Can add auctions inventory', 24, 'add_auctionsinventory'),
+(94, 'Can change auctions inventory', 24, 'change_auctionsinventory'),
+(95, 'Can delete auctions inventory', 24, 'delete_auctionsinventory'),
+(96, 'Can view auctions inventory', 24, 'view_auctionsinventory'),
+(97, 'Can add react', 25, 'add_react'),
+(98, 'Can change react', 25, 'change_react'),
+(99, 'Can delete react', 25, 'delete_react'),
+(100, 'Can view react', 25, 'view_react');
 
 -- --------------------------------------------------------
 
@@ -575,6 +587,8 @@ INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
 (15, 'dataforfoods', 'fooditem'),
 (17, 'expert', 'react'),
 (9, 'field_officer_login', 'react'),
+(25, 'incoming_auction_images', 'react'),
+(24, 'incoming_auction_request', 'auctionsinventory'),
 (10, 'incoming_request', 'react'),
 (23, 'latest_bidding', 'react'),
 (8, 'login_stuffs', 'react'),
@@ -636,7 +650,9 @@ INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
 (36, 'auction_posts_datas', '0006_rename_items_auctionsinventory_description', '2023-11-22 11:42:47.095873'),
 (37, 'auction_posts_datas', '0007_auctionsinventory_posted_by', '2023-11-23 08:50:44.300330'),
 (38, 'businessmen', '0001_initial', '2023-11-23 11:19:34.157173'),
-(39, 'latest_bidding', '0001_initial', '2023-11-23 18:57:36.796774');
+(39, 'latest_bidding', '0001_initial', '2023-11-23 18:57:36.796774'),
+(40, 'incoming_auction_request', '0001_initial', '2023-11-24 06:13:44.829873'),
+(41, 'incoming_auction_images', '0001_initial', '2023-11-24 06:41:22.240732');
 
 -- --------------------------------------------------------
 
@@ -697,18 +713,19 @@ CREATE TABLE `farmer_auction_posts_inventory_list` (
 --
 
 INSERT INTO `farmer_auction_posts_inventory_list` (`post_id`, `name`, `amount`, `price`, `total_bidding_placed`, `start_time`, `end_time`, `current_time`, `description`, `posted_by`) VALUES
-(1, 'Potato', 100.50, 500.00, 0, '2023-11-22 11:48:28.074218', '2023-12-31 23:59:59.000000', '2023-11-22 11:48:28.074258', 'Origin: Bagerhatt\r\nColor: Red', ''),
+(1, 'Potato', 100.50, 745.00, 7, '2023-11-22 11:48:28.074218', '2023-12-31 23:59:59.000000', '2023-11-22 11:48:28.074258', 'Origin: Bagerhatt\r\nColor: Red', ''),
 (2, 'Tomato', 10.99, 6000.00, 0, '2023-11-22 12:21:29.329482', '2023-11-24 18:20:00.000000', '2023-11-22 12:21:29.329633', 'Origin: Kamalpur\r\nColor: Bright Red', ''),
 (3, 'Brocoli', 10.99, 54000.00, 0, '2023-11-22 12:32:58.444580', '2023-11-24 18:32:00.000000', '2023-11-22 12:32:58.444752', 'Origin: Dhaka\r\nColor: Red', ''),
 (4, 'Rooster', 500.00, 49000.00, 0, '2023-11-22 12:44:44.250932', '2023-11-30 20:44:00.000000', '2023-11-22 12:44:44.250985', 'Origin:  Gopal Ganj\r\nColor: Colorful\r\nSize: Big', ''),
 (6, 'carrot', 4.00, 500.00, 0, '2023-11-22 14:00:35.680225', '2023-11-24 20:00:00.000000', '2023-11-22 14:00:35.680378', 'fresh', ''),
 (7, 'Aman Rice', 500.00, 300.00, 0, '2023-11-22 14:01:31.551855', '2023-11-25 20:01:00.000000', '2023-11-22 14:01:31.551951', 'good quality', ''),
-(14, 'Chick pea', 300.00, 500.00, 0, '2023-11-22 14:23:34.999321', '2023-11-25 20:23:00.000000', '2023-11-22 14:23:34.999601', 'good', ''),
 (15, 'Eggplant', 200.00, 5000.00, 0, '2023-11-22 14:28:04.596645', '2023-11-27 20:28:00.000000', '2023-11-22 14:28:04.596709', 'fresh, healthy', ''),
-(17, 'Brinjal', 300.00, 5000.00, 0, '2023-11-22 14:34:12.031453', '2023-11-23 20:34:00.000000', '2023-11-22 14:34:12.031759', 'fresh', ''),
 (22, 'Red Onion', 20.00, 2000.00, 0, '2023-11-22 14:47:30.786867', '2023-11-25 20:47:00.000000', '2023-11-22 14:47:30.786978', 'fresh', ''),
 (23, 'Cauliflower', 2.00, 200.00, 0, '2023-11-22 14:53:39.092569', '2023-11-25 20:53:00.000000', '2023-11-22 14:53:39.092690', 'fresh', ''),
-(24, 'Deshi Red Tomato', 500.00, 32999.00, 0, '2023-11-23 08:55:54.168820', '2023-11-26 14:55:00.000000', '2023-11-23 08:55:54.169002', 'Origin: Bangladesh\r\nShape: Standard', 'macorov');
+(34, 'Tomato', 99.00, 58000.00, 1, '2023-11-24 10:24:47.402114', '2023-11-26 16:22:00.000000', '2023-11-24 10:24:47.402214', 'Type: Vegetable\r\nOrigin: India', 'Didar'),
+(35, 'Capcicum', 40.00, 10000.00, 0, '2023-11-24 10:35:16.782193', '2023-11-25 16:35:00.000000', '2023-11-24 10:35:16.782365', 'Type: vegetable\r\nOrigin: India', 'Didar'),
+(36, 'Deshi Brocoli', 35.00, 21000.00, 1, '2023-11-24 10:48:12.310999', '2023-11-24 20:47:00.000000', '2023-11-24 10:48:12.311052', 'Type: Vegetables\r\nOrigin: Pabna', 'Didar'),
+(37, 'Rui Mach', 50.00, 13000.00, 0, '2023-11-24 16:39:56.220990', '2023-11-25 22:39:00.000000', '2023-11-24 16:39:56.221122', 'Type: Fish\r\nOrigin: Podda', 'Didar');
 
 -- --------------------------------------------------------
 
@@ -735,6 +752,51 @@ INSERT INTO `field_officer_credentials` (`id`, `userid`, `password`, `email`, `a
 (15, 'Mugdho', '12345', 'mugdho@yahoo.com', 'Bogura', 21243, 'field_officer'),
 (17, 'ashik', '12345', 'ashik@yahoo.com', 'Sherpur', 123331, 'field_officer'),
 (18, 'Mughal', '12345', 'mughal@yahoo.com', 'Kisharganj', 213143, 'field_officer');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `incoming_auction_images`
+--
+
+CREATE TABLE `incoming_auction_images` (
+  `id` bigint NOT NULL,
+  `post_id` int NOT NULL,
+  `image` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `incoming_auction_images`
+--
+
+INSERT INTO `incoming_auction_images` (`id`, `post_id`, `image`) VALUES
+(2, 2, 'incoming_auction_images/tomato.jpeg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `incoming_auction_request`
+--
+
+CREATE TABLE `incoming_auction_request` (
+  `post_id` int NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `amount` decimal(10,2) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `total_bidding_placed` int UNSIGNED NOT NULL,
+  `start_time` datetime(6) NOT NULL,
+  `end_time` datetime(6) NOT NULL,
+  `current_time` datetime(6) NOT NULL,
+  `posted_by` varchar(255) NOT NULL,
+  `description` longtext NOT NULL
+) ;
+
+--
+-- Dumping data for table `incoming_auction_request`
+--
+
+INSERT INTO `incoming_auction_request` (`post_id`, `name`, `amount`, `price`, `total_bidding_placed`, `start_time`, `end_time`, `current_time`, `posted_by`, `description`) VALUES
+(2, 'Deshi Lal Tomato', 500.00, 5000.00, 0, '2023-11-24 07:10:48.419683', '2023-11-26 15:10:00.000000', '2023-11-24 07:10:48.419844', 'Didar', 'Type: Vegetable\r\nOrigin: Bangladesh');
 
 -- --------------------------------------------------------
 
@@ -772,18 +834,19 @@ CREATE TABLE `latest_bidding` (
 --
 
 INSERT INTO `latest_bidding` (`id`, `post_id`, `max_price`, `current_price`, `last_bidder`, `bidding_ended`) VALUES
-(1, 1, 1000.00, 500.00, '', 0),
+(1, 1, 1200.00, 745.00, 'Didar', 0),
 (2, 2, 8000.00, 6000.00, '', 0),
 (3, 3, 65000.00, 54000.00, '', 0),
 (4, 4, 70000.00, 49000.00, '', 0),
 (5, 6, 2000.00, 500.00, '', 0),
 (6, 7, 1000.00, 300.00, '', 0),
-(7, 14, 1000.00, 500.00, '', 0),
 (8, 15, 10000.00, 5000.00, '', 0),
-(9, 17, 10000.00, 5000.00, '', 0),
 (10, 22, 50000.00, 2000.00, '', 0),
 (11, 23, 500.00, 200.00, '', 0),
-(12, 24, 50000.00, 32999.00, '', 0);
+(15, 34, 70000.00, 58000.00, 'Didar', 0),
+(16, 35, 99999999.00, 10000.00, '', 0),
+(17, 36, 30000.00, 21000.00, 'Didar', 0),
+(18, 37, 99999999.00, 13000.00, '', 0);
 
 -- --------------------------------------------------------
 
@@ -979,6 +1042,18 @@ ALTER TABLE `field_officer_credentials`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `incoming_auction_images`
+--
+ALTER TABLE `incoming_auction_images`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `incoming_auction_request`
+--
+ALTER TABLE `incoming_auction_request`
+  ADD PRIMARY KEY (`post_id`);
+
+--
 -- Indexes for table `incoming_requests`
 --
 ALTER TABLE `incoming_requests`
@@ -1010,7 +1085,7 @@ ALTER TABLE `all_login_credentials`
 -- AUTO_INCREMENT for table `auction_images_react`
 --
 ALTER TABLE `auction_images_react`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `authentication_react`
@@ -1034,7 +1109,7 @@ ALTER TABLE `auth_group_permissions`
 -- AUTO_INCREMENT for table `auth_permission`
 --
 ALTER TABLE `auth_permission`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
 -- AUTO_INCREMENT for table `auth_user`
@@ -1112,13 +1187,13 @@ ALTER TABLE `django_admin_log`
 -- AUTO_INCREMENT for table `django_content_type`
 --
 ALTER TABLE `django_content_type`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `expert_credentials`
@@ -1130,13 +1205,25 @@ ALTER TABLE `expert_credentials`
 -- AUTO_INCREMENT for table `farmer_auction_posts_inventory_list`
 --
 ALTER TABLE `farmer_auction_posts_inventory_list`
-  MODIFY `post_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `post_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `field_officer_credentials`
 --
 ALTER TABLE `field_officer_credentials`
   MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `incoming_auction_images`
+--
+ALTER TABLE `incoming_auction_images`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `incoming_auction_request`
+--
+ALTER TABLE `incoming_auction_request`
+  MODIFY `post_id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `incoming_requests`
@@ -1148,7 +1235,7 @@ ALTER TABLE `incoming_requests`
 -- AUTO_INCREMENT for table `latest_bidding`
 --
 ALTER TABLE `latest_bidding`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `user_credentials`

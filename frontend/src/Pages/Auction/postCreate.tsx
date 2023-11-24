@@ -23,9 +23,7 @@ const PostCreate: React.FC<{}> = () => {
     }
   };
 
-  const handleAddItem = () => {
-    setItems([...items, { type: '', description: '' }]);
-  };
+
 
   const handleRemoveItem = (index: number) => {
     const updatedItems = [...items];
@@ -167,9 +165,7 @@ const PostCreate: React.FC<{}> = () => {
         <button className="btnn" type="submit">
           Publish
         </button>
-        <button className="btnn" type="button" onClick={handleAddItem}>
-          + Add Product Item
-        </button>
+
       </form>
     </div>
   );
