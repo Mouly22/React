@@ -1,0 +1,21 @@
+.star-rating {
+    display: flex;
+    flexDirection: 'row';
+  }
+  
+  .star-radio {
+    display: none;
+  }
+  
+  .star-svg {
+    cursor: pointer;
+  }
+  
+  #comment {
+    height: 100px;
+  }
+  .report-label {
+    font-weight: bold;
+    color: red;
+  }
+  
