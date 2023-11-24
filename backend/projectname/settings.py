@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'businessmen',
     'latest_bidding',
     'incoming_auction_request',
+    'incoming_auction_images',
 ]
 
 MIDDLEWARE = [
@@ -108,11 +109,10 @@ DATABASES = {
 'NAME': 'sample2', # database name
 'USER': 'root',
 'PASSWORD': 'root',
-'HOST': '127.0.0.1', # or the hostname where your MySQL server is running
-'PORT': '3307', # or the port on which your MySQL server is listening
+'HOST': '172.17.0.2', # or the hostname where your MySQL server is running
+'PORT': '', # or the port on which your MySQL server is listening
 }
 }
-
 
 
 
