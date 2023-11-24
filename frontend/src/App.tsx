@@ -13,6 +13,7 @@ import Graph from './Pages/Graph'
 import Form from './Pages/Form'
 import Blogview from "./Pages/BlogF/Blogview";
 import Profile from './Pages/Profile';
+import Farmer_review from './Pages/Farmer_review';
 import Search from "./Pages/BlogF/search";
 //import Field_Officer_Page from "./views/field_officer";
 import Field_officer_Page from "./views_field_officers/Field_officer_view";
@@ -42,6 +43,7 @@ function App() {
             <Route path = "/profile" element= {<Profile/>}/>
             <Route path = "/graph" element= {<Graph/>}/>
             <Route path = "/form" element= {<Form/>}/>
+            <Route path = "/farmer_review" element= {<Farmer_review/>}/>
          
             
             <Route
