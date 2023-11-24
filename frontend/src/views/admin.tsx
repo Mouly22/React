@@ -6,6 +6,9 @@ import Admin_Page_show_Expert from './admin_show_expert_list';
 import Admin_Page_show_Incoming_request from './admin_show_incoming_request';
 import AddAdminsButton from './admin_show_button_for_adding_admins';
 import "./admin.css"
+import AdminPost from '../Pages/Auction/AdminPost';
+import { Link } from 'react-router-dom';
+import { Button, Typography } from '@mui/material';
 
 const Admin_Page: React.FC = () => {
   const [userid, setUserid] = useState('');
@@ -30,6 +33,15 @@ const Admin_Page: React.FC = () => {
         <p><strong>User ID:</strong> {userid}</p>
         <p><strong>User Type:</strong> {userType}</p>
         <AddAdminsButton/>
+        <>
+        <Typography variant="h5" component="div" gutterBottom>
+          <strong>Auction Confirmation Posts</strong>
+          </Typography><Link to="/adminpost">
+            <Button variant="contained" style={{ margin: "10px 0", backgroundColor: "#8db596", color: "#fff" }}>
+              Review
+            </Button>
+              </Link>
+        </>
       </div>
 
       {/* Add tabs for navigation */}
@@ -45,6 +57,10 @@ const Admin_Page: React.FC = () => {
       {activeTab === 'fieldOfficers' && <Admin_Page_show_Field_Officers />}
       {activeTab === 'experts' && <Admin_Page_show_Expert />}
       {activeTab === 'incomingRequests' && <Admin_Page_show_Incoming_request />}
+
+    
+    
+
 
       
     </div>
