@@ -90,3 +90,33 @@ class ReactView_Edit_Auction_list_current_price(APIView):
             react_instance.save()
 
             return Response(status=status.HTTP_201_CREATED)
+
+
+class ReactView_Search_Sort_Auction_Prodcuts(APIView):
+    def post(self, request):
+        # Get the search parameters from the request
+        search_word = request.data.get('search_word')
+        type_value = request.data.get('type')
+        price_range = request.data.get('price_range')
+        print("YO")
+        print(search_word,type_value,price_range)
+        # Initialize a queryset with all objects
+        queryset = AuctionsInventory.objects.all()
+
+        # Perform search operations
+        if search_word:
+            queryset = queryset.filter(name__icontains=search_word)
+
+        if type_value:
+            # Assuming description is stored as a JSON field, you might need to adjust this
+            queryset = queryset.filter(description__icontains=type_value)
+
+        if price_range:
+            # Assuming the price_range is in the format "min_price,max_price"
+            min_price, max_price = map(float, price_range.split(','))
+            queryset = queryset.filter(price__gte=min_price, price__lte=max_price)
+
+        # Serialize the filtered queryset
+        serializer = AuctionsInventorySerializer(queryset, many=True)
+
+        return Response(serializer.data)
