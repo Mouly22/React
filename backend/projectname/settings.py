@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'latest_bidding',
     'incoming_auction_request',
     'incoming_auction_images',
+    'farmer_credentials',
 ]
 
 MIDDLEWARE = [

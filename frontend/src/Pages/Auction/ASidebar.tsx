@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 const ASidebar: React.FC<{}> = () => {
   const [searchWord, setSearchWord] = useState("");
+  const user_type = localStorage.getItem("user_type");
 
   const handleSearch = () => {
     // Perform the search logic here
@@ -33,10 +34,12 @@ const ASidebar: React.FC<{}> = () => {
         <Price />
       </div>
       <div>
-        <span className="sidebarTitle"></span>
-        <Link to="/postcreate" type="button" className="btnn">
-          Create New Post
-        </Link>
+      <span className="sidebarTitle"></span>
+        {user_type === 'farmer' && (
+          <Link to="/postcreate" type="button" className="btnn">
+            Create New Post
+          </Link>
+        )}
       </div>
     </div>
   );
