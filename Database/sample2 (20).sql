@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Nov 24, 2023 at 04:43 PM
+-- Generation Time: Nov 25, 2023 at 05:19 AM
 -- Server version: 8.1.0
 -- PHP Version: 8.2.8
 
@@ -94,7 +94,8 @@ INSERT INTO `auction_images_react` (`id`, `post_id`, `image`) VALUES
 (24, 34, 'auction_images/tomato_JEjsps4.jpeg'),
 (25, 35, 'auction_images/green-capsicum-15-gm-300-gm.jpeg'),
 (26, 36, 'auction_images/broccoli-1238250_640_zJSejQD.jpg'),
-(27, 37, 'auction_images/A1QAAV.png');
+(27, 37, 'auction_images/A1QAAV.png'),
+(28, 38, 'auction_images/mango.png');
 
 -- --------------------------------------------------------
 
@@ -713,19 +714,20 @@ CREATE TABLE `farmer_auction_posts_inventory_list` (
 --
 
 INSERT INTO `farmer_auction_posts_inventory_list` (`post_id`, `name`, `amount`, `price`, `total_bidding_placed`, `start_time`, `end_time`, `current_time`, `description`, `posted_by`) VALUES
-(1, 'Potato', 100.50, 745.00, 7, '2023-11-22 11:48:28.074218', '2023-12-31 23:59:59.000000', '2023-11-22 11:48:28.074258', 'Origin: Bagerhatt\r\nColor: Red', ''),
-(2, 'Tomato', 10.99, 6000.00, 0, '2023-11-22 12:21:29.329482', '2023-11-24 18:20:00.000000', '2023-11-22 12:21:29.329633', 'Origin: Kamalpur\r\nColor: Bright Red', ''),
-(3, 'Brocoli', 10.99, 54000.00, 0, '2023-11-22 12:32:58.444580', '2023-11-24 18:32:00.000000', '2023-11-22 12:32:58.444752', 'Origin: Dhaka\r\nColor: Red', ''),
+(1, 'Potato', 100.50, 745.00, 7, '2023-11-22 11:48:28.074218', '2023-12-31 23:59:59.000000', '2023-11-22 11:48:28.074258', 'Origin: Bagerhatt\r\nColor: Red\r\nType: Vegetables', ''),
+(2, 'Tomato', 10.99, 6000.00, 0, '2023-11-22 12:21:29.329482', '2023-11-24 18:20:00.000000', '2023-11-22 12:21:29.329633', 'Origin: Kamalpur\r\nColor: Bright Red\r\nType: Vegetables', ''),
+(3, 'Brocoli', 10.99, 54000.00, 0, '2023-11-22 12:32:58.444580', '2023-11-24 18:32:00.000000', '2023-11-22 12:32:58.444752', 'Origin: Dhaka\r\nColor: Red\r\nType: Vegetables', ''),
 (4, 'Rooster', 500.00, 49000.00, 0, '2023-11-22 12:44:44.250932', '2023-11-30 20:44:00.000000', '2023-11-22 12:44:44.250985', 'Origin:  Gopal Ganj\r\nColor: Colorful\r\nSize: Big', ''),
-(6, 'carrot', 4.00, 500.00, 0, '2023-11-22 14:00:35.680225', '2023-11-24 20:00:00.000000', '2023-11-22 14:00:35.680378', 'fresh', ''),
-(7, 'Aman Rice', 500.00, 300.00, 0, '2023-11-22 14:01:31.551855', '2023-11-25 20:01:00.000000', '2023-11-22 14:01:31.551951', 'good quality', ''),
-(15, 'Eggplant', 200.00, 5000.00, 0, '2023-11-22 14:28:04.596645', '2023-11-27 20:28:00.000000', '2023-11-22 14:28:04.596709', 'fresh, healthy', ''),
-(22, 'Red Onion', 20.00, 2000.00, 0, '2023-11-22 14:47:30.786867', '2023-11-25 20:47:00.000000', '2023-11-22 14:47:30.786978', 'fresh', ''),
-(23, 'Cauliflower', 2.00, 200.00, 0, '2023-11-22 14:53:39.092569', '2023-11-25 20:53:00.000000', '2023-11-22 14:53:39.092690', 'fresh', ''),
-(34, 'Tomato', 99.00, 58000.00, 1, '2023-11-24 10:24:47.402114', '2023-11-26 16:22:00.000000', '2023-11-24 10:24:47.402214', 'Type: Vegetable\r\nOrigin: India', 'Didar'),
-(35, 'Capcicum', 40.00, 10000.00, 0, '2023-11-24 10:35:16.782193', '2023-11-25 16:35:00.000000', '2023-11-24 10:35:16.782365', 'Type: vegetable\r\nOrigin: India', 'Didar'),
+(6, 'carrot', 4.00, 500.00, 0, '2023-11-22 14:00:35.680225', '2023-11-24 20:00:00.000000', '2023-11-22 14:00:35.680378', 'Type: Fruits', ''),
+(7, 'Aman Rice', 500.00, 400.00, 1, '2023-11-22 14:01:31.551855', '2023-11-25 20:01:00.000000', '2023-11-22 14:01:31.551951', 'Type: Crops', ''),
+(15, 'Eggplant', 200.00, 5000.00, 0, '2023-11-22 14:28:04.596645', '2023-11-27 20:28:00.000000', '2023-11-22 14:28:04.596709', 'Type: Vegetables', ''),
+(22, 'Red Onion', 20.00, 2000.00, 0, '2023-11-22 14:47:30.786867', '2023-11-25 20:47:00.000000', '2023-11-22 14:47:30.786978', 'Type: Vegetables', ''),
+(23, 'Cauliflower', 2.00, 200.00, 0, '2023-11-22 14:53:39.092569', '2023-11-25 20:53:00.000000', '2023-11-22 14:53:39.092690', 'Type: Vegetables', ''),
+(34, 'Tomato', 99.00, 58000.00, 1, '2023-11-24 10:24:47.402114', '2023-11-26 16:22:00.000000', '2023-11-24 10:24:47.402214', 'Type: Vegetables\r\nOrigin: India', 'Didar'),
+(35, 'Capcicum', 40.00, 10000.00, 0, '2023-11-24 10:35:16.782193', '2023-11-25 16:35:00.000000', '2023-11-24 10:35:16.782365', 'Type: Vegetables\r\nOrigin: India', 'Didar'),
 (36, 'Deshi Brocoli', 35.00, 21000.00, 1, '2023-11-24 10:48:12.310999', '2023-11-24 20:47:00.000000', '2023-11-24 10:48:12.311052', 'Type: Vegetables\r\nOrigin: Pabna', 'Didar'),
-(37, 'Rui Mach', 50.00, 13000.00, 0, '2023-11-24 16:39:56.220990', '2023-11-25 22:39:00.000000', '2023-11-24 16:39:56.221122', 'Type: Fish\r\nOrigin: Podda', 'Didar');
+(37, 'Rui Mach', 50.00, 13500.00, 1, '2023-11-24 16:39:56.220990', '2023-11-25 22:39:00.000000', '2023-11-24 16:39:56.221122', 'Type: Fish\r\nOrigin: Podda', 'Didar'),
+(38, 'Mango', 100.00, 50000.00, 0, '2023-11-25 05:13:28.864036', '2023-11-26 02:13:00.000000', '2023-11-25 05:13:28.864200', 'Type: Fruits\r\nOrigin: Rajshahi\r\nColor: Bright', 'Didar');
 
 -- --------------------------------------------------------
 
@@ -839,14 +841,15 @@ INSERT INTO `latest_bidding` (`id`, `post_id`, `max_price`, `current_price`, `la
 (3, 3, 65000.00, 54000.00, '', 0),
 (4, 4, 70000.00, 49000.00, '', 0),
 (5, 6, 2000.00, 500.00, '', 0),
-(6, 7, 1000.00, 300.00, '', 0),
+(6, 7, 1000.00, 400.00, 'Didar', 0),
 (8, 15, 10000.00, 5000.00, '', 0),
 (10, 22, 50000.00, 2000.00, '', 0),
 (11, 23, 500.00, 200.00, '', 0),
 (15, 34, 70000.00, 58000.00, 'Didar', 0),
 (16, 35, 99999999.00, 10000.00, '', 0),
 (17, 36, 30000.00, 21000.00, 'Didar', 0),
-(18, 37, 99999999.00, 13000.00, '', 0);
+(18, 37, 99999999.00, 13500.00, 'Didar', 0),
+(19, 38, 99999999.00, 50000.00, '', 0);
 
 -- --------------------------------------------------------
 
@@ -1085,7 +1088,7 @@ ALTER TABLE `all_login_credentials`
 -- AUTO_INCREMENT for table `auction_images_react`
 --
 ALTER TABLE `auction_images_react`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `authentication_react`
@@ -1205,7 +1208,7 @@ ALTER TABLE `expert_credentials`
 -- AUTO_INCREMENT for table `farmer_auction_posts_inventory_list`
 --
 ALTER TABLE `farmer_auction_posts_inventory_list`
-  MODIFY `post_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `post_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `field_officer_credentials`
@@ -1235,7 +1238,7 @@ ALTER TABLE `incoming_requests`
 -- AUTO_INCREMENT for table `latest_bidding`
 --
 ALTER TABLE `latest_bidding`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `user_credentials`
