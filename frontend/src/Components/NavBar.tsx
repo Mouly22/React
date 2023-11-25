@@ -40,11 +40,13 @@ const NavBar: React.FC<{}> = () => {
                 Blog
               </Link>
             </li>
-            <li>
-              <Link to="/auction" className="nav-link px-2 text-white">
-                Aunction
-              </Link>
-            </li>
+            {(user_type === 'businessman' || user_type === 'farmer') && (
+              <li>
+                <Link to="/auction" className="nav-link px-2 text-white">
+                  Auction
+                </Link>
+              </li>
+            )}
            
             {userId && (
               <li>
