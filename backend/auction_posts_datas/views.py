@@ -98,7 +98,7 @@ class ReactView_Search_Sort_Auction_Prodcuts(APIView):
         search_word = request.data.get('search_word')
         type_value = request.data.get('type')
         price_range = request.data.get('price_range')
-        print("YO")
+        print(type(price_range))
         print(search_word,type_value,price_range)
         # Initialize a queryset with all objects
         queryset = AuctionsInventory.objects.all()

@@ -24,8 +24,18 @@ const Auction: React.FC = () => {
 
   useEffect(() => {
     const fetchAuctionProducts = async () => {
+      const search_word = localStorage.getItem("search_word") || "";
+      const type = localStorage.getItem("type") || "";
+      const price_range = localStorage.getItem("price_range") || "0,9999999";
+      
+      const requestData = {
+        search_word: search_word,
+        type: type,
+        price_range: price_range
+      };
+      
       try {
-        const response = await axios.get('http://127.0.0.1:8000/register_add_auction_products/');
+        const response = await axios.post('http://127.0.0.1:8000/search_auction_products/', requestData);
         setAuctionProducts(response.data);
 
 

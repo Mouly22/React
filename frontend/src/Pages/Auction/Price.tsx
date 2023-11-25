@@ -5,6 +5,7 @@ const Price: React.FC<{}> = () => {
     // Update the value in localStorage
     console.log("price_range", `${minPrice},${maxPrice}`)
     localStorage.setItem("price_range", `${minPrice},${maxPrice}`);
+    
   };
 
   return (

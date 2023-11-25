@@ -13,6 +13,7 @@ const ASidebar: React.FC<{}> = () => {
     // After the search, store the search word in localStorage
     console.log(searchWord);
     localStorage.setItem("search_word", searchWord);
+    window.location.reload();
   };
 
   return (
