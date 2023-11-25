@@ -46,6 +46,8 @@ const Admin_Page_show_Incoming_request: React.FC = () => {
       Url = 'http://127.0.0.1:8000/register_expert/';
     }else if (newUserData.user_type === 'businessman') {
       Url = 'http://127.0.0.1:8000/register_businessman/';
+    }else if (newUserData.user_type === 'farmer') {
+      Url = 'http://127.0.0.1:8000/register_farmer/';
     }
     axios.post(Url, newUserData)
       .then((response) => {

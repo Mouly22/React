@@ -36,7 +36,7 @@ from businessmen.views import ReactView_Register_Businessmen,CheckUserExistenceV
 from latest_bidding.views import ReactView_Register_latest_bidding,CheckUserExistenceView_latest_bidding,ReactView_Edit_latest_bidding,ReactView_DeleteMember_latest_bidding, ReactView_Edit_latest_bidding_ended, ReactView_Edit_latest_bidding_maxprice
 from incoming_auction_request.views import ReactView_Register_Incoming_Auction_Prodcuts,CheckPostsExistenceView_Incoming_Auction_List,ReactView_DeleteMember_Incoming_Auction_list,ReactView_Edit_Incoming_Auction_list_current_price
 from incoming_auction_images.views import GetImageView_incoming_Auction,YourModelNameView_incoming_Auction
-
+from farmer_credentials.views import ReactView_Register_Farmer,CheckUserExistenceView_Farmer,ReactView_Edit_Farmer,ReactView_DeleteMember_Farmer
 
 urlpatterns = [
     path('', ReactView.as_view(), name="anything"),
@@ -79,6 +79,11 @@ urlpatterns = [
     path('delete_businessman/', ReactView_DeleteMember_Businessmen.as_view(), name="delete_field_officer"),#for delete businessmen 
     path('edit_businessman/', ReactView_Edit_Businessmen.as_view(), name="anything"), # for edit businessmen 
 
+    #For Farmer
+    path('register_farmer/', ReactView_Register_Farmer.as_view(), name="anything"),# for businessmen register
+    path('login_farmer/', CheckUserExistenceView_Farmer.as_view(), name="check_user"), # for  businessmen  logins
+    path('delete_farmer/', ReactView_DeleteMember_Farmer.as_view(), name="delete_field_officer"),#for delete businessmen 
+    path('edit_farmer/', ReactView_Edit_Farmer.as_view(), name="anything"), # for edit businessmen 
 
     #BLOG Part
 
