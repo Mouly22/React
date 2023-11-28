@@ -9,7 +9,6 @@ import './App.css';
 import SinglePost from "./Pages/BlogF/singlePost"
 import ASidebar from "./Pages/Auction/ASidebar";
 import Write from "./Pages/BlogF/write"
-import Sidebar from "./Pages/BlogF/Sidebar";
 import Graph from './Pages/Graph'
 import Form from './Pages/Form'
 import Blogview from "./Pages/BlogF/Blogview";
@@ -21,6 +20,7 @@ import PostCreate from "./Pages/Auction/postCreate";
 import PostDetails from "./Pages/Auction/PostDetails";
 import AdminPost from "./Pages/Auction/AdminPost";
 import AdminDetails from "./Pages/Auction/AdminDetails";
+import PayView from "./Pages/Payment/PayView";
 //import Field_Officer_Page from "./views/field_officer";
 import Field_officer_Page from "./views_field_officers/Field_officer_view";
 import Expert_Page from "./views_expert/expert_view";
@@ -50,9 +50,7 @@ function App() {
             <Route path = "/postdetails/:postId" element = {<PostDetails/>}/>
             <Route path = "/adminpost" element = {<AdminPost/>}/>
             <Route path = "/admindetails/:postId" element = {<AdminDetails/>}/>
-           
-            
-            
+            <Route path = "/payview" element = {<PayView/>}/>
 
             <Route path = "/profile" element= {<Profile/>}/>
             <Route path = "/graph" element= {<Graph/>}/>
