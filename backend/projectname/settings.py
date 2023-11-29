@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'farmer_credentials',
     'pending_businessmen_payment',
     'pending_farmer_payment',
+    'deliverymen',
 ]
 
 MIDDLEWARE = [

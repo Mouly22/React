@@ -60,7 +60,7 @@ function App() {
             <Route path = "/form" element= {<Form/>}/>
             <Route path = "/farmer_review" element= {<Farmer_review/>}/>
             <Route path = "/delivery" element= {<Delivery/>}/>
-            <Route path = "/deliveryman_view" element= {<Deliveryman_View/>}/>
+            <Route path = "/deliveryman" element= {<Deliveryman_View/>}/>
             <Route path = "/status_delivery" element= {<Status_delivery/>}/>
          
             

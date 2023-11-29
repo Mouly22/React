@@ -39,7 +39,7 @@ from incoming_auction_images.views import GetImageView_incoming_Auction,YourMode
 from farmer_credentials.views import ReactView_Register_Farmer,CheckUserExistenceView_Farmer,ReactView_Edit_Farmer,ReactView_DeleteMember_Farmer
 from pending_businessmen_payment.views import ReactView_Register_pending_businessmen_payment,ReactView_DeleteMember_pending_businessmen_payment,ReactView_Search_Sort_pending_businessmen_payment
 from pending_farmer_payment.views import ReactView_Register_pending_farmer_payment,ReactView_DeleteMember_pending_farmer_payment,ReactView_Search_Sort_pending_farmer_payment
-
+from deliverymen.views import ReactView_Register_Deliverymen,CheckUserExistenceView_Deliverymen,ReactView_Edit_Deliverymen,ReactView_DeleteMember_Deliverymen
 
 
 urlpatterns = [
@@ -88,6 +88,12 @@ urlpatterns = [
     path('login_farmer/', CheckUserExistenceView_Farmer.as_view(), name="check_user"), # for  farmer  logins
     path('delete_farmer/', ReactView_DeleteMember_Farmer.as_view(), name="delete_field_officer"),#for delete farmer 
     path('edit_farmer/', ReactView_Edit_Farmer.as_view(), name="anything"), # for edit farmer 
+
+    #For Deliverymen
+    path('register_deliveryman/', ReactView_Register_Deliverymen.as_view(), name="anything"),# for deliveryman register
+    path('login_deliveryman/', CheckUserExistenceView_Deliverymen.as_view(), name="check_user"), # for  deliveryman  logins
+    path('delete_deliveryman/', ReactView_DeleteMember_Deliverymen.as_view(), name="delete_field_officer"),#for delete deliveryman 
+    path('edit_deliveryman/', ReactView_Edit_Deliverymen.as_view(), name="anything"), # for edit deliveryman 
 
     #BLOG Part
 
@@ -145,7 +151,7 @@ urlpatterns = [
     path('delete_pending_payment/', ReactView_DeleteMember_pending_businessmen_payment.as_view(), name="delete_field_officer"),#for delete pending businesmen payment
     path('get_businessman_pending_payment/', ReactView_Search_Sort_pending_businessmen_payment.as_view(), name="anything"), # for getting  pending businesmen payment
 
-    #For pending businessmen payment
+    #For pending farmer payment
     path('register_pending_farmer_payment/', ReactView_Register_pending_farmer_payment.as_view(), name="anything"),# for pending businesmen payment register
     path('delete_pending_farmer_payment/', ReactView_DeleteMember_pending_farmer_payment.as_view(), name="delete_field_officer"),#for delete pending businesmen payment
     path('get_pending_farmer_payment/', ReactView_Search_Sort_pending_farmer_payment.as_view(), name="anything"), # for getting  pending businesmen payment

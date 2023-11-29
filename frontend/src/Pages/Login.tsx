@@ -38,6 +38,8 @@ const DataFormComponent_login: React.FC = () => {
         navigate('/businessman');
       }else if (userType === "farmer") {
         navigate('/farmer');
+      }else if (userType === "deliveryman") {
+        navigate('/deliveryman');
       }
     }
   }, [passwordMatch, navigate, userid, userType]);
