@@ -37,6 +37,8 @@ from latest_bidding.views import ReactView_Register_latest_bidding,CheckUserExis
 from incoming_auction_request.views import ReactView_Register_Incoming_Auction_Prodcuts,CheckPostsExistenceView_Incoming_Auction_List,ReactView_DeleteMember_Incoming_Auction_list,ReactView_Edit_Incoming_Auction_list_current_price
 from incoming_auction_images.views import GetImageView_incoming_Auction,YourModelNameView_incoming_Auction
 from farmer_credentials.views import ReactView_Register_Farmer,CheckUserExistenceView_Farmer,ReactView_Edit_Farmer,ReactView_DeleteMember_Farmer
+from pending_businessmen_payment.views import ReactView_Register_pending_businessmen_payment,ReactView_DeleteMember_pending_businessmen_payment,ReactView_Search_Sort_pending_businessmen_payment
+
 
 urlpatterns = [
     path('', ReactView.as_view(), name="anything"),
@@ -80,10 +82,10 @@ urlpatterns = [
     path('edit_businessman/', ReactView_Edit_Businessmen.as_view(), name="anything"), # for edit businessmen 
 
     #For Farmer
-    path('register_farmer/', ReactView_Register_Farmer.as_view(), name="anything"),# for businessmen register
-    path('login_farmer/', CheckUserExistenceView_Farmer.as_view(), name="check_user"), # for  businessmen  logins
-    path('delete_farmer/', ReactView_DeleteMember_Farmer.as_view(), name="delete_field_officer"),#for delete businessmen 
-    path('edit_farmer/', ReactView_Edit_Farmer.as_view(), name="anything"), # for edit businessmen 
+    path('register_farmer/', ReactView_Register_Farmer.as_view(), name="anything"),# for farmer register
+    path('login_farmer/', CheckUserExistenceView_Farmer.as_view(), name="check_user"), # for  farmer  logins
+    path('delete_farmer/', ReactView_DeleteMember_Farmer.as_view(), name="delete_field_officer"),#for delete farmer 
+    path('edit_farmer/', ReactView_Edit_Farmer.as_view(), name="anything"), # for edit farmer 
 
     #BLOG Part
 
@@ -134,6 +136,12 @@ urlpatterns = [
     #For incoming auction images
     path('register_add_incoming_auction_images/', YourModelNameView_incoming_Auction.as_view(), name="anything"),# for images
     path('login_incoming_auction_images/', GetImageView_incoming_Auction.as_view(), name="check_user"), # for checking a blog image exists if exists it returns the image
+
+
+    #For pending businessmen payment
+    path('register_pending_payment/', ReactView_Register_pending_businessmen_payment.as_view(), name="anything"),# for pending businesmen payment register
+    path('delete_pending_payment/', ReactView_DeleteMember_pending_businessmen_payment.as_view(), name="delete_field_officer"),#for delete pending businesmen payment
+    path('get_businessman_pending_payment/', ReactView_Search_Sort_pending_businessmen_payment.as_view(), name="anything"), # for getting  pending businesmen payment
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
