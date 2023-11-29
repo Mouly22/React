@@ -11,9 +11,12 @@ import ASidebar from "./Pages/Auction/ASidebar";
 import Write from "./Pages/BlogF/write"
 import Sidebar from "./Pages/BlogF/Sidebar";
 import Graph from './Pages/Graph'
+import Deliveryman_View from './Pages/Deliveryman_View'
 import Form from './Pages/Form'
 import Blogview from "./Pages/BlogF/Blogview";
 import Profile from './Pages/Profile';
+import Delivery from './Pages/Delivery';
+import Status_delivery from './Pages/Status_delivery';
 import Farmer_review from './Pages/Farmer_review';
 import Search from "./Pages/BlogF/search";
 import Auction from "./Pages/Auction/Auction";
@@ -57,6 +60,9 @@ function App() {
             <Route path = "/graph" element= {<Graph/>}/>
             <Route path = "/form" element= {<Form/>}/>
             <Route path = "/farmer_review" element= {<Farmer_review/>}/>
+            <Route path = "/delivery" element= {<Delivery/>}/>
+            <Route path = "/deliveryman_view" element= {<Deliveryman_View/>}/>
+            <Route path = "/status_delivery" element= {<Status_delivery/>}/>
          
             
             <Route
