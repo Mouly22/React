@@ -24,10 +24,20 @@ const Auction: React.FC = () => {
 
   useEffect(() => {
     const fetchAuctionProducts = async () => {
+      const search_word = localStorage.getItem("search_word") || "";
+      const type = localStorage.getItem("type") || "";
+      const price_range = localStorage.getItem("price_range") || "0,9999999";
+      
+      const requestData = {
+        search_word: search_word,
+        type: type,
+        price_range: price_range
+      };
+      
       try {
-        const response = await axios.get('http://127.0.0.1:8000/register_add_auction_products/');
+        const response = await axios.post('http://127.0.0.1:8000/search_auction_products/', requestData);
         setAuctionProducts(response.data);
-
+        console.log(response.data);
 
         const imageResponses = await Promise.all(
           response.data.map(async (product: AuctionItem) => {
@@ -95,38 +105,42 @@ const Auction: React.FC = () => {
       <ASidebar />
 
       <div className="amazon-products" style={{ maxHeight: '90vh', overflowY: 'auto' }}>
-        {auctionProducts.map((product, index) => {
-          const remainingTime = new Date(product.end_time).getTime() - new Date().getTime();
-          const remainingHours = Math.floor(remainingTime / (1000 * 60 * 60));
+        {auctionProducts.length === 0 ? (
+          <p>No Product found</p>
+        ) : (
+          auctionProducts.map((product, index) => {
+            const remainingTime = new Date(product.end_time).getTime() - new Date().getTime();
+            const remainingHours = Math.floor(remainingTime / (1000 * 60 * 60));
 
-          return (
-            <div key={product.post_id} className="product-card">
-              {resizedImages[index] && (
-                <img
-                  src={resizedImages[index]}
-                  alt={product.name}
-                  style={{ width: '200px', height: '150px' }}
-                />
-              )}
-              <h3>{product.name}</h3>
-              <h6>Amount: {product.amount} kg</h6>
-              <h6>Price: {product.price} Taka only</h6>
-              <h6>Total Bidding Placed: {product.total_bidding_placed}</h6>
-              <h6>
-                {remainingHours > 0 ? `${remainingHours} hours remaining` : 'Auction has ended'}
-              </h6>
-              <div>
-                <button
-                  type="button"
-                  className="btnn"
-                  onClick={() => handlePlaceBidding(product.post_id)}
-                >
-                  Place your bidding
-                </button>
+            return (
+              <div key={product.post_id} className="product-card">
+                {resizedImages[index] && (
+                  <img
+                    src={resizedImages[index]}
+                    alt={product.name}
+                    style={{ width: '200px', height: '150px' }}
+                  />
+                )}
+                <h3>{product.name}</h3>
+                <h6>Amount: {product.amount} kg</h6>
+                <h6>Price: {product.price} Taka only</h6>
+                <h6>Total Bidding Placed: {product.total_bidding_placed}</h6>
+                <h6>
+                  {remainingHours > 0 ? `${remainingHours} hours remaining` : 'Auction has ended'}
+                </h6>
+                <div>
+                  <button
+                    type="button"
+                    className="btnn"
+                    onClick={() => handlePlaceBidding(product.post_id)}
+                  >
+                    Place your bidding
+                  </button>
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })
+        )}
       </div>
     </div>
   );

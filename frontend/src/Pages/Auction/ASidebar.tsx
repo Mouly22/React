@@ -1,26 +1,48 @@
+import React, { useState } from "react";
 import Category from "./Category";
 import Price from "./Price";
 import { Link } from "react-router-dom";
+
 const ASidebar: React.FC<{}> = () => {
-    return (
+  const [searchWord, setSearchWord] = useState("");
+  const user_type = localStorage.getItem("user_type");
+
+  const handleSearch = () => {
+    // Perform the search logic here
+    // ...
+
+    // After the search, store the search word in localStorage
+    console.log(searchWord);
+    localStorage.setItem("search_word", searchWord);
+    window.location.reload();
+  };
+
+  return (
     <div className="sidebar">
-        <div className="search-container">
-            <input type="text" placeholder="Search..." />
-            <button type="button" className="btnn">
-                Search
-            </button>
-        <br/>
+      <div className="search-container">
+        <input
+          type="text"
+          placeholder="Search..."
+          value={searchWord}
+          onChange={(e) => setSearchWord(e.target.value)}
+        />
+        <button type="button" className="btnn" onClick={handleSearch}>
+          Search
+        </button>
+        <br />
         <Category />
         <Price />
-        </div>
-        <div>
-        <span className="sidebarTitle"></span>
-        <Link to="/postcreate" type="button" className="btnn">
+      </div>
+      <div>
+      <span className="sidebarTitle"></span>
+        {user_type === 'farmer' && (
+          <Link to="/postcreate" type="button" className="btnn">
             Create New Post
-        </Link>
-        </div>
+          </Link>
+        )}
+      </div>
     </div>
-
-);
+  );
 };
+
 export default ASidebar;

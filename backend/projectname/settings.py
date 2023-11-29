@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'latest_bidding',
     'incoming_auction_request',
     'incoming_auction_images',
+    'farmer_credentials',
 ]
 
 MIDDLEWARE = [
@@ -108,9 +109,15 @@ DATABASES = {
 'ENGINE': 'django.db.backends.mysql',
 'NAME': 'sample2', # database name
 'USER': 'root',
+<<<<<<< Updated upstream
 'PASSWORD': '',
 'HOST': 'localhost', # or the hostname where your MySQL server is running
 'PORT': '3306', # or the port on which your MySQL server is listening
+=======
+'PASSWORD': 'root',
+'HOST': '127.0.0.1', # or the hostname where your MySQL server is running
+'PORT': '3307', # or the port on which your MySQL server is listening
+>>>>>>> Stashed changes
 }
 }
 
