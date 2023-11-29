@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'incoming_auction_images',
     'farmer_credentials',
     'pending_businessmen_payment',
+    'pending_farmer_payment',
 ]
 
 MIDDLEWARE = [

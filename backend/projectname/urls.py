@@ -38,6 +38,8 @@ from incoming_auction_request.views import ReactView_Register_Incoming_Auction_P
 from incoming_auction_images.views import GetImageView_incoming_Auction,YourModelNameView_incoming_Auction
 from farmer_credentials.views import ReactView_Register_Farmer,CheckUserExistenceView_Farmer,ReactView_Edit_Farmer,ReactView_DeleteMember_Farmer
 from pending_businessmen_payment.views import ReactView_Register_pending_businessmen_payment,ReactView_DeleteMember_pending_businessmen_payment,ReactView_Search_Sort_pending_businessmen_payment
+from pending_farmer_payment.views import ReactView_Register_pending_farmer_payment,ReactView_DeleteMember_pending_farmer_payment,ReactView_Search_Sort_pending_farmer_payment
+
 
 
 urlpatterns = [
@@ -142,6 +144,12 @@ urlpatterns = [
     path('register_pending_payment/', ReactView_Register_pending_businessmen_payment.as_view(), name="anything"),# for pending businesmen payment register
     path('delete_pending_payment/', ReactView_DeleteMember_pending_businessmen_payment.as_view(), name="delete_field_officer"),#for delete pending businesmen payment
     path('get_businessman_pending_payment/', ReactView_Search_Sort_pending_businessmen_payment.as_view(), name="anything"), # for getting  pending businesmen payment
+
+    #For pending businessmen payment
+    path('register_pending_farmer_payment/', ReactView_Register_pending_farmer_payment.as_view(), name="anything"),# for pending businesmen payment register
+    path('delete_pending_farmer_payment/', ReactView_DeleteMember_pending_farmer_payment.as_view(), name="delete_field_officer"),#for delete pending businesmen payment
+    path('get_pending_farmer_payment/', ReactView_Search_Sort_pending_farmer_payment.as_view(), name="anything"), # for getting  pending businesmen payment
+
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

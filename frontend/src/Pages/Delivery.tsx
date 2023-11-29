@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './delivery.css';
+import './Delivery.css';
 
 interface PostProps {
   postId: number;
