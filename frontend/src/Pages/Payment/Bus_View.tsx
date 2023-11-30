@@ -21,7 +21,6 @@ const BusView: React.FC = () => {
       const response = await axios.get('http://127.0.0.1:8000/register_pending_payment/');
       setAuctionProducts(response.data);
 
-    
       const imageResponses = await Promise.all(
         response.data.map(async (product: AuctionItem) => {
           const imageResponse = await axios.post(
@@ -71,16 +70,14 @@ const BusView: React.FC = () => {
               <h6>Amount: {product.amount} kg</h6>
               <h6>Price: {product.price} Taka only</h6>
               <h6>Businessman: {product.businessman_userid}</h6>
-              <br/>
+              <br />
 
               <div>
-                <Link to="/payview" className='btnn'>
+                <Link to={`/payview/${product.post_id}`} className='btnn'>
                   Complete your Payment
                 </Link>
-              
-                
               </div>
-              <br/>
+              <br />
             </div>
           );
         })}
@@ -90,9 +87,3 @@ const BusView: React.FC = () => {
 };
 
 export default BusView;
-
-
-
-
-
-

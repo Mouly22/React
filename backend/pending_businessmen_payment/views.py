@@ -54,3 +54,27 @@ class ReactView_Search_Sort_pending_businessmen_payment(APIView):
         serializer = ReactSerializer(queryset, many=True)
 
         return Response(serializer.data)
+
+
+class ReactView_Get_product_details(APIView):
+    def post(self, request):
+        # Get the search parameters from the request
+        userid = request.data.get('post_id')
+
+
+        # Initialize a queryset with all objects
+        queryset = React.objects.all()
+        print(userid)
+        # Perform search operations
+        if userid:
+            queryset = queryset.filter(post_id=userid)
+            print(queryset)
+        
+
+
+
+
+        # Serialize the filtered queryset
+        serializer = ReactSerializer(queryset, many=True)
+
+        return Response(serializer.data[0])

@@ -54,7 +54,7 @@ function App() {
             <Route path = "/postdetails/:postId" element = {<PostDetails/>}/>
             <Route path = "/adminpost" element = {<AdminPost/>}/>
             <Route path = "/admindetails/:postId" element = {<AdminDetails/>}/>
-            <Route path = "/payview" element = {<PayView/>}/>
+            <Route path = "/payview/:post_id" element = {<PayView/>}/>
             <Route path = "/profile" element= {<Profile/>}/>
             <Route path = "/graph" element= {<Graph/>}/>
             <Route path = "/form" element= {<Form/>}/>

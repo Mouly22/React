@@ -37,7 +37,7 @@ from latest_bidding.views import ReactView_Register_latest_bidding,CheckUserExis
 from incoming_auction_request.views import ReactView_Register_Incoming_Auction_Prodcuts,CheckPostsExistenceView_Incoming_Auction_List,ReactView_DeleteMember_Incoming_Auction_list,ReactView_Edit_Incoming_Auction_list_current_price
 from incoming_auction_images.views import GetImageView_incoming_Auction,YourModelNameView_incoming_Auction
 from farmer_credentials.views import ReactView_Register_Farmer,CheckUserExistenceView_Farmer,ReactView_Edit_Farmer,ReactView_DeleteMember_Farmer
-from pending_businessmen_payment.views import ReactView_Register_pending_businessmen_payment,ReactView_DeleteMember_pending_businessmen_payment,ReactView_Search_Sort_pending_businessmen_payment
+from pending_businessmen_payment.views import ReactView_Register_pending_businessmen_payment,ReactView_DeleteMember_pending_businessmen_payment,ReactView_Search_Sort_pending_businessmen_payment,ReactView_Get_product_details
 from pending_farmer_payment.views import ReactView_Register_pending_farmer_payment,ReactView_DeleteMember_pending_farmer_payment,ReactView_Search_Sort_pending_farmer_payment
 from deliverymen.views import ReactView_Register_Deliverymen,CheckUserExistenceView_Deliverymen,ReactView_Edit_Deliverymen,ReactView_DeleteMember_Deliverymen
 from delivery_bountys.views import ReactView_Register_bounties, ReactView_DeleteMember_bounties,ReactView_Search_Sort_bounties
@@ -152,6 +152,7 @@ urlpatterns = [
     path('register_pending_payment/', ReactView_Register_pending_businessmen_payment.as_view(), name="anything"),# for pending businesmen payment register
     path('delete_pending_payment/', ReactView_DeleteMember_pending_businessmen_payment.as_view(), name="delete_field_officer"),#for delete pending businesmen payment
     path('get_businessman_pending_payment/', ReactView_Search_Sort_pending_businessmen_payment.as_view(), name="anything"), # for getting  pending businesmen payment
+    path('get_businessman_pending_payment_post_details/', ReactView_Get_product_details.as_view(), name="anything"), # for getting  pending businesmen product details
 
     #For pending farmer payment
     path('register_pending_farmer_payment/', ReactView_Register_pending_farmer_payment.as_view(), name="anything"),# for pending businesmen payment register
