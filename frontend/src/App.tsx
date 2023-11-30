@@ -30,6 +30,7 @@ import Expert_Page from "./views_expert/expert_view";
 import SignupForm_for_admin from "./views/admin_show_admin_adding_page";
 import Businessmen_Page from "./views_businessmen/businessmen_view";
 import Farmer_Page from "./views_farmer/farmer_view";
+import BusView from "./Pages/Payment/Bus_View";
 
 
 function App() {
@@ -54,24 +55,17 @@ function App() {
             <Route path = "/adminpost" element = {<AdminPost/>}/>
             <Route path = "/admindetails/:postId" element = {<AdminDetails/>}/>
             <Route path = "/payview" element = {<PayView/>}/>
-
             <Route path = "/profile" element= {<Profile/>}/>
             <Route path = "/graph" element= {<Graph/>}/>
             <Route path = "/form" element= {<Form/>}/>
+            <Route path = "/bus_view" element= {<BusView/>}/>
             <Route path = "/farmer_review" element= {<Farmer_review/>}/>
             <Route path = "/delivery" element= {<Delivery/>}/>
             <Route path = "/deliveryman" element= {<Deliveryman_View/>}/>
             <Route path = "/status_delivery" element= {<Status_delivery/>}/>
-         
-            
-            <Route
-              path="/admin"
-              element={<Admin_Page />} // Display the Admin_Page component
-            />
-                          <Route
-              path="/add_admins"
-              element={<SignupForm_for_admin />} // Display the Admin_Page component
-            />
+
+            <Route path="/admin" element={<Admin_Page />}/>
+            <Route path="/add_admins" element={<SignupForm_for_admin />}/>
               <Route
               path="/field_officer"
               element={<Field_officer_Page />} // Display the Field Officer component

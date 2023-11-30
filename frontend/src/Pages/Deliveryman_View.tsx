@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Deliveryman_View.css';
+import './Delivery.css';
 
 interface PostProps {
   postId: number;
@@ -63,7 +63,7 @@ const Post: React.FC<PostProps> = ({ postId, username, productName, location, qu
   );
 };
 
-const Delivery = () => {
+const App = () => {
   const data = [
     { postId: 1, username: 'User1', productName: 'Potato', location: 'Cumilla', quantity: 10, deliveryMoney: 50 },
     { postId: 2, username: 'User2', productName: 'Tomato', location: 'Dhaka', quantity: 20, deliveryMoney: 60 },
@@ -80,4 +80,4 @@ const Delivery = () => {
   );
 };
 
-export default Delivery;
+export default App;
