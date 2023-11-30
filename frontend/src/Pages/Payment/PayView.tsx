@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import './PayView.css';
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 const PayView: React.FC = () => {
@@ -10,7 +10,7 @@ const PayView: React.FC = () => {
   const [transactionIdInput, setTransactionIdInput] = useState<string>('');
   const [showCelebration, setShowCelebration] = useState<boolean>(false);
   const [deliveryAmount, setDeliveryAmount] = useState<number>(0);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -39,15 +39,23 @@ const PayView: React.FC = () => {
   const handlePaymentSubmit = async () => {
     try {
       // Make a post request to register pending farmer payment
-      console.log(orderData.location);
+      console.log(orderData.farmer_userid)
+      const responsefarmer = await axios.post('http://127.0.0.1:8000/login_farmer/', {
+        userid: orderData.farmer_userid,
+      });
+      console.log(responsefarmer.data.user_data.address);
       await axios.post('http://127.0.0.1:8000/register_pending_farmer_payment/', {
         userid: orderData.farmer_userid,
         transaction_id: transactionIdInput,
         amount: orderData.amount,
         product_id: post_id,
         name: orderData.name,
-        location: orderData.location,
+        location: responsefarmer.data.user_data.address,
       });
+      await axios.post('http://127.0.0.1:8000/delete_pending_payment/', {
+        post_id: post_id,
+      });
+      navigate('/businessman');
 
       // Handle payment submission logic here
       console.log('Payment Input:', paymentInput);

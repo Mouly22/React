@@ -11,4 +11,4 @@ class React(models.Model):
     farmer_userid = models.CharField(max_length=255, blank=True, null=True)
     location = models.CharField(max_length=255, default='some_default_value')
     class Meta:
-        db_table = 'pending_businessmen_payment' 
+        db_table = 'pending_on_delivery_products' 

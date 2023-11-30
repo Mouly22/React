@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     'deliverymen',
     'delivery_bountys',
     'delivery_bountys_booked',
+    'pending_on_delivery_products',
 ]
 
 MIDDLEWARE = [

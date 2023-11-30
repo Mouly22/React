@@ -42,7 +42,7 @@ from pending_farmer_payment.views import ReactView_Register_pending_farmer_payme
 from deliverymen.views import ReactView_Register_Deliverymen,CheckUserExistenceView_Deliverymen,ReactView_Edit_Deliverymen,ReactView_DeleteMember_Deliverymen
 from delivery_bountys.views import ReactView_Register_bounties, ReactView_DeleteMember_bounties,ReactView_Search_Sort_bounties
 from delivery_bountys_booked.views import ReactView_Register_bounties_accepted,ReactView_DeleteMember_bounties_accepted,ReactView_Search_Sort_bounties_accepted,ReactView_UpdateDeliveryState,ReactView_GetDeliveryState
-
+from pending_on_delivery_products.views import ReactView_Register_pending_on_delivery,ReactView_DeleteMember_pending_on_delivery,ReactView_Search_Sort_pending_on_delivery,ReactView_Get_product_details_pending_on_delivery
 
 urlpatterns = [
     path('', ReactView.as_view(), name="anything"),
@@ -171,6 +171,13 @@ urlpatterns = [
     path('get_deilvery_bounty_booked/', ReactView_Search_Sort_bounties_accepted.as_view(), name="anything"), # for getting  pending delivery bounties accepted  
     path('get_deilvery_bounty_booked_delivery_state_update/', ReactView_UpdateDeliveryState.as_view(), name="anything"), # for getting  pending delivery bounties accepted
     path('get_deilvery_bounty_booked_delivery_state_check/', ReactView_GetDeliveryState.as_view(), name="anything"), # for getting  pending delivery bounties accepted
+
+    #For pending on delivery products list
+    path('register_pending_delivery_products/', ReactView_Register_pending_on_delivery.as_view(), name="anything"),# for pending businesmen payment register
+    path('delete_pending_delivery_products/', ReactView_DeleteMember_pending_on_delivery.as_view(), name="delete_field_officer"),#for delete pending businesmen payment
+    path('get_pending_delivery_products/', ReactView_Search_Sort_pending_on_delivery.as_view(), name="anything"), # for getting  pending businesmen payment
+    path('get_pending_delivery_products_post_details/', ReactView_Get_product_details_pending_on_delivery.as_view(), name="anything"), # for getting  pending businesmen product details
+
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
