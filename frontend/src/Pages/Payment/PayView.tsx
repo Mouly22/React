@@ -55,6 +55,24 @@ const PayView: React.FC = () => {
       await axios.post('http://127.0.0.1:8000/delete_pending_payment/', {
         post_id: post_id,
       });
+      await axios.post('http://127.0.0.1:8000/register_pending_delivery_products/', {
+        post_id: orderData.post_id,
+        name: orderData.name,
+        amount: orderData.amount,
+        price: orderData.price,
+        businessman_userid: orderData.businessman_userid,
+        farmer_userid: orderData.farmer_userid,
+
+        location: responsefarmer.data.user_data.address,
+      });
+      await axios.post('http://127.0.0.1:8000/register_deilvery_bounty/', {
+        userid: orderData.farmer_userid,
+        transaction_id: transactionIdInput,
+        amount: orderData.amount,
+        product_id: post_id,
+        name: orderData.name,
+        location: responsefarmer.data.user_data.address,
+      });
       navigate('/businessman');
 
       // Handle payment submission logic here

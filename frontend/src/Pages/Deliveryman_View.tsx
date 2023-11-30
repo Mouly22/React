@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 
 interface PostProps {
@@ -135,6 +136,9 @@ const Delivery = () => {
 
   return (
     <div>
+      <Link to={`/delivery`} className='btnn'>
+          All Jobs
+        </Link>
       {data.map((item, index) => (
         <Post
           key={index}

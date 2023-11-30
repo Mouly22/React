@@ -81,7 +81,7 @@ class ReactView_UpdateDeliveryState(APIView):
 class ReactView_GetDeliveryState(APIView):
     def post(self, request):
         # Get the product_id from the request
-        product_id = request.data.get('product_id')
+        product_id = request.data.get('post_id')
         print(product_id)
 
         try:

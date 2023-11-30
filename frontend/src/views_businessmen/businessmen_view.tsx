@@ -19,6 +19,9 @@ const Businessmen_Page: React.FC = () => {
           <h2>Welcome, Businessmen</h2>
           <p><strong>User ID:</strong> {userid}</p>
           <p><strong>User Type:</strong> {userType}</p>
+          <Link to={`/delivery_list`} className='btnn'>
+                  Track Your order
+                </Link>
           <br/>
           <h4>Congratulations on your winning bid for quality items! 🎉</h4>
           <br/>

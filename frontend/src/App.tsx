@@ -31,6 +31,7 @@ import SignupForm_for_admin from "./views/admin_show_admin_adding_page";
 import Businessmen_Page from "./views_businessmen/businessmen_view";
 import Farmer_Page from "./views_farmer/farmer_view";
 import BusView from "./Pages/Payment/Bus_View";
+import AllIncomingDeliveries from "./Pages/Delivery_status/pending_deliverylist";
 
 
 function App() {
@@ -62,7 +63,8 @@ function App() {
             <Route path = "/farmer_review" element= {<Farmer_review/>}/>
             <Route path = "/delivery" element= {<Delivery/>}/>
             <Route path = "/deliveryman" element= {<Deliveryman_View/>}/>
-            <Route path = "/status_delivery" element= {<Status_delivery/>}/>
+            <Route path = "/status_delivery/:post_id" element= {<Status_delivery/>}/>
+            <Route path = "/delivery_list" element= {<AllIncomingDeliveries/>}/>
 
             <Route path="/admin" element={<Admin_Page />}/>
             <Route path="/add_admins" element={<SignupForm_for_admin />}/>
