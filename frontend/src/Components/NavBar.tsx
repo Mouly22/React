@@ -35,6 +35,7 @@ const NavBar: React.FC<{}> = () => {
                 Home
               </Link>
             </li>
+           
             <li>
               <Link to="/blogview" className="nav-link px-2 text-white">
                 Blog

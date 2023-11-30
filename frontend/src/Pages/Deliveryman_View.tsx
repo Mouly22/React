@@ -63,7 +63,7 @@ const Post: React.FC<PostProps> = ({ postId, username, productName, location, qu
   );
 };
 
-const App = () => {
+const Delivery = () => {
   const data = [
     { postId: 1, username: 'User1', productName: 'Potato', location: 'Cumilla', quantity: 10, deliveryMoney: 50 },
     { postId: 2, username: 'User2', productName: 'Tomato', location: 'Dhaka', quantity: 20, deliveryMoney: 60 },
@@ -80,4 +80,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Delivery;

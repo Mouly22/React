@@ -9,7 +9,7 @@ interface PostProps {
   deliveryMoney: number;
 }
 
-const Post: React.FC<PostProps> = ({ postId, productName, location, quantity, deliveryMoney }) => {
+const Posts: React.FC<PostProps> = ({ postId, productName, location, quantity, deliveryMoney }) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleAccept = () => {
@@ -63,7 +63,7 @@ const App = () => {
       />
       {userId && <p>User ID: {userId}</p>}
       {filteredData.map((item, index) => (
-        <Post key={index} postId={item.postId} productName={item.productName} location={item.location} quantity={item.quantity} deliveryMoney={item.deliveryMoney} />
+        <Posts key={index} postId={item.postId} productName={item.productName} location={item.location} quantity={item.quantity} deliveryMoney={item.deliveryMoney} />
       ))}
     </div>
   );
