@@ -41,7 +41,7 @@ from pending_businessmen_payment.views import ReactView_Register_pending_busines
 from pending_farmer_payment.views import ReactView_Register_pending_farmer_payment,ReactView_DeleteMember_pending_farmer_payment,ReactView_Search_Sort_pending_farmer_payment
 from deliverymen.views import ReactView_Register_Deliverymen,CheckUserExistenceView_Deliverymen,ReactView_Edit_Deliverymen,ReactView_DeleteMember_Deliverymen
 from delivery_bountys.views import ReactView_Register_bounties, ReactView_DeleteMember_bounties,ReactView_Search_Sort_bounties
-from delivery_bountys_booked.views import ReactView_Register_bounties_accepted,ReactView_DeleteMember_bounties_accepted,ReactView_Search_Sort_bounties_accepted,ReactView_UpdateDeliveryState
+from delivery_bountys_booked.views import ReactView_Register_bounties_accepted,ReactView_DeleteMember_bounties_accepted,ReactView_Search_Sort_bounties_accepted,ReactView_UpdateDeliveryState,ReactView_GetDeliveryState
 
 
 urlpatterns = [
@@ -165,10 +165,12 @@ urlpatterns = [
 
 
     #For pending delivery bounties accepted
-    path('register_deilvery_bounty_booked/', ReactView_Register_bounties_accepted.as_view(), name="anything"),# for pending businesmen payment register
-    path('delete_deilvery_bounty_booked/', ReactView_DeleteMember_bounties_accepted.as_view(), name="delete_field_officer"),#for delete pending businesmen payment
-    path('get_deilvery_bounty_booked/', ReactView_Search_Sort_bounties_accepted.as_view(), name="anything"), # for getting  pending businesmen payment   
-    path('get_deilvery_bounty_booked_delivery_state_update/', ReactView_UpdateDeliveryState.as_view(), name="anything"), # for getting  pending businesmen payment  
+    path('register_deilvery_bounty_booked/', ReactView_Register_bounties_accepted.as_view(), name="anything"),# for pending delivery bounties accepted register
+    path('delete_deilvery_bounty_booked/', ReactView_DeleteMember_bounties_accepted.as_view(), name="delete_field_officer"),#for delete pending delivery bounties accepted
+    path('get_deilvery_bounty_booked/', ReactView_Search_Sort_bounties_accepted.as_view(), name="anything"), # for getting  pending delivery bounties accepted  
+    path('get_deilvery_bounty_booked_delivery_state_update/', ReactView_UpdateDeliveryState.as_view(), name="anything"), # for getting  pending delivery bounties accepted
+    path('get_deilvery_bounty_booked_delivery_state_check/', ReactView_GetDeliveryState.as_view(), name="anything"), # for getting  pending delivery bounties accepted
+
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

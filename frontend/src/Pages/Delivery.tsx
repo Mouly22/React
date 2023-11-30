@@ -43,6 +43,11 @@ const Posts: React.FC<PostProps> = ({ pending_payment_id, userid, transaction_id
       // Handle the response as needed
       console.log(response.data);
 
+      const responsef = await axios.post('http://127.0.0.1:8000/delete_deilvery_bounty/', {
+        product_id:product_id,
+
+      });
+      console.log(responsef.data);
       // Update the state to reflect that the request has been submitted
       setIsSubmitted(true);
     } catch (error) {

@@ -77,3 +77,21 @@ class ReactView_UpdateDeliveryState(APIView):
         except React.DoesNotExist:
             # If the React instance with the specified post_id does not exist
             print("Error")
+
+class ReactView_GetDeliveryState(APIView):
+    def post(self, request):
+        # Get the product_id from the request
+        product_id = request.data.get('product_id')
+        print(product_id)
+
+        try:
+            # Get the React instance with the specified product_id
+            react_instance = React.objects.get(product_id=product_id)
+
+            # Get the delivery_state
+            delivery_state = react_instance.delivery_state
+
+            return Response({'delivery_state': delivery_state})
+        except React.DoesNotExist:
+            # If the React instance with the specified product_id does not exist
+            return Response({'error': 'Product does not exist'}, status=status.HTTP_404_NOT_FOUND)
