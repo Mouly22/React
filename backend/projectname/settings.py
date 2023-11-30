@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'pending_farmer_payment',
     'deliverymen',
     'delivery_bountys',
+    'delivery_bountys_booked',
 ]
 
 MIDDLEWARE = [

@@ -1,80 +1,152 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './Deliveryman_View.css';
 
 interface PostProps {
-  postId: number;
-  username: string;
-  productName: string;
+  pending_delivery_id: number;
+  deliveryman_userid: string;
+  delivery_state: string;
+  transaction_id: string;
+  amount: string;
+  product_id: number;
+  name: string;
   location: string;
-  quantity: number;
-  deliveryMoney: number;
 }
 
-const Post: React.FC<PostProps> = ({ postId, username, productName, location, quantity, deliveryMoney }) => {
-  const [buttonStatus, setButtonStatus] = useState('Accept');
+const Post: React.FC<PostProps> = ({ pending_delivery_id, deliveryman_userid, delivery_state, transaction_id, amount, product_id, name, location }) => {
+  const [buttonStatus, setButtonStatus] = useState(delivery_state);
   const [showForm, setShowForm] = useState(false);
-  const [date, setDate] = useState('');
   const [status, setStatus] = useState('');
+  const [userId, setUserId] = useState('');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.post('http://127.0.0.1:8000/get_deilvery_bounty_booked/', {
+          pending_delivery_id: userId,
+        });
+        // Assuming response.data is an array of delivery items
+        const deliveryItem = response.data.find((item: PostProps) => item.pending_delivery_id === pending_delivery_id);
+        if (deliveryItem) {
+          setButtonStatus(deliveryItem.delivery_state);
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+
+    const storedUserId = localStorage.getItem('userid');
+    if (storedUserId) {
+      setUserId(storedUserId);
+    }
+  }, [userId, pending_delivery_id]);
 
   const handleAccept = () => {
     setShowForm(true);
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    alert(`Date: ${date}, Status: ${status}`);
-    setShowForm(false);
-    setButtonStatus('In Process');
-    if (status === 'Delivered') {
-      setButtonStatus('Delivered');
+  const handleStatusChange = async (newStatus: string) => {
+    try {
+      console.log(product_id,newStatus);
+      await axios.post('http://127.0.0.1:8000/get_deilvery_bounty_booked_delivery_state_update/', {
+        post_id: product_id,
+        delivery_state: newStatus,
+      });
+
+      setStatus(newStatus);
+      setShowForm(false);
+
+      if (newStatus === 'Delivered') {
+        setButtonStatus('Delivered');
+      } else {
+        setButtonStatus('In Process');
+      }
+    } catch (error) {
+      console.error('Error updating delivery state:', error);
     }
   };
 
   return (
     <div className="postContainer">
       <div className="post">
-        <p className="postId">Post ID: {postId}</p>
-        <p className="username">Posted by: {username}</p>
-        <h2 className="productName">{productName}</h2>
+        <p className="pendingDeliveryId">Pending Delivery ID: {pending_delivery_id}</p>
+        <p className="deliverymanUserid">Deliveryman User ID: {deliveryman_userid}</p>
+        <p className="deliveryState">Delivery State: {delivery_state}</p>
+        <p className="transactionId">Transaction ID: {transaction_id}</p>
+        <h2 className="productName">{name}</h2>
         <p className="location">{location}</p>
-        <p className="quantity">Quantity: {quantity}</p>
-        <p className="deliveryMoney">Delivery Money: {deliveryMoney}</p>
-        <button className={buttonStatus === 'Accept' ? "acceptButton" : buttonStatus === 'In Process' ? "inProcessButton" : "deliveredButton"} onClick={handleAccept}>
+        <p className="amount">Amount: {amount}</p>
+        <button className={buttonStatus === 'Accepted' ? 'acceptButton' : buttonStatus === 'In Process' ? 'inProcessButton' : 'deliveredButton'} onClick={handleAccept}>
           {buttonStatus}
         </button>
       </div>
       {showForm && (
-        <form onSubmit={handleSubmit} className="form">
-          <label>
-            Date:
-            <input type="date" value={date} onChange={e => setDate(e.target.value)} required />
-          </label>
+        <div className="form">
           <div>
             <p>Status:</p>
-            <button type="button" className={status === 'Accepted' ? "statusButtonActive" : "statusButton"} onClick={() => setStatus('Accepted')}>Accepted</button>
-            <button type="button" className={status === 'Received From Farmer' ? "statusButtonActive" : "statusButton"} onClick={() => setStatus('Received From Farmer')}>Received From Farmer</button>
-            <button type="button" className={status === 'On The Way' ? "statusButtonActive" : "statusButton"} onClick={() => setStatus('On The Way')}>On The Way</button>
-            <button type="button" className={status === 'Delivered' ? "statusButtonActive" : "statusButton"} onClick={() => setStatus('Delivered')}>Delivered</button>
+            <button type="button" className={status === 'Accepted' ? 'statusButtonActive' : 'statusButton'} onClick={() => handleStatusChange('Accepted')}>
+              Accepted
+            </button>
+            <button
+              type="button"
+              className={status === 'Received From Farmer' ? 'statusButtonActive' : 'statusButton'}
+              onClick={() => handleStatusChange('Received From Farmer')}
+            >
+              Received From Farmer
+            </button>
+            <button type="button" className={status === 'On The Way' ? 'statusButtonActive' : 'statusButton'} onClick={() => handleStatusChange('On The Way')}>
+              On The Way
+            </button>
+            <button type="button" className={status === 'Delivered' ? 'statusButtonActive' : 'statusButton'} onClick={() => handleStatusChange('Delivered')}>
+              Delivered
+            </button>
           </div>
-          <input type="submit" value="Submit" />
-        </form>
+        </div>
       )}
     </div>
   );
 };
 
 const Delivery = () => {
-  const data = [
-    { postId: 1, username: 'User1', productName: 'Potato', location: 'Cumilla', quantity: 10, deliveryMoney: 50 },
-    { postId: 2, username: 'User2', productName: 'Tomato', location: 'Dhaka', quantity: 20, deliveryMoney: 60 },
-    { postId: 3, username: 'User3', productName: 'Cucumber', location: 'Chittagong', quantity: 30, deliveryMoney: 70 },
-    { postId: 4, username: 'User4', productName: 'Carrot', location: 'Sylhet', quantity: 40, deliveryMoney: 80 },
-  ];
+  const [data, setData] = useState<PostProps[]>([]);
+  const [userId, setUserId] = useState('');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.post('http://127.0.0.1:8000/get_deilvery_bounty_booked/', {
+          pending_delivery_id: userId,
+        });
+        setData(response.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+
+    const storedUserId = localStorage.getItem('userid');
+    if (storedUserId) {
+      setUserId(storedUserId);
+    }
+  }, [userId]);
 
   return (
     <div>
       {data.map((item, index) => (
-        <Post key={index} postId={item.postId} username={item.username} productName={item.productName} location={item.location} quantity={item.quantity} deliveryMoney={item.deliveryMoney} />
+        <Post
+          key={index}
+          pending_delivery_id={item.pending_delivery_id}
+          deliveryman_userid={item.deliveryman_userid}
+          delivery_state={item.delivery_state}
+          transaction_id={item.transaction_id}
+          amount={item.amount}
+          product_id={item.product_id}
+          name={item.name}
+          location={item.location}
+        />
       ))}
     </div>
   );

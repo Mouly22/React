@@ -10,9 +10,10 @@ interface PostProps {
   product_id: number;
   name: string;
   location: string;
+  deliveryman_userid:string;
 }
 
-const Posts: React.FC<PostProps> = ({ pending_payment_id, userid, transaction_id, amount, product_id, name, location }) => {
+const Posts: React.FC<PostProps> = ({ pending_payment_id, userid, transaction_id, amount, product_id, name, location,deliveryman_userid }) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const calculateDeliveryBounty = (amount: string): number => {
@@ -27,22 +28,37 @@ const Posts: React.FC<PostProps> = ({ pending_payment_id, userid, transaction_id
     }
   };
 
-  const handleAccept = () => {
-    setIsSubmitted(true);
+  const handleAccept = async () => {
+    try {
+      const response = await axios.post('http://127.0.0.1:8000/register_deilvery_bounty_booked/', {
+        deliveryman_userid: deliveryman_userid,
+        delivery_state: 'Accepted',
+        transaction_id:transaction_id,
+        amount:amount,
+        product_id:product_id,
+        name:name,
+        location:location,
+      });
+
+      // Handle the response as needed
+      console.log(response.data);
+
+      // Update the state to reflect that the request has been submitted
+      setIsSubmitted(true);
+    } catch (error) {
+      console.error('Error accepting delivery:', error);
+    }
   };
 
   return (
     <div className="postContainer">
       <div className="post">
-        
-        
-       
         <h2 className="productName">{name}</h2>
         <p className="location">Location: {location}</p>
         <p className="amount">Amount: {amount}</p>
         <p className="deliveryBounty">Delivery Bounty: {calculateDeliveryBounty(amount)}</p>
-        <button className={isSubmitted ? "submitButton" : "acceptButton"} onClick={handleAccept}>
-          Accept
+        <button className={isSubmitted ? "submitButton" : "acceptButton"} onClick={handleAccept} disabled={isSubmitted}>
+          {isSubmitted ? "Accepted" : "Accept"}
         </button>
       </div>
     </div>
@@ -85,7 +101,7 @@ const App = () => {
       />
       {userId && <p>User ID: {userId}</p>}
       {filteredData.map((item, index) => (
-        <Posts key={index} pending_payment_id={item.pending_payment_id} userid={item.userid} transaction_id={item.transaction_id} amount={item.amount} product_id={item.product_id} name={item.name} location={item.location} />
+        <Posts key={index} pending_payment_id={item.pending_payment_id} userid={item.userid} transaction_id={item.transaction_id} amount={item.amount} product_id={item.product_id} name={item.name} location={item.location} deliveryman_userid={userId}/>
       ))}
     </div>
   );
