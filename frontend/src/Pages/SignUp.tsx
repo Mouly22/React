@@ -142,11 +142,12 @@ const SignupForm = () => {
           variant="contained"
           color="primary"
           fullWidth
-          onClick={handleSubmit}
-          style={{ margin: "20px 0" }}
+          onClick={checkUserExistence}
+          style={{ margin: "10px 0", backgroundColor: "#8db596", color: "#fff" }}
         >
           Sign Up
         </Button>
+         
       </Paper>
     </Container>
   );

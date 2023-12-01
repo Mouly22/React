@@ -100,24 +100,20 @@ const PayView: React.FC = () => {
       {orderData ? (
         <div>
           <div className="row">
-            <span className="heading"><strong>Post ID:</strong></span><br />
-            <span className="details">{orderData.post_id}</span>
+            <span className="heading"><strong>Post ID:</strong><> </>{orderData.post_id}</span>
           </div>
           <div className="row">
-            <span className="heading"><strong>Product Name:</strong></span><br />
-            <span className="details">{orderData.name}</span>
+            <span className="heading"><strong>Product Name:</strong><>  </>{orderData.name}</span>
           </div>
           <div className="row">
-            <span className="heading"><strong>Amount:</strong></span><br />
-            <span className="details">{orderData.amount} KG</span>
+            <span className="heading"><strong>Amount:</strong><>   </>{orderData.amount} Kg</span>
           </div>
           <div className="row">
-            <span className="heading"><strong>Initial Price: {deliveryAmount}</strong></span><br />
-            <span className="details">{orderData.price}</span>
+            <span className="heading"><strong>Product Price:</strong><> </>{orderData.price}</span>
           </div>
           <div className="row">
-            <span className="heading"><strong>Delivery Money: {deliveryAmount}</strong></span><br />
-            <span className="details">{orderData.deliveryMoney}</span>
+            <span className="heading"><strong>Delivery Price:</strong><> </> {deliveryAmount}</span><br />
+           
           </div>
           <br/>
 

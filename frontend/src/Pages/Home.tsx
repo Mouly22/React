@@ -6,7 +6,7 @@ const Home: React.FC<{}> = () => {
     return (
         
         <div className="background">
-            <h1>Welcome To Bangladesh Smart Agricultural System</h1>
+            <h1>Welcome To BD Smart Agricultural System</h1>
             <Example />
         </div>
     );
