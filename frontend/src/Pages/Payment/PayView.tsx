@@ -47,7 +47,7 @@ const PayView: React.FC = () => {
       await axios.post('http://127.0.0.1:8000/register_pending_farmer_payment/', {
         userid: orderData.farmer_userid,
         transaction_id: transactionIdInput,
-        amount: orderData.amount,
+        price: orderData.price,
         product_id: post_id,
         name: orderData.name,
         location: responsefarmer.data.user_data.address,

@@ -35,8 +35,10 @@ class ReactView_DeleteMember_pending_businessmen_payment(APIView):
 class ReactView_Search_Sort_pending_businessmen_payment(APIView):
     def post(self, request):
         # Get the search parameters from the request
-        userid = request.data.get('userid')
-
+        print(request.data)
+        userid = request.data.get('businessman_userid')
+        print("____")
+        print(userid)
 
         # Initialize a queryset with all objects
         queryset = React.objects.all()

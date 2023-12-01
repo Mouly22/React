@@ -15,10 +15,17 @@ interface AuctionItem {
 const BusView: React.FC = () => {
   const [auctionProducts, setAuctionProducts] = useState<AuctionItem[]>([]);
   const [resizedImages, setResizedImages] = useState<string[]>([]);
-
+  const [userId, setUserId] = useState('');
   const fetchData = async () => {
+    const storedUserId = localStorage.getItem('userid');
+    console.log(storedUserId);
+    if (storedUserId) {
+      setUserId(storedUserId);
+    }
     try {
-      const response = await axios.get('http://127.0.0.1:8000/register_pending_payment/');
+      const response = await axios.post('http://127.0.0.1:8000/get_businessman_pending_payment/', {
+        businessman_userid: storedUserId
+      });
       setAuctionProducts(response.data);
 
       const imageResponses = await Promise.all(
@@ -51,6 +58,7 @@ const BusView: React.FC = () => {
 
   useEffect(() => {
     fetchData();
+
   }, []);
 
   return (
