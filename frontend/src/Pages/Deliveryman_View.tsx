@@ -70,15 +70,19 @@ const Post: React.FC<PostProps> = ({ pending_delivery_id, deliveryman_userid, de
   };
 
   return (
+    <>
+    <br/>
+
     <div className="postContainer">
+      
       <div className="post">
-        <p className="pendingDeliveryId">Pending Delivery ID: {pending_delivery_id}</p>
-        <p className="deliverymanUserid">Deliveryman User ID: {deliveryman_userid}</p>
-        <p className="deliveryState">Delivery State: {delivery_state}</p>
-        <p className="transactionId">Transaction ID: {transaction_id}</p>
-        <h2 className="productName">{name}</h2>
-        <p className="location">{location}</p>
-        <p className="amount">Amount: {amount}</p>
+        <p className="pendingDeliveryId"><strong>Pending Delivery ID:</strong><> </>{pending_delivery_id} </p>
+        <p className="deliverymanUserid"><strong>Deliveryman User ID:</strong> {deliveryman_userid}</p>
+        <p className="deliveryState"><strong>Delivery State:</strong> {delivery_state}</p>
+        <p className="transactionId"><strong>Transaction ID:</strong>{transaction_id}</p>
+        <h3 className="productName">{name}</h3>
+        <p className="location"><strong>{location}</strong></p>
+        <p className="amount"><strong>Amount:</strong> {amount}</p>
         <button className={buttonStatus === 'Accepted' ? 'acceptButton' : buttonStatus === 'In Process' ? 'inProcessButton' : 'deliveredButton'} onClick={handleAccept}>
           {buttonStatus}
         </button>
@@ -107,6 +111,7 @@ const Post: React.FC<PostProps> = ({ pending_delivery_id, deliveryman_userid, de
         </div>
       )}
     </div>
+    </>
   );
 };
 
@@ -136,9 +141,12 @@ const Delivery = () => {
 
   return (
     <div>
-      <Link to={`/delivery`} className='btnn'>
-          All Jobs
-        </Link>
+
+      <br/>
+      <h4>Find Jobs here: <Link to={`/delivery`} className='btnn'> All Jobs </Link></h4>
+      <br/>
+      <h5> Update your delivery status:</h5>
+      
       {data.map((item, index) => (
         <Post
           key={index}

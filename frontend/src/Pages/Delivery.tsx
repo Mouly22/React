@@ -57,6 +57,10 @@ const Posts: React.FC<PostProps> = ({ pending_payment_id, userid, transaction_id
   };
 
   return (
+    
+      
+   
+    
     <div className="postContainer">
       <div className="post">
         <h2 className="productName">{name}</h2>
@@ -68,6 +72,7 @@ const Posts: React.FC<PostProps> = ({ pending_payment_id, userid, transaction_id
         </button>
       </div>
     </div>
+    
   );
 };
 
@@ -110,6 +115,7 @@ const App = () => {
         <Posts key={index} pending_payment_id={item.pending_payment_id} userid={item.userid} transaction_id={item.transaction_id} amount={item.amount} product_id={item.product_id} name={item.name} location={item.location} deliveryman_userid={userId}/>
       ))}
     </div>
+    
   );
 };
 
