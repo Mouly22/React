@@ -53,6 +53,8 @@ const AllIncomingDeliveries: React.FC = () => {
       <div className="delivery-table">
         <table>
           <thead>
+            <h5><strong>Delivery:</strong></h5>
+        
             <tr>
               <th>Post ID</th>
               <th>Name</th>

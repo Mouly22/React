@@ -1,22 +1,15 @@
 /* AllIncomingDeliveries.css */
 
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
 
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  th, td {
-    border: 1px solid blue;
-    padding: 8px;
-    text-align: left;
-  }
-
-  
-  
-
-
-
+th, td {
+  border: 1px solid blue;
+  padding: 8px;
+  text-align: left;
+}
 
 .con {
   display: flex;
@@ -30,9 +23,9 @@
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  background: linear-gradient(to bottom, #b3e0f2, #d2fcb9); /* Cooler blending fading gradient */
-  
+  background: linear-gradient(to bottom, rgba(179, 224, 242, 0.7), rgba(210, 252, 185, 0.7)); /* Lighter and faded blending fading gradient */
 }
+
 
 
 
