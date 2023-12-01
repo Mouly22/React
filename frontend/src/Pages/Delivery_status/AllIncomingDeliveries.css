@@ -1,0 +1,34 @@
+/* AllIncomingDeliveries.css */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid blue;
+  padding: 8px;
+  text-align: left;
+}
+
+.con {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: .1vh;
+}
+
+.delivery-table {
+  border: 1px solid #ccc;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background: linear-gradient(to bottom, rgba(179, 224, 242, 0.7), rgba(210, 252, 185, 0.7)); /* Lighter and faded blending fading gradient */
+}
+
+
+
+
+
+
+  

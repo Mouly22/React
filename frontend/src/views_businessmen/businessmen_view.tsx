@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import BusView from '../Pages/Payment/Bus_View';
+import '../views/admin.css';
 
+import { Link } from 'react-router-dom';
 
 const Businessmen_Page: React.FC = () => {
     const [userid, setUserid] = useState('');
@@ -12,10 +15,22 @@ const Businessmen_Page: React.FC = () => {
       setUserType(storedUserType || '');});
     return(
       <>
-        <div>
+        <div className='adminIntro'>
           <h2>Welcome, Businessmen</h2>
-          <p>User ID: {userid}</p>
-          <p>User Type: {userType}</p>
+          <p><strong>User ID:</strong> {userid}</p>
+          <p><strong>User Type:</strong> {userType}</p>
+          <br/>
+          <Link to={`/delivery_list`} className='btnn'>
+                  Track Your order
+          </Link>
+          <br/>
+          <br/>
+          <h4>Congratulations on your winning bid for quality items! 🎉</h4>
+          <br/>
+            <BusView/>
+          
+        
+
         </div>
 
       </>

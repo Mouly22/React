@@ -15,12 +15,14 @@ interface AuctionItem {
   start_time: string;
   end_time: string;
   current_time: string;
+  posted_by:string;
   items: { type: string; description: string }[];
 }
 
 const Auction: React.FC = () => {
   const [auctionProducts, setAuctionProducts] = useState<AuctionItem[]>([]);
   const [resizedImages, setResizedImages] = useState<string[]>([]);
+  const userId = localStorage.getItem('userid');
 
   useEffect(() => {
     const fetchAuctionProducts = async () => {
@@ -70,7 +72,7 @@ const Auction: React.FC = () => {
     fetchAuctionProducts();
   }, []);
 
-  const handlePlaceBidding = (post_id: number) => {
+  const handlePlaceBidding = (post_id: number,name:string,amount:any,price:any,userid:string) => {
     // Check if remainingHours > 0
     const remainingTime = new Date(auctionProducts.find(p => p.post_id === post_id)?.end_time || '').getTime() - new Date().getTime();
     const remainingHours = Math.floor(remainingTime / (1000 * 60 * 60));
@@ -80,25 +82,56 @@ const Auction: React.FC = () => {
       window.location.href = `/postdetails/${post_id}`;
     } else {
       // Call function to post post_id to the specified URLs
-      postToUrls(post_id);
+      postToUrls(post_id,name,amount,price,userid);
     }
   };
 
-  const postToUrls = async (post_id: number) => {
+  const postToUrls = async (post_id: number, name: string, amount: any, price: any, userid: string) => {
     try {
+      // Post to http://127.0.0.1:8000/login_latest_bidding/
+      const requestData_Final = {
+        post_id: post_id,
+      };
+  
+      const response1 = await axios.post('http://127.0.0.1:8000/login_latest_bidding/', requestData_Final);
+  
+      // Check if last_bidder data is available
+      if (response1.data.user_data && response1.data.user_data["last_bidder"] && response1.data.user_data["last_bidder"].length !== 0) {
+        // Assuming last_bidder is a key in user_data that holds an array
+        const businessmen_id = response1.data.user_data["last_bidder"];
+        console.log(businessmen_id);
+        const requestData_Final_Pending = {
+          post_id: post_id,
+          name: name,
+          amount: amount,
+          price: price,
+          businessman_userid: businessmen_id,
+          farmer_userid: userid,
+        };
+  
+        const response2 = await axios.post('http://127.0.0.1:8000/register_pending_payment/', requestData_Final_Pending);
+  
+        // Now you can use businessmen_id as needed
+        // ...
+      } else {
+        // No last_bidder data or it's an empty array
+        // Handle accordingly
+        console.error('No last_bidder data or it\'s an empty array');
+      }
+  
       // Post to http://127.0.0.1:8000/delete_auction_products/
-      await axios.post('http://127.0.0.1:8000/delete_auction_products/', { post_id });
-
+      const response3 = await axios.post('http://127.0.0.1:8000/delete_auction_products/', { post_id });
+  
       // Post to http://127.0.0.1:8000/delete_latest_bidding/
-      await axios.post('http://127.0.0.1:8000/delete_latest_bidding/', { post_id });
+      const response4 = await axios.post('http://127.0.0.1:8000/delete_latest_bidding/', { post_id });
+  
       window.location.reload();
-
+  
       // Add additional logic if needed
     } catch (error) {
       console.error('Error posting to URLs:', error);
     }
   };
-
   return (
     <div className="amazon-container">
       {/* Sidebar */}
@@ -132,7 +165,7 @@ const Auction: React.FC = () => {
                   <button
                     type="button"
                     className="btnn"
-                    onClick={() => handlePlaceBidding(product.post_id)}
+                    onClick={() => handlePlaceBidding(product.post_id,product.name,product.amount,product.price,product.posted_by)}
                   >
                     Place your bidding
                   </button>
