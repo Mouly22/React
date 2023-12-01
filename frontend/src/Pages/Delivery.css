@@ -68,3 +68,15 @@
 body {
   overflow-y: scroll;
 }
+
+/* Add this CSS to your existing stylesheet or create a new one */
+.jobsContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px; /* Adjust the margin as needed */
+}
+
+.jobsContainer h4 {
+  margin-right: 10px; /* Adjust the margin as needed */
+}
+

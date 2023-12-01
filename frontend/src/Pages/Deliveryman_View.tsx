@@ -145,7 +145,7 @@ const Delivery = () => {
       <br/>
       <h4>Find Jobs here: <Link to={`/delivery`} className='btnn'> All Jobs </Link></h4>
       <br/>
-      <h5> Update your delivery status:</h5>
+      <h5> Update your delivery status to let the cumtomers know:</h5>
       
       {data.map((item, index) => (
         <Post
