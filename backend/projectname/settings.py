@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     'delivery_bountys',
     'delivery_bountys_booked',
     'pending_on_delivery_products',
+    'farmer_wallet',
 ]
 
 MIDDLEWARE = [

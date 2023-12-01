@@ -1,27 +1,49 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
+interface Wallet {
+  userid: string;
+  total_money: string;
+}
 
 const Farmer_Page: React.FC = () => {
-    const [userid, setUserid] = useState('');
-    const [userType, setUserType] = useState('');
-    useEffect(() => {
-      const storedUserId = localStorage.getItem('userid');
-      const storedUserType = localStorage.getItem('user_type');
-      setUserid(storedUserId || '');
-      setUserType(storedUserType || '');});
-    return(
-      <>
-        <div>
-          <h2>Welcome, Farmer</h2>
-          <p>User ID: {userid}</p>
-          <p>User Type: {userType}</p>
-        </div>
+  const [userid, setUserid] = useState<string>('');
+  const [userType, setUserType] = useState<string>('');
+  const [auctionProducts, setAuctionProducts] = useState<Wallet | undefined>(undefined);
 
-      </>
-    )
-  
-  
-  };
-  
-  export default Farmer_Page;
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const storedUserId = localStorage.getItem('userid');
+        const storedUserType = localStorage.getItem('user_type');
+        setUserid(storedUserId || '');
+        setUserType(storedUserType || '');
+
+        const response = await axios.post('http://127.0.0.1:8000/get_farmer_wallet/', {
+          userid: storedUserId,
+        });
+
+        setAuctionProducts(response.data);
+      } catch (error) {
+        console.error('Error fetching auction products:', error);
+      }
+    };
+
+    fetchData();
+  }, []); // Add an empty dependency array to run the effect only once when the component mounts
+
+  return (
+    <>
+      <div>
+        <h2>Welcome, Farmer</h2>
+        <p>User ID: {userid}</p>
+        <p>User Type: {userType}</p>
+        {auctionProducts && (
+          <p>Wallet Balance: {auctionProducts.total_money}</p>
+        )}
+      </div>
+    </>
+  );
+};
+
+export default Farmer_Page;
