@@ -41,3 +41,25 @@ class ReactView_Search_farmer_wallet(APIView):
         serializer = ReactSerializer(queryset, many=True)
 
         return Response(serializer.data[0])
+
+class ReactView_Update_farmer_wallet(APIView):
+    def post(self, request):
+        post_id = request.data.get('userid')
+        delivery_state = request.data.get('price')
+        print(post_id,delivery_state)
+
+        try:
+            # Get the React instance with the specified post_id
+            react_instance = React.objects.get(userid=post_id)
+
+            # Update the delivery_state
+            react_instance.total_money=react_instance.total_money+ delivery_state
+            react_instance.save()
+
+            # Serialize the updated instance
+            serializer = ReactSerializer(react_instance)
+
+            return Response(serializer.data)
+        except React.DoesNotExist:
+            # If the React instance with the specified post_id does not exist
+            print("Error")

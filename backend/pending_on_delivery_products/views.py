@@ -21,7 +21,7 @@ class ReactView_Register_pending_on_delivery(APIView):
 
 class ReactView_DeleteMember_pending_on_delivery(APIView):
     def post(self, request):
-        post_id = request.data.get('post_id')
+        post_id = request.data.get('product_id')
         print(post_id)
 
         try:

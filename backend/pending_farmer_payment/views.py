@@ -21,11 +21,11 @@ class ReactView_Register_pending_farmer_payment(APIView):
 
 class ReactView_DeleteMember_pending_farmer_payment(APIView):
     def post(self, request):
-        post_id = request.data.get('post_id')
+        post_id = request.data.get('product_id')
         print(post_id)
 
         try:
-            member = React.objects.get(post_id=post_id)
+            member = React.objects.get(product_id=post_id)
             member.delete()
             return Response({'success': True})
         except React.DoesNotExist:
@@ -54,3 +54,26 @@ class ReactView_Search_Sort_pending_farmer_payment(APIView):
         serializer = ReactSerializer(queryset, many=True)
 
         return Response(serializer.data)
+    
+class ReactView_Get_pending_farmer_paymentdata(APIView):
+    def post(self, request):
+        # Get the search parameters from the request
+        userid = request.data.get('product_id')
+        print(userid)
+
+        # Initialize a queryset with all objects
+        queryset = React.objects.all()
+        print(userid)
+        # Perform search operations
+        if userid:
+            queryset = queryset.filter(product_id=userid)
+            print(queryset)
+        
+
+
+
+
+        # Serialize the filtered queryset
+        serializer = ReactSerializer(queryset, many=True)
+
+        return Response(serializer.data[0])

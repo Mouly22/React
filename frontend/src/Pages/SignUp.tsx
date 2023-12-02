@@ -36,6 +36,7 @@ const SignupForm = () => {
       } else {
         setUserExists(false);
       }
+    
     } catch (error) {
       console.log("Failed to check user existence:", error);
     }
@@ -142,7 +143,7 @@ const SignupForm = () => {
           variant="contained"
           color="primary"
           fullWidth
-          onClick={checkUserExistence}
+          onClick={handleSubmit}
           style={{ margin: "10px 0", backgroundColor: "#8db596", color: "#fff" }}
         >
           Sign Up

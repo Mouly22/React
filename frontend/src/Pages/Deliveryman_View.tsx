@@ -61,6 +61,11 @@ const Post: React.FC<PostProps> = ({ pending_delivery_id, deliveryman_userid, de
 
       if (newStatus === 'Delivered') {
         setButtonStatus('Delivered');
+        const responsefarmerdata = await axios.post('http://127.0.0.1:8000/get_pending_farmer_payment_data/', {
+          product_id: product_id,
+        });
+        console.log(responsefarmerdata.data.userid);
+// 
       } else {
         setButtonStatus('In Process');
       }
