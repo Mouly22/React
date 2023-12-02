@@ -65,7 +65,27 @@ const Post: React.FC<PostProps> = ({ pending_delivery_id, deliveryman_userid, de
           product_id: product_id,
         });
         console.log(responsefarmerdata.data.userid);
-// 
+// pending on delivery delete
+await axios.post('http://127.0.0.1:8000/delete_pending_delivery_products/', {
+  product_id: product_id,
+
+});
+//pending farmer payment delete
+await axios.post('http://127.0.0.1:8000/delete_pending_farmer_payment/', {
+  product_id: product_id,
+
+});
+//bouties booked delete
+await axios.post('http://127.0.0.1:8000/delete_deilvery_bounty_booked/', {
+  product_id: product_id,
+
+});
+//fermer's balance update
+await axios.post('http://127.0.0.1:8000/update_farmer_wallet/', {
+  userid: responsefarmerdata.data.userid,
+  price: responsefarmerdata.data.price,
+
+});
       } else {
         setButtonStatus('In Process');
       }

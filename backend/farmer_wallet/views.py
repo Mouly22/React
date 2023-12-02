@@ -5,6 +5,7 @@ from .serializers import ReactSerializer  # Adjusted import
 from rest_framework.response import Response
 from rest_framework import status
 from django.shortcuts import get_object_or_404
+from decimal import Decimal
 
 class ReactView_Register_farmer_wallet(APIView):
     def get(self, request):
@@ -53,7 +54,7 @@ class ReactView_Update_farmer_wallet(APIView):
             react_instance = React.objects.get(userid=post_id)
 
             # Update the delivery_state
-            react_instance.total_money=react_instance.total_money+ delivery_state
+            react_instance.total_money = react_instance.total_money + Decimal(str(delivery_state))
             react_instance.save()
 
             # Serialize the updated instance
