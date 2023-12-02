@@ -104,10 +104,10 @@ await axios.post('http://127.0.0.1:8000/update_farmer_wallet/', {
         <p className="pendingDeliveryId"><strong>Pending Delivery ID:</strong><> </>{pending_delivery_id} </p>
         <p className="deliverymanUserid"><strong>Deliveryman User ID:</strong> {deliveryman_userid}</p>
         <p className="deliveryState"><strong>Delivery State:</strong> {delivery_state}</p>
-        <p className="transactionId"><strong>Transaction ID:</strong>{transaction_id}</p>
+        
         <h3 className="productName">{name}</h3>
-        <p className="location"><strong>{location}</strong></p>
-        <p className="amount"><strong>Amount:</strong> {amount}</p>
+        <p className="location"><strong> Location: {location}</strong></p>
+        <p className="amount"><strong>Amount:</strong> {amount} KG</p>
         <button className={buttonStatus === 'Accepted' ? 'acceptButton' : buttonStatus === 'In Process' ? 'inProcessButton' : 'deliveredButton'} onClick={handleAccept}>
           {buttonStatus}
         </button>
