@@ -38,12 +38,14 @@ from incoming_auction_request.views import ReactView_Register_Incoming_Auction_P
 from incoming_auction_images.views import GetImageView_incoming_Auction,YourModelNameView_incoming_Auction
 from farmer_credentials.views import ReactView_Register_Farmer,CheckUserExistenceView_Farmer,ReactView_Edit_Farmer,ReactView_DeleteMember_Farmer
 from pending_businessmen_payment.views import ReactView_Register_pending_businessmen_payment,ReactView_DeleteMember_pending_businessmen_payment,ReactView_Search_Sort_pending_businessmen_payment,ReactView_Get_product_details
-from pending_farmer_payment.views import ReactView_Register_pending_farmer_payment,ReactView_DeleteMember_pending_farmer_payment,ReactView_Search_Sort_pending_farmer_payment
+from pending_farmer_payment.views import ReactView_Register_pending_farmer_payment,ReactView_DeleteMember_pending_farmer_payment,ReactView_Search_Sort_pending_farmer_payment,ReactView_Get_pending_farmer_paymentdata
 from deliverymen.views import ReactView_Register_Deliverymen,CheckUserExistenceView_Deliverymen,ReactView_Edit_Deliverymen,ReactView_DeleteMember_Deliverymen
 from delivery_bountys.views import ReactView_Register_bounties, ReactView_DeleteMember_bounties,ReactView_Search_Sort_bounties
 from delivery_bountys_booked.views import ReactView_Register_bounties_accepted,ReactView_DeleteMember_bounties_accepted,ReactView_Search_Sort_bounties_accepted,ReactView_UpdateDeliveryState,ReactView_GetDeliveryState
 from pending_on_delivery_products.views import ReactView_Register_pending_on_delivery,ReactView_DeleteMember_pending_on_delivery,ReactView_Search_Sort_pending_on_delivery,ReactView_Get_product_details_pending_on_delivery
-from farmer_wallet.views import ReactView_Register_farmer_wallet,ReactView_Search_farmer_wallet
+from farmer_wallet.views import ReactView_Register_farmer_wallet,ReactView_Search_farmer_wallet,ReactView_Update_farmer_wallet
+from farmer_review.views import ReactView_Register_farmer_review,ReactView_Search_farmer_review
+
 
 urlpatterns = [
     path('', ReactView.as_view(), name="anything"),
@@ -159,6 +161,7 @@ urlpatterns = [
     path('register_pending_farmer_payment/', ReactView_Register_pending_farmer_payment.as_view(), name="anything"),# for pending businesmen payment register
     path('delete_pending_farmer_payment/', ReactView_DeleteMember_pending_farmer_payment.as_view(), name="delete_field_officer"),#for delete pending businesmen payment
     path('get_pending_farmer_payment/', ReactView_Search_Sort_pending_farmer_payment.as_view(), name="anything"), # for getting  pending businesmen payment
+    path('get_pending_farmer_payment_data/', ReactView_Get_pending_farmer_paymentdata.as_view(), name="anything"), # for getting  pending businesmen payment
 
     #For pending delivery bounties
     path('register_deilvery_bounty/', ReactView_Register_bounties.as_view(), name="anything"),# for pending delivery bounties register
@@ -182,7 +185,11 @@ urlpatterns = [
     #For farmer wallet
     path('register_farmer_wallet/', ReactView_Register_farmer_wallet.as_view(), name="anything"),# for pending businesmen payment register
     path('get_farmer_wallet/', ReactView_Search_farmer_wallet.as_view(), name="anything"),#for get pending businesmen payment
+    path('update_farmer_wallet/', ReactView_Update_farmer_wallet.as_view(), name="anything"),#for get pending businesmen payment   
 
+    #For farmer review
+    path('register_farmer_review/', ReactView_Register_farmer_review.as_view(), name="anything"),# for pending businesmen payment register
+    path('get_farmer_review/', ReactView_Search_farmer_review.as_view(), name="anything"),#for get pending businesmen payment   
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

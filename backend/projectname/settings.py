@@ -66,6 +66,7 @@ INSTALLED_APPS = [
     'delivery_bountys_booked',
     'pending_on_delivery_products',
     'farmer_wallet',
+    'farmer_review',
 ]
 
 MIDDLEWARE = [
@@ -121,7 +122,6 @@ DATABASES = {
 'PORT': '3307', # or the port on which your MySQL server is listening
 }
 }
-
 
 
 

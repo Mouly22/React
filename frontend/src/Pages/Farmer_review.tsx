@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import './Farmer_review.css';
 
 const ReviewForm: React.FC = () => {
@@ -8,10 +9,27 @@ const ReviewForm: React.FC = () => {
   const [report, setReport] = useState(false);
   const [reportText, setReportText] = useState('');
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const [userid, setUserID] = useState(''); // Separate input for userid
+  const [product_id, setProductID] = useState(''); // Separate input for product_id
+
+  const businessman_userid = localStorage.getItem('userid'); // You might want to set this from localStorage
+
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    // Submit form values to your server here
-    console.log({ comment, rating, report, reportText });
+
+    try {
+      const response = await axios.post('http://127.0.0.1:8000/register_farmer_review/', {
+        userid,
+        businessman_userid,
+        review_content: comment,
+        star: rating,
+        product_id,
+      });
+
+      console.log('Review submitted successfully:', response.data);
+    } catch (error) {
+      console.error('Error submitting review:', error);
+    }
   };
 
   const getStarColor = (ratingValue: number) => {
@@ -27,17 +45,33 @@ const ReviewForm: React.FC = () => {
       return '#e4e5e9'; // color for unselected stars
     }
   };
-  
 
   return (
     <div>
       <h1>Farmer Review Form</h1>
       <form onSubmit={handleSubmit}>
+        {/* Separate input boxes for userid and product_id */}
+        <label htmlFor="userid">User ID:</label>
+        <input
+          type="text"
+          id="userid"
+          value={userid}
+          onChange={(e) => setUserID(e.target.value)}
+        />
+
+        <label htmlFor="product_id">Product ID:</label>
+        <input
+          type="text"
+          id="product_id"
+          value={product_id}
+          onChange={(e) => setProductID(e.target.value)}
+        />
+
         <label htmlFor="comment">Comment:</label>
         <textarea
           id="comment"
           value={comment}
-          onChange={e => setComment(e.target.value)}
+          onChange={(e) => setComment(e.target.value)}
         />
 
         <label htmlFor="rating">Rating:</label>
@@ -77,7 +111,7 @@ const ReviewForm: React.FC = () => {
             id="report"
             type="checkbox"
             checked={report}
-            onChange={e => setReport(e.target.checked)}
+            onChange={(e) => setReport(e.target.checked)}
           />
         </div>
 
@@ -87,7 +121,7 @@ const ReviewForm: React.FC = () => {
             <textarea
               id="reportText"
               value={reportText}
-              onChange={e => setReportText(e.target.value)}
+              onChange={(e) => setReportText(e.target.value)}
             />
           </>
         )}

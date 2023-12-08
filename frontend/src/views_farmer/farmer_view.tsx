@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import './farmer_view.css';
 
 interface Wallet {
   userid: string;
@@ -33,17 +34,23 @@ const Farmer_Page: React.FC = () => {
   }, []); // Add an empty dependency array to run the effect only once when the component mounts
 
   return (
-    <>
-      <div>
-        <h2>Welcome, Farmer</h2>
+    <div className="containers">
+      <div className="info-boxs">
+        <h2 className="headers">Welcome, Farmer</h2>
         <p>User ID: {userid}</p>
         <p>User Type: {userType}</p>
-        {auctionProducts && (
-          <p>Wallet Balance: {auctionProducts.total_money}</p>
+        {auctionProducts ? (
+          <>
+            <p className="wallet-balances">Wallet Balance: {auctionProducts.total_money}</p>
+            
+          </>
+        ) : (
+          <p className="error-messages">Error fetching wallet information</p>
         )}
       </div>
-    </>
+    </div>
   );
 };
+
 
 export default Farmer_Page;

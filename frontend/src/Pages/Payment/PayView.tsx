@@ -11,6 +11,7 @@ const PayView: React.FC = () => {
   const [showCelebration, setShowCelebration] = useState<boolean>(false);
   const [deliveryAmount, setDeliveryAmount] = useState<number>(0);
   const navigate = useNavigate();
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -38,12 +39,19 @@ const PayView: React.FC = () => {
 
   const handlePaymentSubmit = async () => {
     try {
+      // Check if the input amount is less than the sum of deliveryAmount and orderData.price
+      if (Number(paymentInput) !== Number(deliveryAmount) + Number(orderData.price)) {
+        console.error('Error: Insufficient payment amount');
+        // You can add logic here to show an error message to the user if needed
+        alert('Enter the correct amount!');
+        return;
+      }
+
       // Make a post request to register pending farmer payment
-      console.log(orderData.farmer_userid)
       const responsefarmer = await axios.post('http://127.0.0.1:8000/login_farmer/', {
         userid: orderData.farmer_userid,
       });
-      console.log(responsefarmer.data.user_data.address);
+
       await axios.post('http://127.0.0.1:8000/register_pending_farmer_payment/', {
         userid: orderData.farmer_userid,
         transaction_id: transactionIdInput,
@@ -52,9 +60,11 @@ const PayView: React.FC = () => {
         name: orderData.name,
         location: responsefarmer.data.user_data.address,
       });
+
       await axios.post('http://127.0.0.1:8000/delete_pending_payment/', {
         post_id: post_id,
       });
+
       await axios.post('http://127.0.0.1:8000/register_pending_delivery_products/', {
         post_id: orderData.post_id,
         name: orderData.name,
@@ -62,9 +72,9 @@ const PayView: React.FC = () => {
         price: orderData.price,
         businessman_userid: orderData.businessman_userid,
         farmer_userid: orderData.farmer_userid,
-
         location: responsefarmer.data.user_data.address,
       });
+
       await axios.post('http://127.0.0.1:8000/register_deilvery_bounty/', {
         userid: orderData.farmer_userid,
         transaction_id: transactionIdInput,
@@ -73,6 +83,7 @@ const PayView: React.FC = () => {
         name: orderData.name,
         location: responsefarmer.data.user_data.address,
       });
+
       navigate('/businessman');
 
       // Handle payment submission logic here
@@ -100,22 +111,21 @@ const PayView: React.FC = () => {
       {orderData ? (
         <div>
           <div className="row">
-            <span className="heading"><strong>Post ID:</strong><> </>{orderData.post_id}</span>
+            <span className="heading"><strong>Post ID:</strong></span><span className="details">{orderData.post_id}</span>
           </div>
           <div className="row">
-            <span className="heading"><strong>Product Name:</strong><>  </>{orderData.name}</span>
+            <span className="heading"><strong>Product Name:</strong></span><span className="details">{orderData.name}</span>
           </div>
           <div className="row">
-            <span className="heading"><strong>Amount:</strong><>   </>{orderData.amount} Kg</span>
+            <span className="heading"><strong>Amount:</strong></span><span className="details">{orderData.amount} Kg</span>
           </div>
           <div className="row">
-            <span className="heading"><strong>Product Price:</strong><> </>{orderData.price}</span>
+            <span className="heading"><strong>Product Price:</strong></span><span className="details">{orderData.price}</span>
           </div>
           <div className="row">
-            <span className="heading"><strong>Delivery Price:</strong><> </> {deliveryAmount}</span><br />
-           
+            <span className="heading"><strong>Total Price including Delivery:</strong></span><span className="details">{Number(deliveryAmount) + Number(orderData.price)}</span>
           </div>
-          <br/>
+          <br />
 
           <div className="payment-input-box">
             <label htmlFor="paymentInput">Enter Payment:</label>

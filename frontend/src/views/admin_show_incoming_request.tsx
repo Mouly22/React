@@ -48,6 +48,10 @@ const Admin_Page_show_Incoming_request: React.FC = () => {
       Url = 'http://127.0.0.1:8000/register_businessman/';
     }else if (newUserData.user_type === 'farmer') {
       Url = 'http://127.0.0.1:8000/register_farmer/';
+      axios.post('http://127.0.0.1:8000/register_farmer_wallet/', {
+        userid: newUserData.userid,
+        total_money: 0,
+      });
     }else if (newUserData.user_type === 'deliveryman') {
       Url = 'http://127.0.0.1:8000/register_deliveryman/';
     }

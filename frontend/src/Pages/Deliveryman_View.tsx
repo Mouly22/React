@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import './Deliveryman_View.css'
 
 
 interface PostProps {
@@ -61,6 +62,31 @@ const Post: React.FC<PostProps> = ({ pending_delivery_id, deliveryman_userid, de
 
       if (newStatus === 'Delivered') {
         setButtonStatus('Delivered');
+        const responsefarmerdata = await axios.post('http://127.0.0.1:8000/get_pending_farmer_payment_data/', {
+          product_id: product_id,
+        });
+        console.log(responsefarmerdata.data.userid);
+// pending on delivery delete
+await axios.post('http://127.0.0.1:8000/delete_pending_delivery_products/', {
+  product_id: product_id,
+
+});
+//pending farmer payment delete
+await axios.post('http://127.0.0.1:8000/delete_pending_farmer_payment/', {
+  product_id: product_id,
+
+});
+//bouties booked delete
+await axios.post('http://127.0.0.1:8000/delete_deilvery_bounty_booked/', {
+  product_id: product_id,
+
+});
+//fermer's balance update
+await axios.post('http://127.0.0.1:8000/update_farmer_wallet/', {
+  userid: responsefarmerdata.data.userid,
+  price: responsefarmerdata.data.price,
+
+});
       } else {
         setButtonStatus('In Process');
       }
@@ -79,10 +105,10 @@ const Post: React.FC<PostProps> = ({ pending_delivery_id, deliveryman_userid, de
         <p className="pendingDeliveryId"><strong>Pending Delivery ID:</strong><> </>{pending_delivery_id} </p>
         <p className="deliverymanUserid"><strong>Deliveryman User ID:</strong> {deliveryman_userid}</p>
         <p className="deliveryState"><strong>Delivery State:</strong> {delivery_state}</p>
-        <p className="transactionId"><strong>Transaction ID:</strong>{transaction_id}</p>
+        
         <h3 className="productName">{name}</h3>
-        <p className="location"><strong>{location}</strong></p>
-        <p className="amount"><strong>Amount:</strong> {amount}</p>
+        <p className="location"><strong> Location: {location}</strong></p>
+        <p className="amount"><strong>Amount:</strong> {amount} KG</p>
         <button className={buttonStatus === 'Accepted' ? 'acceptButton' : buttonStatus === 'In Process' ? 'inProcessButton' : 'deliveredButton'} onClick={handleAccept}>
           {buttonStatus}
         </button>
@@ -163,5 +189,6 @@ const Delivery = () => {
     </div>
   );
 };
+
 
 export default Delivery;
