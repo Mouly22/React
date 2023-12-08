@@ -61,12 +61,7 @@ const NavBar: React.FC<{}> = () => {
                 Profile
               </Link>
             </li>)}
-            {userId && (
-            <li>
-              <Link to="/form" className="nav-link px-2 text-white">
-                Form
-              </Link>
-            </li>)}
+           
           </ul>
           <div className="text-end">
             {userId ? (

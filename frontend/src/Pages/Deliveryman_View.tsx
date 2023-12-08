@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import './Deliveryman_View.css'
 
 
 interface PostProps {
@@ -188,5 +189,6 @@ const Delivery = () => {
     </div>
   );
 };
+
 
 export default Delivery;

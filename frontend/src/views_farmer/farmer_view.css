@@ -1,0 +1,36 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f2f2f2;
+  }
+  
+  .containers {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  
+  
+  .headers {
+    text-align: center;
+    color: #333;
+  }
+  
+  .info-boxs {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .wallet-balances {
+    font-size: 1.2em;
+    color: green;
+    margin-top: 10px;
+  }
+ 
+  
