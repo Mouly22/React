@@ -44,6 +44,8 @@ from delivery_bountys.views import ReactView_Register_bounties, ReactView_Delete
 from delivery_bountys_booked.views import ReactView_Register_bounties_accepted,ReactView_DeleteMember_bounties_accepted,ReactView_Search_Sort_bounties_accepted,ReactView_UpdateDeliveryState,ReactView_GetDeliveryState
 from pending_on_delivery_products.views import ReactView_Register_pending_on_delivery,ReactView_DeleteMember_pending_on_delivery,ReactView_Search_Sort_pending_on_delivery,ReactView_Get_product_details_pending_on_delivery
 from farmer_wallet.views import ReactView_Register_farmer_wallet,ReactView_Search_farmer_wallet,ReactView_Update_farmer_wallet
+from farmer_review.views import ReactView_Register_farmer_review,ReactView_Search_farmer_review
+
 
 urlpatterns = [
     path('', ReactView.as_view(), name="anything"),
@@ -184,6 +186,10 @@ urlpatterns = [
     path('register_farmer_wallet/', ReactView_Register_farmer_wallet.as_view(), name="anything"),# for pending businesmen payment register
     path('get_farmer_wallet/', ReactView_Search_farmer_wallet.as_view(), name="anything"),#for get pending businesmen payment
     path('update_farmer_wallet/', ReactView_Update_farmer_wallet.as_view(), name="anything"),#for get pending businesmen payment   
+
+    #For farmer review
+    path('register_farmer_review/', ReactView_Register_farmer_review.as_view(), name="anything"),# for pending businesmen payment register
+    path('get_farmer_review/', ReactView_Search_farmer_review.as_view(), name="anything"),#for get pending businesmen payment   
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
