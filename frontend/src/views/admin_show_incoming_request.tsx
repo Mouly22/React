@@ -21,7 +21,7 @@ const Admin_Page_show_Incoming_request: React.FC = () => {
     axios.post('http://127.0.0.1:8000/delete_incoming_request/', { memberId })
       .then((response) => {
         if (response.data.success) {
-          window.alert('User deleted successfully.');
+          // window.alert('User deleted successfully.');
           setRefresh(!refresh);
         } else {
           console.error('Delete request failed:', response.data);
