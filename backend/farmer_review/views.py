@@ -26,6 +26,7 @@ class ReactView_Search_farmer_review(APIView):
     def post(self, request):
         # Get the search parameters from the request
         userid = request.data.get('userid')
+        print(userid)
 
         # Filter the queryset based on userid
         queryset = React.objects.filter(userid=userid)
@@ -39,5 +40,5 @@ class ReactView_Search_farmer_review(APIView):
             return Response({'average_star': average_star})
         else:
             # No reviews found for the given userid
-            return Response({'average_star': 0}, status=status.HTTP_404_NOT_FOUND)
+            return Response({'average_star': 0})
 
