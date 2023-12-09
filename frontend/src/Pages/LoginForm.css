@@ -1,39 +1,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&family=Poppins:wght@400;500;600&display=swap');
-*{
+* {
   margin: 0;
-  padding: 0;
+  padding: 30;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
-body{
+
+body {
   margin: 0;
-  padding: 0;
+  padding: 20;
   background: white;
-  height: 150vh;
+  height: 100vh; 
   overflow: hidden;
-  
 }
-.center{
+
+.center {
   position: absolute;
   top: 50%;
   left: 50%;
-
   transform: translate(-50%, -50%);
   width: 400px;
-  height: 400px;
+  height: auto; /* Adjust height to auto for content-based height */
   background: white;
   border-radius: 5px;
   box-shadow: 10px 10px 15px rgba(134, 62, 62, 0.05);
   padding-top: 50px;
   padding-inline: 50px;
-  
-  
 }
-.center h1{
+
+.center h1 {
   text-align: center;
   padding: 40px 0;
   border-bottom: 1px solid silver;
 }
+
 .center form {
   padding: 50px; /* Increase the padding to adjust the form height */
   box-sizing: border-box;
@@ -46,6 +46,9 @@ body{
   padding-bottom: 30px; /* Increase the padding to adjust input field height */
   padding-top: 60px;
 }
+
+/* ... (rest of your CSS remains unchanged) */
+
 
 .txt_field input {
   width: 100%;

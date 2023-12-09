@@ -41,7 +41,7 @@ const Farmer_Page: React.FC = () => {
         <p>User Type: {userType}</p>
         {auctionProducts ? (
           <>
-            <p className="wallet-balances">Wallet Balance: {auctionProducts.total_money}</p>
+            <p className="wallet-balance: ">Wallet Balance: {auctionProducts.total_money}</p>
             
           </>
         ) : (
