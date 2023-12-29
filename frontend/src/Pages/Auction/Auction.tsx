@@ -134,7 +134,6 @@ const Auction: React.FC = () => {
   };
   return (
     <div className="amazon-container">
-      {/* Sidebar */}
       <ASidebar />
 
       <div className="amazon-products" style={{ maxHeight: '90vh', overflowY: 'auto' }}>

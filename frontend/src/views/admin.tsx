@@ -44,7 +44,6 @@ const Admin_Page: React.FC = () => {
         </>
       </div>
 
-      {/* Add tabs for navigation */}
       <div className="adminTabs">
         <button onClick={() => handleTabChange('admins')}>Admins</button>
         <button onClick={() => handleTabChange('fieldOfficers')}>Field Officers</button>

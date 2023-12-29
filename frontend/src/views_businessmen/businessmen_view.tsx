@@ -25,6 +25,14 @@ const Businessmen_Page: React.FC = () => {
           </Link>
           <br/>
           <br/>
+
+          <br/>
+          <Link to={`/farmer_review`} className='btnn'>
+                  Review Farmer
+          </Link>
+          <br/>
+          <br/>
+          <br/>
           <h4>Congratulations on your winning bid for quality items! 🎉</h4>
           <br/>
             <BusView/>

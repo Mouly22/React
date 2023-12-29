@@ -16,6 +16,7 @@ interface AuctionItem {
     end_time: string;
     current_time: string;
     description: { [key: string]: string }[];
+    posted_by: string;
   };
 }
 
@@ -25,6 +26,7 @@ const PostDetails: React.FC = () => {
   const [image, setImage] = useState<string | null>(null);
   const [bidAmount, setBidAmount] = useState<number>(0); // State for the bid amount
   const userId = localStorage.getItem('userid');
+  const [averageStar, setAverageStar] = useState<number | null>(null); // State for average star
 
   const handleBidSubmit = async () => {
     try {
@@ -75,7 +77,11 @@ const PostDetails: React.FC = () => {
         });
 
         setAuctionProduct(response.data);
-
+        console.log(response.data.user_data.posted_by)
+        const starResponse = await axios.post('http://127.0.0.1:8000/get_farmer_review/', {
+          userid: response.data.user_data.posted_by || '',
+        });
+        setAverageStar(starResponse.data.average_star);
         // Fetch image
         const imageResponse = await axios.post(
           'http://127.0.0.1:8000/login_auction_images/',
@@ -139,14 +145,15 @@ const PostDetails: React.FC = () => {
                 <p>
                   <strong>Total Bidding Placed:</strong> {auctionProduct.user_data.bidding_placed}
                 </p>
-                <p>
-                  <strong>Start Time:</strong> {auctionProduct.user_data.start_time}
-                </p>
+
                 <p>
                   <strong>End Time:</strong> {auctionProduct.user_data.end_time}
                 </p>
                 <p>
-                  <strong>Current Time:</strong> {auctionProduct.user_data.current_time}
+                  <strong>Posted by:</strong> {auctionProduct.user_data.posted_by}
+                </p>
+                <p>
+                  <strong>Ratting of the Farmer:</strong> {averageStar}
                 </p>
                 <ul>
                   {auctionProduct.user_data.description.map((desc, index) => (
